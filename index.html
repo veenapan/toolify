@@ -3,8 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Toolify — Free Online Tools: Compress, Convert, Calculate</title>
-<meta name="description" content="Free browser-based tools — compress images, merge PDFs, remove metadata, calculate EMI and more. No signup. 100% private. Instant.">
+
+<!-- ── Primary SEO ── -->
+<title id="pg-title">Toolify — Free Online Tools: Compress Images, Merge PDF, Calculate</title>
+<meta name="description" id="pg-desc" content="20 free browser-based tools — compress images to 100KB, merge PDFs, remove EXIF data, calculate EMI, generate passwords and more. No signup. 100% private. Instant.">
+<meta name="keywords" content="compress image online, merge pdf free, remove exif data, emi calculator, image resizer, png to jpg converter, json formatter, password generator, word counter, base64 encoder">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Toolify">
+<link rel="canonical" id="pg-canonical" href="https://toolify.app/">
+
+<!-- ── Open Graph ── -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolify">
+<meta property="og:title" id="og-title" content="Toolify — 20 Free Online Tools">
+<meta property="og:description" id="og-desc" content="Compress images, merge PDFs, calculate EMI, generate passwords — all free, instant, private. No signup needed.">
+<meta property="og:url" id="og-url" content="https://toolify.app/">
+<meta property="og:image" content="https://toolify.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- ── Twitter Card ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" id="tw-title" content="Toolify — 20 Free Online Tools">
+<meta name="twitter:description" id="tw-desc" content="Compress images, merge PDFs, calculate EMI — free, instant, private.">
+<meta name="twitter:image" content="https://toolify.app/og-image.png">
+
+<!-- ── JSON-LD: Site-level WebApplication ── -->
+<script type="application/ld+json" id="ld-site">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Toolify",
+  "url": "https://toolify.app/",
+  "description": "20 free browser-based utilities — compress images, merge PDFs, calculate EMI, generate passwords and more.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires a modern web browser with JavaScript enabled",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Toolify",
+    "url": "https://toolify.app/"
+  }
+}
+</script>
+
+<!-- ── JSON-LD: Tool-level SoftwareApplication (injected by JS per tool) ── -->
+<script type="application/ld+json" id="ld-tool"></script>
+
+<!-- ── JSON-LD: BreadcrumbList (injected by JS per tool) ── -->
+<script type="application/ld+json" id="ld-breadcrumb"></script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -554,58 +607,188 @@ footer strong{color:var(--text2)}
 <div class="toast" id="toast"></div>
 
 <script>
-/* ═══════════════════════════════════
-   DATA: TOOLS + RELATED
-═══════════════════════════════════ */
+const BASE_URL = 'https://toolify.app';
+
 const TOOLS = {
-  imgCompress:{title:'Compress Image to 100KB / 200KB',icon:'🗜️',sub:'Reduce file size with quality control — JPG, PNG, WebP',c:'c1',bg:'rgba(43,91,246,.1)',
+  imgCompress:{slug:'compress-image-online',title:'Compress Image to 100KB / 200KB',icon:'🗜️',sub:'Reduce file size with quality control — JPG, PNG, WebP',c:'c1',bg:'rgba(43,91,246,.1)',
+    seoTitle:'Compress Image Online Free — Reduce to 100KB, 200KB | Toolify',
+    seoDesc:'Compress JPG, PNG or WebP images online for free. Reduce file size to 100KB instantly. No upload, no signup, works in your browser.',
+    seoKw:'compress image online free,reduce image size,compress jpg to 100kb,compress png online,image compressor',
     related:['imgResize','imgConvert','imgMeta'],foot:['Files never uploaded','Client-side only','JPG · PNG · WebP']},
-  imgResize:{title:'Resize Image Online',icon:'📐',sub:'Custom dimensions or social media presets',c:'c1',bg:'rgba(43,91,246,.1)',
+  imgResize:{slug:'resize-image-online',title:'Resize Image Online — Custom or Presets',icon:'📐',sub:'Custom dimensions or social media presets',c:'c1',bg:'rgba(43,91,246,.1)',
+    seoTitle:'Resize Image Online Free — Custom Size & Social Presets | Toolify',
+    seoDesc:'Resize images to exact pixel dimensions or use Instagram, Story, HD presets. Free online image resizer with aspect ratio lock.',
+    seoKw:'resize image online,image resizer,resize photo,resize jpg,instagram image size',
     related:['imgCompress','imgConvert','imgMeta'],foot:['Aspect ratio lock','Social presets','Client-side only']},
-  imgConvert:{title:'PNG to JPG / WebP Converter',icon:'🔄',sub:'Convert image format in your browser',c:'c1',bg:'rgba(43,91,246,.1)',
+  imgConvert:{slug:'png-to-jpg-converter',title:'PNG to JPG / WebP Converter Online',icon:'🔄',sub:'Convert image format in your browser',c:'c1',bg:'rgba(43,91,246,.1)',
+    seoTitle:'PNG to JPG Converter Online Free — Also WebP | Toolify',
+    seoDesc:'Convert PNG to JPG, JPG to WebP, or any image format online for free. Instant conversion in your browser. No file size limits, no signup.',
+    seoKw:'png to jpg converter,jpg to webp,convert image format online,png to webp,image format converter',
     related:['imgCompress','imgResize','imgToPdf'],foot:['Lossless PNG option','Client-side only']},
-  imgMeta:{title:'Remove EXIF Data from Image',icon:'🧹',sub:'Strip GPS, device info and date metadata',c:'c1',bg:'rgba(43,91,246,.1)',
+  imgMeta:{slug:'remove-exif-data-from-image',title:'Remove EXIF Data from Image Online',icon:'🧹',sub:'Strip GPS, device info and date metadata',c:'c1',bg:'rgba(43,91,246,.1)',
+    seoTitle:'Remove EXIF Data from Image Online Free — Strip GPS & Metadata | Toolify',
+    seoDesc:'Remove EXIF metadata from JPG images online. Strip GPS location, device info and date before sharing photos. Free, private, no server upload.',
+    seoKw:'remove exif data,strip image metadata,remove gps from photo,remove location from image,exif remover online',
     related:['imgCompress','imgConvert','passGen'],foot:['Removes GPS · device · date','Files never uploaded']},
-  pdfMerge:{title:'Merge PDF Files Online',icon:'📎',sub:'Combine multiple PDFs into one document',c:'c2',bg:'rgba(240,68,56,.1)',
+  pdfMerge:{slug:'merge-pdf-files-online',title:'Merge PDF Files Online — Free',icon:'📎',sub:'Combine multiple PDFs into one document',c:'c2',bg:'rgba(240,68,56,.1)',
+    seoTitle:'Merge PDF Files Online Free — Combine Multiple PDFs | Toolify',
+    seoDesc:'Merge multiple PDF files into one document online for free. No file size limit, no signup, works entirely in your browser.',
+    seoKw:'merge pdf online free,combine pdf files,join pdf,merge pdf,pdf merger online',
     related:['pdfInfo','imgToPdf','textToPdf'],foot:['Uses pdf-lib','Files never uploaded','Unlimited pages']},
-  pdfInfo:{title:'PDF Inspector — View Metadata',icon:'🔍',sub:'See page count, size, author, title of any PDF',c:'c2',bg:'rgba(240,68,56,.1)',
+  pdfInfo:{slug:'pdf-inspector-metadata',title:'PDF Inspector — View Metadata & Info',icon:'🔍',sub:'See page count, size, author, title of any PDF',c:'c2',bg:'rgba(240,68,56,.1)',
+    seoTitle:'PDF Inspector — View PDF Metadata, Page Count & File Info | Toolify',
+    seoDesc:'View PDF metadata, page count, file size, author, title and creation date. Free PDF inspector tool. Works offline in your browser.',
+    seoKw:'pdf metadata viewer,view pdf info,pdf page count,pdf inspector,check pdf properties',
     related:['pdfMerge','imgToPdf','textToPdf'],foot:['Read-only inspection','Files never uploaded']},
-  imgToPdf:{title:'Convert Images to PDF Online',icon:'🖼️',sub:'JPG / PNG → PDF, one image per page',c:'c2',bg:'rgba(240,68,56,.1)',
+  imgToPdf:{slug:'convert-images-to-pdf',title:'Convert Images to PDF Online',icon:'🖼️',sub:'JPG / PNG → PDF, one image per page',c:'c2',bg:'rgba(240,68,56,.1)',
+    seoTitle:'Convert Images to PDF Online Free — JPG/PNG to PDF | Toolify',
+    seoDesc:'Convert JPG or PNG images to PDF online for free. Multiple images become multiple pages. Choose A4, Letter or fit-to-image.',
+    seoKw:'jpg to pdf,png to pdf,images to pdf,convert photo to pdf,image to pdf converter online',
     related:['pdfMerge','imgCompress','imgConvert'],foot:['Multiple images supported','A4 · Letter · Fit']},
-  textToPdf:{title:'Convert Text to PDF Online',icon:'📝',sub:'Paste text and download as formatted PDF',c:'c2',bg:'rgba(240,68,56,.1)',
+  textToPdf:{slug:'text-to-pdf-converter',title:'Convert Text to PDF Online',icon:'📝',sub:'Paste text and download as formatted PDF',c:'c2',bg:'rgba(240,68,56,.1)',
+    seoTitle:'Convert Text to PDF Online Free — Paste & Download | Toolify',
+    seoDesc:'Convert plain text to PDF online for free. Set font size, margins and title. Multi-page support with word wrap. Instant download.',
+    seoKw:'text to pdf,convert text to pdf online,plain text to pdf,txt to pdf,create pdf from text',
     related:['pdfMerge','invoiceGen','wordCount'],foot:['Word wrap','Multi-page','Instant download']},
-  bmiCalc:{title:'BMI Calculator',icon:'⚖️',sub:'Body Mass Index with health range guide',c:'c3',bg:'rgba(18,183,106,.1)',
+  bmiCalc:{slug:'bmi-calculator',title:'BMI Calculator — Body Mass Index',icon:'⚖️',sub:'Body Mass Index with health range guide',c:'c3',bg:'rgba(18,183,106,.1)',
+    seoTitle:'BMI Calculator Online Free — Body Mass Index | Toolify',
+    seoDesc:'Calculate your BMI (Body Mass Index) online for free. Supports kg/cm and lb/ft. See your health category instantly with visual scale.',
+    seoKw:'bmi calculator,body mass index calculator,bmi calculator online,bmi calculator kg cm,healthy bmi',
     related:['ageCalc','percentCalc','loanCalc'],foot:['WHO BMI standards','Metric & Imperial']},
-  ageCalc:{title:'Age Calculator from Date of Birth',icon:'🎂',sub:'Exact years, months, days + next birthday',c:'c3',bg:'rgba(18,183,106,.1)',
+  ageCalc:{slug:'age-calculator',title:'Age Calculator from Date of Birth',icon:'🎂',sub:'Exact years, months, days + next birthday',c:'c3',bg:'rgba(18,183,106,.1)',
+    seoTitle:'Age Calculator — Calculate Exact Age from Date of Birth | Toolify',
+    seoDesc:'Calculate exact age in years, months, days and weeks from any date of birth. Find next birthday countdown. Free online age calculator.',
+    seoKw:'age calculator,calculate age from date of birth,how old am i,age calculator online,birthday calculator',
     related:['bmiCalc','percentCalc','loanCalc'],foot:['Precise to the day','Next birthday countdown']},
-  loanCalc:{title:'Loan EMI Calculator',icon:'💰',sub:'Monthly payment, total interest breakdown',c:'c3',bg:'rgba(18,183,106,.1)',
+  loanCalc:{slug:'emi-loan-calculator',title:'Loan EMI Calculator — Monthly Payment',icon:'💰',sub:'Monthly payment, total interest breakdown',c:'c3',bg:'rgba(18,183,106,.1)',
+    seoTitle:'EMI Loan Calculator — Monthly Payment & Interest | Toolify',
+    seoDesc:'Calculate monthly EMI for home loan, personal loan or car loan. See total interest, principal breakdown and payment schedule.',
+    seoKw:'emi calculator,loan emi calculator,home loan calculator,monthly payment calculator,interest calculator',
     related:['percentCalc','invoiceGen','ageCalc'],foot:['Standard amortization','Full breakdown']},
-  percentCalc:{title:'Percentage Calculator Online',icon:'📊',sub:'% of number, % change, X is % of Y',c:'c3',bg:'rgba(18,183,106,.1)',
+  percentCalc:{slug:'percentage-calculator',title:'Percentage Calculator Online',icon:'📊',sub:'% of number, % change, X is % of Y',c:'c3',bg:'rgba(18,183,106,.1)',
+    seoTitle:'Percentage Calculator Online Free — 3 Modes | Toolify',
+    seoDesc:'Calculate percentages online for free. Find what % of a number is, calculate % increase or decrease, or find what % X is of Y.',
+    seoKw:'percentage calculator,percent calculator online,percentage increase calculator,what percent of,calculate percentage',
     related:['loanCalc','bmiCalc','wordCount'],foot:['3 calculation modes','Instant results']},
-  invoiceGen:{title:'Free Invoice Generator',icon:'🧾',sub:'Professional invoices — download as PDF',c:'c4',bg:'rgba(247,144,9,.1)',
+  invoiceGen:{slug:'invoice-generator-free',title:'Free Invoice Generator — Download PDF',icon:'🧾',sub:'Professional invoices — download as PDF',c:'c4',bg:'rgba(247,144,9,.1)',
+    seoTitle:'Free Invoice Generator — Create & Download PDF Invoice | Toolify',
+    seoDesc:'Generate professional invoices online for free. Add line items, tax, currency. Download as PDF instantly. No account needed, no watermarks.',
+    seoKw:'free invoice generator,invoice maker online,create invoice pdf,invoice template free,online invoice creator',
     related:['textToPdf','loanCalc','percentCalc'],foot:['No account needed','Tax support','PDF download']},
-  jsonFmt:{title:'JSON Formatter & Validator',icon:'{ }',sub:'Beautify, minify and validate JSON',c:'c4',bg:'rgba(247,144,9,.1)',
+  jsonFmt:{slug:'json-formatter-validator',title:'JSON Formatter, Validator & Minifier',icon:'{ }',sub:'Beautify, minify and validate JSON',c:'c4',bg:'rgba(247,144,9,.1)',
+    seoTitle:'JSON Formatter & Validator Online — Beautify & Minify | Toolify',
+    seoDesc:'Format, validate and minify JSON online for free. Instantly beautify messy JSON or minify it for production. Syntax error highlighting.',
+    seoKw:'json formatter online,json validator,json beautifier,json minifier,format json online',
     related:['csvJson','csvViewer','base64'],foot:['Syntax validation','Minify option','Copy to clipboard']},
-  wordCount:{title:'Word & Character Counter',icon:'📝',sub:'Words, characters, sentences, reading time',c:'c4',bg:'rgba(247,144,9,.1)',
+  wordCount:{slug:'word-counter-online',title:'Word & Character Counter Online',icon:'📝',sub:'Words, characters, sentences, reading time',c:'c4',bg:'rgba(247,144,9,.1)',
+    seoTitle:'Word Counter Online Free — Characters, Sentences & Reading Time | Toolify',
+    seoDesc:'Count words, characters, sentences, paragraphs and reading time online for free. Real-time word counter. Supports any language.',
+    seoKw:'word counter,character counter,word count online,count words online,word counter free',
     related:['textToPdf','invoiceGen','jsonFmt'],foot:['Real-time counting','Reading time estimate']},
-  csvViewer:{title:'CSV Viewer Online',icon:'📋',sub:'View CSV as sortable table — paste or upload',c:'c4',bg:'rgba(247,144,9,.1)',
+  csvViewer:{slug:'csv-viewer-online',title:'CSV Viewer — Paste or Upload to Table',icon:'📋',sub:'View CSV as sortable table — paste or upload',c:'c4',bg:'rgba(247,144,9,.1)',
+    seoTitle:'CSV Viewer Online Free — View CSV as Table | Toolify',
+    seoDesc:'View CSV files as a sortable table online for free. Paste CSV data or upload a file. Instant preview. No signup needed.',
+    seoKw:'csv viewer online,view csv file,csv to table,open csv online,csv reader online',
     related:['csvJson','jsonFmt','base64'],foot:['Upload or paste','Sortable columns']},
-  passGen:{title:'Strong Password Generator',icon:'🔑',sub:'Cryptographically random — custom rules',c:'c5',bg:'rgba(124,58,237,.1)',
+  passGen:{slug:'password-generator',title:'Strong Password Generator Online',icon:'🔑',sub:'Cryptographically random — custom rules',c:'c5',bg:'rgba(124,58,237,.1)',
+    seoTitle:'Strong Password Generator Online Free — Random & Secure | Toolify',
+    seoDesc:'Generate strong, random passwords online for free. Customize length, uppercase, numbers, symbols. Cryptographically secure. Never transmitted.',
+    seoKw:'password generator,strong password generator,random password generator,secure password generator,free password generator',
     related:['hashGen','imgMeta','base64'],foot:['Crypto random','Never transmitted']},
-  hashGen:{title:'SHA-256 / SHA-512 Hash Generator',icon:'🔒',sub:'SHA-1, SHA-256, SHA-512 from any text',c:'c5',bg:'rgba(124,58,237,.1)',
+  hashGen:{slug:'sha256-hash-generator',title:'SHA-256 / SHA-512 Hash Generator',icon:'🔒',sub:'SHA-1, SHA-256, SHA-512 from any text',c:'c5',bg:'rgba(124,58,237,.1)',
+    seoTitle:'SHA-256 Hash Generator Online Free — SHA-1 & SHA-512 | Toolify',
+    seoDesc:'Generate SHA-1, SHA-256 and SHA-512 cryptographic hashes from any text online for free. Uses Web Crypto API. Nothing sent to a server.',
+    seoKw:'sha256 hash generator,sha-256 online,hash generator online,sha256 generator,text to hash',
     related:['passGen','base64','imgMeta'],foot:['Web Crypto API','Client-side only']},
-  csvJson:{title:'CSV to JSON Converter',icon:'⇄',sub:'CSV ↔ JSON bidirectional conversion',c:'c6',bg:'rgba(14,165,233,.1)',
+  csvJson:{slug:'csv-to-json-converter',title:'CSV to JSON Converter (and JSON to CSV)',icon:'⇄',sub:'CSV ↔ JSON bidirectional conversion',c:'c6',bg:'rgba(14,165,233,.1)',
+    seoTitle:'CSV to JSON Converter Online Free — Also JSON to CSV | Toolify',
+    seoDesc:'Convert CSV to JSON or JSON to CSV online for free. Paste data or upload a file. Instant bidirectional conversion. No signup needed.',
+    seoKw:'csv to json converter,json to csv,convert csv to json online,csv json converter,csv to json free',
     related:['jsonFmt','csvViewer','base64'],foot:['Paste or upload','Copy output']},
-  base64:{title:'Base64 Encode / Decode Online',icon:'💾',sub:'Encode text to Base64 or decode it back',c:'c6',bg:'rgba(14,165,233,.1)',
+  base64:{slug:'base64-encode-decode',title:'Base64 Encode / Decode Online',icon:'💾',sub:'Encode text to Base64 or decode it back',c:'c6',bg:'rgba(14,165,233,.1)',
+    seoTitle:'Base64 Encoder & Decoder Online Free | Toolify',
+    seoDesc:'Encode text or strings to Base64 or decode Base64 back to plain text online for free. Instant, private, works entirely in your browser.',
+    seoKw:'base64 encoder,base64 decoder,base64 encode online,base64 decode online,text to base64',
     related:['hashGen','csvJson','jsonFmt'],foot:['Encode & decode modes','File support']}
 };
 
-/* ═══════════════════════════════════
-   MODAL
-═══════════════════════════════════ */
+/* build slug → id map */
+const SLUG_MAP = {};
+Object.entries(TOOLS).forEach(([id,t]) => { if(t.slug) SLUG_MAP[t.slug] = id; });
+
+/* ── SEO helpers ── */
+function seo_set(t) {
+  const title = t ? t.seoTitle : 'Toolify — Free Online Tools: Compress Images, Merge PDF, Calculate';
+  const desc  = t ? t.seoDesc  : '20 free browser-based tools — compress images, merge PDFs, calculate EMI and more. No signup. 100% private. Instant.';
+  const kw    = t ? t.seoKw    : 'compress image online,merge pdf free,remove exif data,emi calculator,image resizer';
+  const url   = t ? BASE_URL+'/'+t.slug : BASE_URL+'/';
+  document.getElementById('pg-title').textContent = title;
+  document.getElementById('pg-desc').content = desc;
+  const kwMeta = document.querySelector('meta[name="keywords"]');
+  if(kwMeta) kwMeta.content = kw;
+  document.getElementById('pg-canonical').href = url;
+  document.getElementById('og-title').content = title;
+  document.getElementById('og-desc').content = desc;
+  document.getElementById('og-url').content = url;
+  document.getElementById('tw-title').content = title;
+  document.getElementById('tw-desc').content = desc;
+  /* per-tool JSON-LD */
+  const ldTool = document.getElementById('ld-tool');
+  const ldBc   = document.getElementById('ld-breadcrumb');
+  if(t && ldTool) {
+    ldTool.textContent = JSON.stringify({
+      "@context":"https://schema.org","@type":"SoftwareApplication",
+      "name":t.title,"url":BASE_URL+'/'+t.slug,"description":t.seoDesc,
+      "applicationCategory":"UtilityApplication","operatingSystem":"Any",
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+      "provider":{"@type":"Organization","name":"Toolify","url":BASE_URL}
+    });
+    if(ldBc) ldBc.textContent = JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Toolify","item":BASE_URL},
+        {"@type":"ListItem","position":2,"name":t.title,"item":BASE_URL+'/'+t.slug}
+      ]
+    });
+  } else {
+    if(ldTool) ldTool.textContent='';
+    if(ldBc) ldBc.textContent='';
+  }
+}
+
+/* ── URL routing ── */
+function route_push(id) {
+  const t=TOOLS[id]; if(!t) return;
+  history.pushState({tool:id}, t.seoTitle, '/'+t.slug);
+  seo_set(t);
+}
+function route_home() {
+  history.pushState({}, 'Toolify', '/');
+  seo_set(null);
+}
+
+/* browser back/forward */
+window.addEventListener('popstate', e => {
+  if(e.state && e.state.tool) _open_tool_ui(e.state.tool);
+  else _close_modal_ui();
+});
+
+/* direct URL visit e.g. toolify.app/compress-image-online */
+window.addEventListener('DOMContentLoaded', () => {
+  const slug = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
+  const id = SLUG_MAP[slug];
+  if(id) {
+    history.replaceState({tool:id}, TOOLS[id].seoTitle, '/'+TOOLS[id].slug);
+    open_tool(id, true);
+  } else {
+    seo_set(null);
+  }
+});
+
+/* ── Modal ── */
 let cur = null;
 
-function open_tool(id) {
+function _open_tool_ui(id) {
   cur = id;
   const t = TOOLS[id]; if(!t) return;
   document.getElementById('mIco').textContent = t.icon;
@@ -613,7 +796,6 @@ function open_tool(id) {
   document.getElementById('mTitle').textContent = t.title;
   document.getElementById('mSub').textContent = t.sub;
   document.getElementById('mBody').innerHTML = render(id);
-  // related tools
   const rel = (t.related||[]).filter(r=>TOOLS[r]);
   document.getElementById('mRelated').innerHTML = rel.length ? `
     <div class="m-rel-label">People also use</div>
@@ -623,10 +805,20 @@ function open_tool(id) {
   init_tool(id);
 }
 
-function close_modal() {
+function open_tool(id, skipPush) {
+  _open_tool_ui(id);
+  if(!skipPush) route_push(id);
+}
+
+function _close_modal_ui() {
   document.getElementById('overlay').classList.remove('open');
   document.body.style.overflow = '';
   cur = null;
+}
+
+function close_modal() {
+  _close_modal_ui();
+  route_home();
 }
 
 function ov_click(e) { if(e.target===document.getElementById('overlay')) close_modal(); }
