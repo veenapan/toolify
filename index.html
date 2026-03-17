@@ -3,537 +3,526 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Toolify — Free Online Utilities</title>
-<meta name="description" content="20 free browser-based tools for images, PDFs, calculators, and more. No signup, no uploads, 100% private.">
+<title>Toolify — Free Online Tools: Compress, Convert, Calculate</title>
+<meta name="description" content="Free browser-based tools — compress images, merge PDFs, remove metadata, calculate EMI and more. No signup. 100% private. Instant.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f6f7f9;
-  --bg2:#eef0f4;
-  --white:#ffffff;
-  --border:#e2e5eb;
-  --border2:#d0d4dc;
-  --text:#0f1117;
-  --text2:#4a5060;
-  --text3:#8b92a5;
-  --blue:#2B5BF6;
-  --blue-light:#EEF1FE;
-  --blue-mid:#c7d0fc;
-  --green:#12b76a;
-  --green-light:#ecfdf5;
-  --red:#f04438;
-  --red-light:#fff1f0;
-  --orange:#f79009;
-  --purple:#7c3aed;
-  --cyan:#0ea5e9;
-  --shadow-xs:0 1px 2px rgba(15,17,23,.06);
-  --shadow-sm:0 1px 3px rgba(15,17,23,.08),0 1px 2px rgba(15,17,23,.04);
-  --shadow:0 4px 12px rgba(15,17,23,.08),0 1px 4px rgba(15,17,23,.04);
-  --shadow-md:0 8px 24px rgba(15,17,23,.10),0 2px 8px rgba(15,17,23,.06);
-  --shadow-lg:0 20px 48px rgba(15,17,23,.14),0 4px 16px rgba(15,17,23,.06);
-  --r-sm:8px;
-  --r:12px;
-  --r-lg:16px;
-  --r-xl:20px;
-  --font:'Outfit',sans-serif;
-  --mono:'JetBrains Mono',monospace;
-  --ease:.2s cubic-bezier(.4,0,.2,1);
+  --bg:#f5f6f8;--bg2:#eceef2;--white:#fff;
+  --border:#e2e5eb;--border2:#d0d4dc;
+  --text:#0d0f14;--text2:#4a5060;--text3:#8b92a5;
+  --blue:#2B5BF6;--blue-l:#EEF1FE;--blue-m:#c7d0fc;
+  --green:#12b76a;--green-l:#ecfdf5;
+  --red:#f04438;--red-l:#fff1f0;
+  --orange:#f79009;--purple:#7c3aed;--cyan:#0ea5e9;
+  --sh-xs:0 1px 2px rgba(13,15,20,.06);
+  --sh-sm:0 1px 3px rgba(13,15,20,.08),0 1px 2px rgba(13,15,20,.04);
+  --sh:0 4px 12px rgba(13,15,20,.08),0 1px 4px rgba(13,15,20,.04);
+  --sh-md:0 8px 24px rgba(13,15,20,.10),0 2px 8px rgba(13,15,20,.06);
+  --sh-lg:0 20px 48px rgba(13,15,20,.14),0 4px 16px rgba(13,15,20,.06);
+  --r-sm:8px;--r:12px;--r-lg:16px;--r-xl:20px;
+  --font:'Outfit',sans-serif;--mono:'JetBrains Mono',monospace;
+  --ease:.18s cubic-bezier(.4,0,.2,1);
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.55;-webkit-font-smoothing:antialiased}
-::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px}
 
 /* ── HEADER ── */
-header{
-  position:sticky;top:0;z-index:200;
-  background:rgba(246,247,249,.88);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-}
-.hdr{max-width:1200px;margin:0 auto;padding:0 24px;height:58px;display:flex;align-items:center;gap:16px}
-.logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0}
-.logo-icon{width:34px;height:34px;background:var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center}
-.logo-icon svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.logo-text{font-size:17px;font-weight:700;color:var(--text);letter-spacing:-.4px}
+header{position:sticky;top:0;z-index:300;background:rgba(245,246,248,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.hdr{max-width:1200px;margin:0 auto;padding:0 24px;height:58px;display:flex;align-items:center;gap:14px}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0}
+.logo-icon{width:32px;height:32px;background:var(--blue);border-radius:9px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.logo-text{font-size:17px;font-weight:800;color:var(--text);letter-spacing:-.5px}
 .logo-text span{color:var(--blue)}
-.hdr-search{flex:1;max-width:340px;position:relative}
-.hdr-search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:15px;height:15px;stroke:var(--text3);fill:none;stroke-width:2;stroke-linecap:round;pointer-events:none}
-.hdr-search input{width:100%;padding:8px 12px 8px 34px;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--white);font-family:var(--font);font-size:14px;color:var(--text);outline:none;transition:var(--ease)}
-.hdr-search input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(43,91,246,.12)}
+.hdr-search{flex:1;max-width:320px;position:relative}
+.hdr-search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;stroke:var(--text3);fill:none;stroke-width:2;stroke-linecap:round;pointer-events:none}
+.hdr-search input{width:100%;padding:8px 12px 8px 32px;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--white);font-family:var(--font);font-size:13.5px;color:var(--text);outline:none;transition:var(--ease)}
+.hdr-search input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(43,91,246,.12);background:var(--white)}
 .hdr-search input::placeholder{color:var(--text3)}
-.hdr-pill{font-size:12px;font-weight:500;color:var(--text2);background:var(--white);border:1.5px solid var(--border);padding:4px 12px;border-radius:99px;white-space:nowrap;margin-left:auto}
+.hdr-r{margin-left:auto;display:flex;align-items:center;gap:8px}
+.hdr-pill{font-size:12px;font-weight:600;color:var(--text2);background:var(--white);border:1.5px solid var(--border);padding:4px 11px;border-radius:99px}
 
 /* ── HERO ── */
-.hero{padding:52px 24px 36px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(43,91,246,.10) 0%,transparent 70%);pointer-events:none}
-.hero-inner{max-width:580px;margin:0 auto;position:relative}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:var(--blue);background:var(--blue-light);border:1.5px solid var(--blue-mid);padding:4px 12px;border-radius:99px;margin-bottom:18px;letter-spacing:.2px;text-transform:uppercase}
-.hero-badge span{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}
-.hero h1{font-size:clamp(30px,5vw,48px);font-weight:700;letter-spacing:-1.5px;line-height:1.1;margin-bottom:14px;color:var(--text)}
+.hero{padding:48px 24px 0;background:var(--white);border-bottom:1px solid var(--border)}
+.hero-inner{max-width:1200px;margin:0 auto}
+.hero-top{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-bottom:40px}
+.hero-left{}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--blue);background:var(--blue-l);border:1.5px solid var(--blue-m);padding:4px 11px;border-radius:99px;margin-bottom:16px;letter-spacing:.3px;text-transform:uppercase}
+.hero-badge-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.hero h1{font-size:clamp(28px,4vw,46px);font-weight:800;letter-spacing:-2px;line-height:1.08;margin-bottom:14px;color:var(--text)}
 .hero h1 em{font-style:normal;color:var(--blue)}
-.hero p{font-size:16px;color:var(--text2);font-weight:400;max-width:440px;margin:0 auto;line-height:1.7}
-.stats{display:flex;justify-content:center;gap:0;margin:28px auto 0;max-width:440px;background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
-.stat{flex:1;padding:14px 8px;text-align:center;border-right:1px solid var(--border)}
-.stat:last-child{border-right:none}
-.stat-n{font-size:20px;font-weight:700;color:var(--text);letter-spacing:-1px}
-.stat-l{font-size:11px;color:var(--text3);margin-top:1px;font-weight:500}
+.hero-desc{font-size:15.5px;color:var(--text2);line-height:1.7;max-width:420px;margin-bottom:24px}
+.hero-cta-row{display:flex;gap:10px;flex-wrap:wrap}
+.cta-btn{display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:var(--r-sm);font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;border:none;transition:var(--ease);text-decoration:none;letter-spacing:-.2px}
+.cta-primary{background:var(--blue);color:#fff}
+.cta-primary:hover{background:#1e4fd8;box-shadow:0 4px 16px rgba(43,91,246,.35)}
+.cta-ghost{background:var(--bg);color:var(--text);border:1.5px solid var(--border)}
+.cta-ghost:hover{background:var(--bg2);border-color:var(--border2)}
 
-/* ── FILTER PILLS ── */
-.filter-bar{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
-.fpill{font-size:13px;font-weight:500;padding:6px 14px;border-radius:99px;border:1.5px solid var(--border);background:var(--white);color:var(--text2);cursor:pointer;transition:var(--ease);white-space:nowrap}
+/* ── POPULAR TOOLS STRIP ── */
+.hero-popular{border-top:1px solid var(--border);padding:20px 0}
+.pop-label{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px}
+.pop-grid{display:flex;gap:8px;flex-wrap:wrap}
+.pop-btn{display:flex;align-items:center;gap:7px;padding:8px 14px;border-radius:var(--r-sm);border:1.5px solid var(--border);background:var(--bg);cursor:pointer;transition:var(--ease);text-decoration:none;font-family:var(--font)}
+.pop-btn:hover{border-color:var(--c,var(--blue));background:var(--white);box-shadow:var(--sh)}
+.pop-btn-ico{font-size:15px}
+.pop-btn-text{font-size:13px;font-weight:600;color:var(--text);line-height:1.2}
+.pop-btn-sub{font-size:11px;color:var(--text3);font-weight:400}
+.pop-fire{font-size:11px;background:linear-gradient(135deg,#f97316,#ef4444);color:#fff;padding:1px 6px;border-radius:4px;font-weight:700;letter-spacing:.2px}
+
+/* hero right — stats grid */
+.hero-right{}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-card{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:18px}
+.stat-n{font-size:28px;font-weight:800;letter-spacing:-1.5px;color:var(--text)}
+.stat-l{font-size:12px;color:var(--text3);font-weight:500;margin-top:2px}
+.stat-card.accent-blue{background:var(--blue-l);border-color:var(--blue-m)}
+.stat-card.accent-blue .stat-n{color:var(--blue)}
+.stat-card.accent-green{background:var(--green-l);border-color:rgba(18,183,106,.25)}
+.stat-card.accent-green .stat-n{color:var(--green)}
+
+/* ── FILTER BAR ── */
+.filter-wrap{max-width:1200px;margin:0 auto;padding:24px 24px 0}
+.filter-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.filter-label{font-size:11.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-right:4px}
+.fpill{font-size:13px;font-weight:600;padding:6px 14px;border-radius:99px;border:1.5px solid var(--border);background:var(--white);color:var(--text2);cursor:pointer;transition:var(--ease);white-space:nowrap;font-family:var(--font)}
 .fpill:hover{border-color:var(--blue);color:var(--blue)}
-.fpill.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.fpill.on{background:var(--blue);color:#fff;border-color:var(--blue)}
 
 /* ── MAIN ── */
-.main{max-width:1200px;margin:0 auto;padding:0 24px 80px}
+.main{max-width:1200px;margin:0 auto;padding:24px 24px 80px}
 
 /* ── CLUSTER ── */
-.cluster{margin-bottom:48px}
-.cluster-hdr{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.cluster-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.cluster-name{font-size:13px;font-weight:600;color:var(--text);letter-spacing:.1px;text-transform:uppercase}
-.cluster-sub{font-size:12px;color:var(--text3);margin-left:4px}
-.cluster-line{flex:1;height:1px;background:var(--border)}
-.cluster-cnt{font-size:11.5px;font-weight:600;color:var(--text3);background:var(--bg2);border:1px solid var(--border);padding:2px 9px;border-radius:99px}
+.cluster{margin-bottom:44px}
+.c-hdr{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.c-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.c-name{font-size:12.5px;font-weight:700;color:var(--text);letter-spacing:.2px;text-transform:uppercase}
+.c-sub{font-size:12px;color:var(--text3);margin-left:2px}
+.c-line{flex:1;height:1px;background:var(--border)}
+.c-cnt{font-size:11px;font-weight:700;color:var(--text3);background:var(--bg2);border:1px solid var(--border);padding:2px 9px;border-radius:99px}
 
-/* ── TOOL GRID ── */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
-.card{
-  background:var(--white);border:1.5px solid var(--border);
-  border-radius:var(--r-lg);padding:18px;cursor:pointer;
-  transition:var(--ease);position:relative;overflow:hidden;
-  display:flex;flex-direction:column;gap:12px;
-}
-.card::after{content:'';position:absolute;inset:0;opacity:0;transition:var(--ease);border-radius:var(--r-lg);background:var(--c-accent)}
-.card:hover{border-color:var(--c-accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--c-accent) 15%,transparent),var(--shadow-md);transform:translateY(-2px)}
-.card:hover::after{opacity:.04}
-.card:active{transform:translateY(0)}
+/* ── GRID ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(226px,1fr));gap:10px}
+.card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:18px;cursor:pointer;transition:var(--ease);position:relative;overflow:hidden;display:flex;flex-direction:column;gap:11px}
+.card:hover{border-color:var(--ca,var(--blue));box-shadow:0 0 0 3px color-mix(in srgb,var(--ca,var(--blue)) 12%,transparent),var(--sh-md);transform:translateY(-2px)}
+.card:active{transform:none}
 .card-top{display:flex;align-items:flex-start;justify-content:space-between}
-.card-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;background:color-mix(in srgb,var(--c-accent) 10%,transparent);flex-shrink:0;position:relative;z-index:1}
-.card-tags{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end;position:relative;z-index:1}
-.tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:99px;letter-spacing:.1px}
-.tag-free{background:var(--green-light);color:var(--green)}
-.tag-fast{background:var(--blue-light);color:var(--blue)}
+.card-ico{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;background:color-mix(in srgb,var(--ca,var(--blue)) 10%,transparent);flex-shrink:0}
+.card-tags{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.tag{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;letter-spacing:.1px}
+.tag-free{background:var(--green-l);color:var(--green)}
+.tag-fast{background:var(--blue-l);color:var(--blue)}
 .tag-priv{background:#f5f3ff;color:var(--purple)}
-.card-name{font-size:14px;font-weight:600;color:var(--text);letter-spacing:-.2px;line-height:1.3;position:relative;z-index:1}
-.card-desc{font-size:12.5px;color:var(--text2);line-height:1.55;position:relative;z-index:1}
-.card-arrow{position:absolute;right:14px;bottom:14px;width:22px;height:22px;border-radius:6px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;opacity:0;transition:var(--ease);z-index:1}
-.card-arrow svg{width:10px;height:10px;stroke:var(--text2);fill:none;stroke-width:2.5;stroke-linecap:round}
-.card:hover .card-arrow{opacity:1;transform:translate(1px,-1px)}
+.tag-hot{background:linear-gradient(135deg,rgba(249,115,22,.15),rgba(239,68,68,.15));color:#ea4d2c}
+.card-name{font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:-.2px;line-height:1.3}
+.card-desc{font-size:12px;color:var(--text2);line-height:1.55}
+.card-arrow{position:absolute;right:13px;bottom:13px;width:20px;height:20px;border-radius:5px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;opacity:0;transition:var(--ease)}
+.card-arrow svg{width:9px;height:9px;stroke:var(--text2);fill:none;stroke-width:2.5;stroke-linecap:round}
+.card:hover .card-arrow{opacity:1}
 
-/* cluster accent vars */
-.c1{--c-accent:#2B5BF6}.c2{--c-accent:#f04438}.c3{--c-accent:#12b76a}.c4{--c-accent:#f79009}.c5{--c-accent:#7c3aed}.c6{--c-accent:#0ea5e9}
+.c1{--ca:#2B5BF6}.c2{--ca:#f04438}.c3{--ca:#12b76a}.c4{--ca:#f79009}.c5{--ca:#7c3aed}.c6{--ca:#0ea5e9}
 .cd1{background:var(--blue)}.cd2{background:var(--red)}.cd3{background:var(--green)}.cd4{background:var(--orange)}.cd5{background:var(--purple)}.cd6{background:var(--cyan)}
 
 /* ── MODAL ── */
-.overlay{position:fixed;inset:0;z-index:500;background:rgba(15,17,23,.45);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s}
+.overlay{position:fixed;inset:0;z-index:500;background:rgba(13,15,20,.48);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s}
 .overlay.open{opacity:1;pointer-events:all}
-.modal{background:var(--white);border-radius:var(--r-xl);box-shadow:var(--shadow-lg);width:100%;max-width:660px;max-height:90vh;display:flex;flex-direction:column;transform:translateY(16px) scale(.98);transition:transform .22s cubic-bezier(.34,1.4,.64,1),opacity .2s;opacity:0;border:1.5px solid var(--border)}
+.modal{background:var(--white);border-radius:var(--r-xl);box-shadow:var(--sh-lg);width:100%;max-width:680px;max-height:90vh;display:flex;flex-direction:column;transform:translateY(14px) scale(.98);transition:transform .22s cubic-bezier(.34,1.4,.64,1),opacity .2s;opacity:0;border:1.5px solid var(--border)}
 .overlay.open .modal{transform:none;opacity:1}
-.modal-hdr{padding:20px 22px 16px;border-bottom:1.5px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0}
-.modal-ico{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-.modal-titles{flex:1;min-width:0}
-.modal-title{font-size:17px;font-weight:700;letter-spacing:-.3px}
-.modal-sub{font-size:12.5px;color:var(--text2);margin-top:2px}
-.modal-close{width:32px;height:32px;border-radius:var(--r-sm);border:1.5px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);transition:var(--ease);flex-shrink:0}
-.modal-close:hover{background:var(--bg2);color:var(--text)}
-.modal-close svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round}
-.modal-body{padding:22px;overflow-y:auto;flex:1}
-.modal-foot{padding:12px 22px;border-top:1.5px solid var(--border);background:var(--bg);border-radius:0 0 var(--r-xl) var(--r-xl);display:flex;gap:6px;flex-wrap:wrap;flex-shrink:0}
-.foot-tag{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:5px}
-.foot-tag:not(:first-child)::before{content:'·';margin-right:1px}
+.m-hdr{padding:18px 20px 14px;border-bottom:1.5px solid var(--border);display:flex;align-items:center;gap:11px;flex-shrink:0}
+.m-ico{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0}
+.m-titles{flex:1;min-width:0}
+.m-title{font-size:16px;font-weight:800;letter-spacing:-.3px}
+.m-sub{font-size:12px;color:var(--text2);margin-top:2px}
+.m-close{width:30px;height:30px;border-radius:7px;border:1.5px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);transition:var(--ease);flex-shrink:0}
+.m-close:hover{background:var(--bg2);color:var(--text)}
+.m-close svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round}
+.m-body{padding:20px;overflow-y:auto;flex:1}
+.m-related{padding:14px 20px;border-top:1.5px solid var(--border);background:var(--bg);border-radius:0 0 var(--r-xl) var(--r-xl);flex-shrink:0}
+.m-rel-label{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.m-rel-row{display:flex;gap:7px;flex-wrap:wrap}
+.rel-btn{display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:var(--r-sm);border:1.5px solid var(--border);background:var(--white);cursor:pointer;transition:var(--ease);font-family:var(--font);font-size:12.5px;font-weight:600;color:var(--text2)}
+.rel-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-l)}
 
-/* ── FORM ── */
-.f{margin-bottom:16px}
-.f label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
-.f input[type=text],.f input[type=number],.f input[type=date],.f select,.f textarea{width:100%;padding:9px 13px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg);outline:none;transition:var(--ease);-webkit-appearance:none}
+/* ── FORMS ── */
+.f{margin-bottom:15px}
+.f label{display:block;font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:5px}
+.f input[type=text],.f input[type=number],.f input[type=date],.f select,.f textarea{width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-family:var(--font);font-size:13.5px;color:var(--text);background:var(--bg);outline:none;transition:var(--ease);-webkit-appearance:none}
 .f input:focus,.f select:focus,.f textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(43,91,246,.12);background:var(--white)}
 .f textarea{resize:vertical;min-height:110px;line-height:1.6}
-.f .hint{font-size:11.5px;color:var(--text3);margin-top:4px}
-.f input[type=range]{width:100%;accent-color:var(--blue);cursor:pointer;margin-top:4px}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.f .hint{font-size:11px;color:var(--text3);margin-top:3px}
+.f input[type=range]{width:100%;accent-color:var(--blue);cursor:pointer;margin-top:3px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px}
 
 /* ── DROP ZONE ── */
-.dz{border:2px dashed var(--border2);border-radius:var(--r-lg);padding:32px 20px;text-align:center;cursor:pointer;transition:var(--ease);background:var(--bg);position:relative}
-.dz:hover,.dz.drag{border-color:var(--blue);background:var(--blue-light)}
+.dz{border:2px dashed var(--border2);border-radius:var(--r-lg);padding:28px 20px;text-align:center;cursor:pointer;transition:var(--ease);background:var(--bg);position:relative}
+.dz:hover,.dz.drag{border-color:var(--blue);background:var(--blue-l)}
 .dz input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.dz-ico{font-size:32px;margin-bottom:8px;display:block}
-.dz-t{font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px}
-.dz-s{font-size:12.5px;color:var(--text3)}
+.dz-ico{font-size:28px;margin-bottom:6px;display:block}
+.dz-t{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:2px}
+.dz-s{font-size:12px;color:var(--text3)}
 
-/* ── BUTTONS ── */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 18px;border-radius:var(--r-sm);font-family:var(--font);font-size:14px;font-weight:600;cursor:pointer;border:none;transition:var(--ease);text-decoration:none;letter-spacing:-.1px}
-.btn-blue{background:var(--blue);color:#fff}
-.btn-blue:hover{background:#1e4fd8;box-shadow:0 4px 14px rgba(43,91,246,.35)}
-.btn-ghost{background:var(--white);color:var(--text);border:1.5px solid var(--border)}
-.btn-ghost:hover{background:var(--bg2)}
-.btn-green{background:var(--green);color:#fff}
-.btn-green:hover{background:#0da55f;box-shadow:0 4px 14px rgba(18,183,106,.3)}
-.btn-red{background:var(--red);color:#fff}
-.btn-lg{padding:10px 22px;font-size:15px;border-radius:var(--r)}
-.btn-sm{padding:6px 12px;font-size:12px;border-radius:6px}
-.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.btn:disabled{opacity:.45;cursor:not-allowed}
+/* ── BTNS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 17px;border-radius:var(--r-sm);font-family:var(--font);font-size:13.5px;font-weight:700;cursor:pointer;border:none;transition:var(--ease);letter-spacing:-.1px}
+.btn-blue{background:var(--blue);color:#fff}.btn-blue:hover{background:#1e4fd8;box-shadow:0 4px 14px rgba(43,91,246,.35)}
+.btn-ghost{background:var(--white);color:var(--text);border:1.5px solid var(--border)}.btn-ghost:hover{background:var(--bg2)}
+.btn-green{background:var(--green);color:#fff}.btn-green:hover{background:#0da55f;box-shadow:0 4px 14px rgba(18,183,106,.3)}
+.btn-lg{padding:10px 22px;font-size:14.5px;border-radius:var(--r)}
+.btn-sm{padding:5px 11px;font-size:12px;border-radius:6px}
+.btns{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}
 
 /* ── ALERTS ── */
-.ok{background:var(--green-light);border:1.5px solid rgba(18,183,106,.25);border-radius:var(--r-sm);padding:12px 14px;color:var(--green);font-size:13.5px;display:flex;align-items:flex-start;gap:8px;margin-top:14px;font-weight:500}
-.err{background:var(--red-light);border:1.5px solid rgba(240,68,56,.2);border-radius:var(--r-sm);padding:12px 14px;color:var(--red);font-size:13.5px;margin-top:14px;font-weight:500}
-.info{background:var(--blue-light);border:1.5px solid var(--blue-mid);border-radius:var(--r-sm);padding:12px 14px;color:var(--blue);font-size:13px;margin-top:14px}
+.ok{background:var(--green-l);border:1.5px solid rgba(18,183,106,.25);border-radius:var(--r-sm);padding:11px 13px;color:var(--green);font-size:13px;display:flex;align-items:flex-start;gap:7px;margin-top:13px;font-weight:600}
+.er{background:var(--red-l);border:1.5px solid rgba(240,68,56,.2);border-radius:var(--r-sm);padding:11px 13px;color:var(--red);font-size:13px;margin-top:13px;font-weight:600}
+.inf{background:var(--blue-l);border:1.5px solid var(--blue-m);border-radius:var(--r-sm);padding:11px 13px;color:var(--blue);font-size:12.5px;margin-top:13px}
 
 /* ── RESULTS ── */
-.rbox{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r);padding:16px;margin-top:16px}
-.rlabel{font-size:10.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
-.rval{font-size:30px;font-weight:700;color:var(--text);letter-spacing:-1.5px;font-family:var(--mono)}
-.runit{font-size:14px;font-weight:400;color:var(--text2);margin-left:3px;font-family:var(--font)}
-.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:14px}
-.ri{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:12px}
-.ri-l{font-size:11px;color:var(--text3);margin-bottom:4px;font-weight:500}
-.ri-v{font-size:17px;font-weight:700;color:var(--text);font-family:var(--mono);letter-spacing:-.5px}
-.rtable{width:100%;border-collapse:collapse;font-size:13.5px}
-.rtable tr{border-bottom:1px solid var(--border)}
-.rtable tr:last-child{border:none}
-.rtable td{padding:9px 2px}
-.rtable td:first-child{color:var(--text2);width:55%}
-.rtable td:last-child{font-weight:600;font-family:var(--mono);color:var(--text)}
-.prog{height:5px;background:var(--border);border-radius:99px;overflow:hidden;margin-top:10px}
+.rbox{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r);padding:15px;margin-top:14px}
+.rl{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px}
+.rv{font-size:28px;font-weight:800;color:var(--text);letter-spacing:-1.5px;font-family:var(--mono)}
+.ru{font-size:13px;font-weight:400;color:var(--text2);margin-left:3px;font-family:var(--font)}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-top:13px}
+.ri{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:11px}
+.ri-l{font-size:10.5px;color:var(--text3);margin-bottom:3px;font-weight:600}
+.ri-v{font-size:16px;font-weight:800;color:var(--text);font-family:var(--mono);letter-spacing:-.5px}
+.rtable{width:100%;border-collapse:collapse;font-size:13px}
+.rtable tr{border-bottom:1px solid var(--border)}.rtable tr:last-child{border:none}
+.rtable td{padding:8px 2px}.rtable td:first-child{color:var(--text2);width:55%}.rtable td:last-child{font-weight:700;font-family:var(--mono);color:var(--text)}
+.prog{height:5px;background:var(--border);border-radius:99px;overflow:hidden;margin-top:9px}
 .prog-bar{height:100%;border-radius:99px;transition:width .5s ease}
-pre.codeout{font-family:var(--mono);font-size:12.5px;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:14px;overflow:auto;white-space:pre-wrap;word-break:break-word;color:var(--text);line-height:1.6;max-height:240px;margin-top:12px}
+pre.co{font-family:var(--mono);font-size:12px;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:12px;overflow:auto;white-space:pre-wrap;word-break:break-word;color:var(--text);line-height:1.6;max-height:220px;margin-top:11px}
 
 /* ── TABS ── */
-.tabs{display:flex;background:var(--bg2);border-radius:var(--r-sm);padding:3px;gap:2px;margin-bottom:18px}
-.tb{flex:1;padding:7px;text-align:center;font-size:13px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:transparent;color:var(--text2);transition:var(--ease);font-family:var(--font)}
-.tb.on{background:var(--white);color:var(--text);box-shadow:var(--shadow-xs)}
+.tabs{display:flex;background:var(--bg2);border-radius:var(--r-sm);padding:3px;gap:2px;margin-bottom:16px}
+.tb{flex:1;padding:6px;text-align:center;font-size:12.5px;font-weight:700;cursor:pointer;border-radius:6px;border:none;background:transparent;color:var(--text2);transition:var(--ease);font-family:var(--font)}
+.tb.on{background:var(--white);color:var(--text);box-shadow:var(--sh-xs)}
 .tp{display:none}.tp.on{display:block}
 
 /* ── SEGS ── */
-.segs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-.seg{padding:6px 13px;border-radius:99px;font-size:12.5px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--white);color:var(--text2);transition:var(--ease);font-family:var(--font)}
+.segs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:13px}
+.seg{padding:5px 12px;border-radius:99px;font-size:12px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:var(--white);color:var(--text2);transition:var(--ease);font-family:var(--font)}
 .seg.on{background:var(--blue);color:#fff;border-color:var(--blue)}
 
-/* ── CHECKS ── */
-.chk{display:flex;align-items:center;gap:9px;margin-bottom:10px;cursor:pointer;user-select:none}
-.chk input{width:16px;height:16px;accent-color:var(--blue);cursor:pointer;flex-shrink:0}
-.chk span{font-size:14px;color:var(--text);font-weight:400}
-
-/* ── IMG PREVIEW ── */
-.img-preview{margin-top:14px;text-align:center}
-.img-preview img{max-width:100%;max-height:240px;border-radius:var(--r-sm);border:1.5px solid var(--border);object-fit:contain}
-.img-compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
-.ic-item{text-align:center}
-.ic-item img{max-width:100%;max-height:160px;border-radius:var(--r-sm);border:1.5px solid var(--border);object-fit:contain}
-.ic-label{font-size:11.5px;color:var(--text3);margin-top:5px;font-weight:500}
-
-/* ── NO RESULTS ── */
-.nores{text-align:center;padding:56px 24px;color:var(--text3)}
-.nores-ico{font-size:36px;margin-bottom:10px}
-.nores p{font-size:15px}
-
-/* ── FOOTER ── */
-footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;background:var(--white)}
-footer p{font-size:13px;color:var(--text3)}
-footer strong{color:var(--text2)}
-
-/* ── TOAST ── */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--text);color:#fff;padding:9px 20px;border-radius:var(--r-sm);font-size:13.5px;font-weight:600;z-index:9999;pointer-events:none;opacity:0;transition:all .3s cubic-bezier(.34,1.4,.64,1);white-space:nowrap}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* ── CSV TABLE ── */
-.csv-wrap{overflow-x:auto;margin-top:14px}
-.csv-table{width:100%;border-collapse:collapse;font-size:13px}
-.csv-table th{text-align:left;padding:8px 12px;background:var(--bg2);border:1px solid var(--border);font-weight:700;white-space:nowrap;color:var(--text);position:sticky;top:0}
-.csv-table td{padding:7px 12px;border:1px solid var(--border);color:var(--text2)}
-.csv-table tr:nth-child(even) td{background:var(--bg)}
-
-/* ── LOADING ── */
-.loading{display:flex;align-items:center;gap:10px;padding:14px;color:var(--text2);font-size:14px;font-weight:500;margin-top:14px}
-.spin{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+/* ── MISC ── */
+.chk{display:flex;align-items:center;gap:8px;margin-bottom:9px;cursor:pointer;user-select:none}
+.chk input{width:15px;height:15px;accent-color:var(--blue);cursor:pointer;flex-shrink:0}
+.chk span{font-size:13.5px;color:var(--text)}
+.img-preview{margin-top:13px;text-align:center}
+.img-preview img{max-width:100%;max-height:220px;border-radius:var(--r-sm);border:1.5px solid var(--border);object-fit:contain}
+.pass-out{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:12px 14px;display:flex;align-items:center;gap:10px;margin-top:13px}
+.pass-val{font-family:var(--mono);font-size:13.5px;word-break:break-all;color:var(--text);font-weight:500;flex:1}
+.pbar{height:4px;border-radius:99px;margin-top:7px;transition:all .3s}
+.bmi-scale{display:flex;height:7px;border-radius:99px;overflow:hidden;margin-top:11px}
+.bmi-seg{flex:1}.bmi-ptr{position:relative;margin-top:3px}
+.bmi-arrow{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:6px solid var(--text);position:absolute;transform:translateX(-50%);transition:left .5s ease}
+.csv-wrap{overflow-x:auto;margin-top:13px}
+.csv-t{width:100%;border-collapse:collapse;font-size:12.5px}
+.csv-t th{text-align:left;padding:7px 11px;background:var(--bg2);border:1px solid var(--border);font-weight:700;white-space:nowrap;position:sticky;top:0}
+.csv-t td{padding:6px 11px;border:1px solid var(--border);color:var(--text2)}
+.csv-t tr:nth-child(even) td{background:var(--bg)}
+.loading{display:flex;align-items:center;gap:9px;padding:13px;color:var(--text2);font-size:13.5px;font-weight:600;margin-top:13px}
+.spin{width:17px;height:17px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-/* ── INVOICE ── */
-.inv-row{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:8px;align-items:end;margin-bottom:8px}
+.inv-row{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:7px;align-items:end;margin-bottom:7px}
 .inv-row input{width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-family:var(--font);font-size:13px;color:var(--text);background:var(--bg);outline:none;transition:var(--ease)}
 .inv-row input:focus{border-color:var(--blue);background:var(--white)}
-
-/* ── PASS OUTPUT ── */
-.pass-out{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
-.pass-val{font-family:var(--mono);font-size:14px;word-break:break-all;color:var(--text);font-weight:500;flex:1}
-.pass-strength{height:4px;border-radius:99px;margin-top:8px;transition:all .3s}
-
-/* ── BMI bar ── */
-.bmi-scale{display:flex;height:8px;border-radius:99px;overflow:hidden;margin-top:12px}
-.bmi-seg{flex:1}
-.bmi-pointer{position:relative;margin-top:4px}
-.bmi-pointer-arrow{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:6px solid var(--text);position:absolute;transform:translateX(-50%);transition:left .5s ease}
-
-/* ── HIDDEN ── */
+.divider{height:1px;background:var(--border);margin:16px 0}
 .hidden{display:none!important}
 .mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}
 .green{color:var(--green)}.red{color:var(--red)}.blue{color:var(--blue)}
-.fw7{font-weight:700}.mono{font-family:var(--mono)}
-.small{font-size:12px;color:var(--text3)}
-.section-divider{height:1px;background:var(--border);margin:20px 0}
+.fw8{font-weight:800}.mono{font-family:var(--mono)}
+.small{font-size:11.5px;color:var(--text3)}
 
+/* ── NO RESULTS ── */
+.nores{text-align:center;padding:52px 24px;color:var(--text3)}
+.nores-ico{font-size:34px;margin-bottom:9px}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;background:var(--white)}
+footer p{font-size:12.5px;color:var(--text3)}
+footer strong{color:var(--text2)}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--text);color:#fff;padding:8px 18px;border-radius:var(--r-sm);font-size:13px;font-weight:700;z-index:9999;pointer-events:none;opacity:0;transition:all .28s cubic-bezier(.34,1.4,.64,1);white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── SEO TOOLTIP ── */
+.seo-tip{font-size:11px;color:var(--text3);margin-top:3px;display:block}
+
+@media(max-width:860px){
+  .hero-top{grid-template-columns:1fr}
+  .hero-right{display:none}
+}
 @media(max-width:640px){
   .hdr-search{display:none}
-  .hero{padding:36px 16px 28px}
-  .main{padding:0 16px 60px}
-  .filter-bar{padding:0 16px}
+  .hero{padding:32px 16px 0}
+  .main{padding:20px 16px 60px}
+  .filter-wrap{padding:18px 16px 0}
   .grid{grid-template-columns:1fr 1fr}
   .frow,.frow3{grid-template-columns:1fr}
-  .img-compare{grid-template-columns:1fr}
-  .modal{max-height:94vh}
-  .modal-body{padding:16px}
+  .modal{max-height:94vh}.m-body{padding:16px}
   .inv-row{grid-template-columns:1fr 1fr}
-  .stats{max-width:100%}
+  .pop-grid{gap:6px}
 }
 @media(max-width:380px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
   <div class="hdr">
     <a href="#" class="logo">
-      <div class="logo-icon">
-        <svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></svg>
-      </div>
+      <div class="logo-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></svg></div>
       <span class="logo-text">Tool<span>ify</span></span>
     </a>
     <div class="hdr-search">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <input type="text" id="gSearch" placeholder="Search 20 tools…" autocomplete="off">
     </div>
-    <div class="hdr-pill">20 tools · 100% free</div>
+    <div class="hdr-r"><div class="hdr-pill">20 free tools</div></div>
   </div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-badge"><span></span>Free · Private · Instant</div>
-    <h1>Every tool you need,<br><em>right in your browser</em></h1>
-    <p>20 powerful utilities for images, PDFs, calculations and more. No signup, no uploads to servers.</p>
-    <div class="stats">
-      <div class="stat"><div class="stat-n">20</div><div class="stat-l">Tools</div></div>
-      <div class="stat"><div class="stat-n">0</div><div class="stat-l">Signup</div></div>
-      <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Free</div></div>
-      <div class="stat"><div class="stat-n">∞</div><div class="stat-l">Uses</div></div>
+    <div class="hero-top">
+      <div class="hero-left">
+        <div class="hero-badge"><span class="hero-badge-dot"></span>Free · Private · No Signup</div>
+        <h1>Free online tools,<br><em>instant results</em></h1>
+        <p class="hero-desc">Compress images, merge PDFs, calculate EMI, generate passwords — everything runs in your browser. Zero uploads, zero data collected.</p>
+        <div class="hero-cta-row">
+          <button class="cta-btn cta-primary" onclick="open_tool('imgCompress')">🗜️ Compress an Image</button>
+          <button class="cta-btn cta-ghost" onclick="open_tool('pdfMerge')">📎 Merge PDFs</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="stats-grid">
+          <div class="stat-card accent-blue"><div class="stat-n">20</div><div class="stat-l">Free Tools</div></div>
+          <div class="stat-card"><div class="stat-n">0</div><div class="stat-l">Signup required</div></div>
+          <div class="stat-card accent-green"><div class="stat-n">100%</div><div class="stat-l">Browser-side</div></div>
+          <div class="stat-card"><div class="stat-n">∞</div><div class="stat-l">Free uses</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POPULAR STRIP -->
+    <div class="hero-popular">
+      <div class="pop-label">🔥 Most popular right now</div>
+      <div class="pop-grid">
+        <button class="pop-btn" onclick="open_tool('imgCompress')" style="--c:#2B5BF6">
+          <span class="pop-btn-ico">🗜️</span>
+          <div><div class="pop-btn-text">Compress Image</div><div class="pop-btn-sub">to 100KB / 200KB</div></div>
+          <span class="pop-fire">HOT</span>
+        </button>
+        <button class="pop-btn" onclick="open_tool('imgMeta')" style="--c:#7c3aed">
+          <span class="pop-btn-ico">🧹</span>
+          <div><div class="pop-btn-text">Remove EXIF Data</div><div class="pop-btn-sub">GPS · device · date</div></div>
+        </button>
+        <button class="pop-btn" onclick="open_tool('pdfMerge')" style="--c:#f04438">
+          <span class="pop-btn-ico">📎</span>
+          <div><div class="pop-btn-text">Merge PDF Files</div><div class="pop-btn-sub">combine multiple PDFs</div></div>
+          <span class="pop-fire">HOT</span>
+        </button>
+        <button class="pop-btn" onclick="open_tool('imgConvert')" style="--c:#2B5BF6">
+          <span class="pop-btn-ico">🔄</span>
+          <div><div class="pop-btn-text">PNG → JPG / WebP</div><div class="pop-btn-sub">free format converter</div></div>
+        </button>
+        <button class="pop-btn" onclick="open_tool('passGen')" style="--c:#7c3aed">
+          <span class="pop-btn-ico">🔑</span>
+          <div><div class="pop-btn-text">Password Generator</div><div class="pop-btn-sub">strong & random</div></div>
+        </button>
+        <button class="pop-btn" onclick="open_tool('loanCalc')" style="--c:#12b76a">
+          <span class="pop-btn-ico">💰</span>
+          <div><div class="pop-btn-text">EMI Calculator</div><div class="pop-btn-sub">loan payments</div></div>
+        </button>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="filter-bar" id="filterBar">
-  <button class="fpill active" data-f="all">All Tools</button>
-  <button class="fpill" data-f="1">🖼️ Image</button>
-  <button class="fpill" data-f="2">📄 PDF</button>
-  <button class="fpill" data-f="3">🧮 Calculator</button>
-  <button class="fpill" data-f="4">🧾 Document</button>
-  <button class="fpill" data-f="5">🔐 Privacy</button>
-  <button class="fpill" data-f="6">📦 Convert</button>
+<!-- FILTER -->
+<div class="filter-wrap">
+  <div class="filter-row">
+    <span class="filter-label">Filter:</span>
+    <button class="fpill on" data-f="all">All Tools</button>
+    <button class="fpill" data-f="1">🖼️ Convert & Edit Images</button>
+    <button class="fpill" data-f="2">📄 PDF Tools</button>
+    <button class="fpill" data-f="3">🧮 Calculate</button>
+    <button class="fpill" data-f="4">🧾 Documents</button>
+    <button class="fpill" data-f="5">🔐 Privacy</button>
+    <button class="fpill" data-f="6">⚙️ Dev & Convert</button>
+  </div>
 </div>
 
+<!-- MAIN -->
 <main class="main" id="main">
 
-<!-- ── CLUSTER 1 ── -->
+<!-- CLUSTER 1 -->
 <section class="cluster" data-c="1">
-  <div class="cluster-hdr">
-    <div class="cluster-dot cd1"></div>
-    <span class="cluster-name">Image Tools</span>
-    <span class="cluster-sub">compress · resize · convert · clean</span>
-    <div class="cluster-line"></div>
-    <div class="cluster-cnt">4 tools</div>
-  </div>
+  <div class="c-hdr"><div class="c-dot cd1"></div><span class="c-name">Convert & Edit Images</span><span class="c-sub">compress · resize · convert · strip metadata</span><div class="c-line"></div><div class="c-cnt">4 tools</div></div>
   <div class="grid">
     <div class="card c1" onclick="open_tool('imgCompress')">
-      <div class="card-top"><div class="card-icon">🗜️</div><div class="card-tags"><span class="tag tag-fast">Fast</span><span class="tag tag-priv">Private</span></div></div>
-      <div class="card-name">Image Compressor</div>
-      <div class="card-desc">Reduce file size with quality control. Supports JPG, PNG, WebP.</div>
+      <div class="card-top"><div class="card-ico">🗜️</div><div class="card-tags"><span class="tag tag-hot">🔥 Popular</span><span class="tag tag-priv">Private</span></div></div>
+      <div class="card-name">Compress Image to 100KB / 200KB</div>
+      <div class="card-desc">Reduce JPG, PNG or WebP file size online with a quality slider. No upload needed.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
     <div class="card c1" onclick="open_tool('imgResize')">
-      <div class="card-top"><div class="card-icon">📐</div><div class="card-tags"><span class="tag tag-fast">Fast</span><span class="tag tag-priv">Private</span></div></div>
-      <div class="card-name">Image Resizer</div>
-      <div class="card-desc">Resize to custom dimensions or social media presets.</div>
+      <div class="card-top"><div class="card-ico">📐</div><div class="card-tags"><span class="tag tag-fast">Fast</span><span class="tag tag-priv">Private</span></div></div>
+      <div class="card-name">Resize Image Online — Custom or Presets</div>
+      <div class="card-desc">Resize to exact pixels or use Instagram, Story, HD presets. Keeps aspect ratio.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
     <div class="card c1" onclick="open_tool('imgConvert')">
-      <div class="card-top"><div class="card-icon">🔄</div><div class="card-tags"><span class="tag tag-fast">Fast</span><span class="tag tag-free">Free</span></div></div>
-      <div class="card-name">Format Converter</div>
-      <div class="card-desc">Convert between PNG, JPG, and WebP formats instantly.</div>
+      <div class="card-top"><div class="card-ico">🔄</div><div class="card-tags"><span class="tag tag-fast">Fast</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">PNG to JPG / WebP Converter Online</div>
+      <div class="card-desc">Convert image formats in your browser — PNG, JPG, WebP. No file size limit.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
     <div class="card c1" onclick="open_tool('imgMeta')">
-      <div class="card-top"><div class="card-icon">🧹</div><div class="card-tags"><span class="tag tag-priv">Private</span><span class="tag tag-free">Free</span></div></div>
-      <div class="card-name">Remove EXIF Data</div>
-      <div class="card-desc">Strip GPS, device & date metadata from images before sharing.</div>
+      <div class="card-top"><div class="card-ico">🧹</div><div class="card-tags"><span class="tag tag-priv">Private</span><span class="tag tag-hot">🔥 Popular</span></div></div>
+      <div class="card-name">Remove EXIF Data from Image Online</div>
+      <div class="card-desc">Strip GPS location, device info and date from images before sharing online.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
   </div>
 </section>
 
-<!-- ── CLUSTER 2 ── -->
+<!-- CLUSTER 2 -->
 <section class="cluster" data-c="2">
-  <div class="cluster-hdr">
-    <div class="cluster-dot cd2"></div>
-    <span class="cluster-name">PDF Tools</span>
-    <span class="cluster-sub">merge · inspect · convert</span>
-    <div class="cluster-line"></div>
-    <div class="cluster-cnt">4 tools</div>
-  </div>
+  <div class="c-hdr"><div class="c-dot cd2"></div><span class="c-name">PDF Tools</span><span class="c-sub">merge · inspect · image to pdf · text to pdf</span><div class="c-line"></div><div class="c-cnt">4 tools</div></div>
   <div class="grid">
     <div class="card c2" onclick="open_tool('pdfMerge')">
-      <div class="card-top"><div class="card-icon">📎</div><div class="card-tags"><span class="tag tag-fast">Fast</span><span class="tag tag-free">Free</span></div></div>
-      <div class="card-name">Merge PDFs</div>
-      <div class="card-desc">Combine multiple PDF files into one document.</div>
+      <div class="card-top"><div class="card-ico">📎</div><div class="card-tags"><span class="tag tag-hot">🔥 Popular</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">Merge PDF Files Online — Free</div>
+      <div class="card-desc">Combine multiple PDF files into one document. Select any number of files.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
     <div class="card c2" onclick="open_tool('pdfInfo')">
-      <div class="card-top"><div class="card-icon">🔍</div><div class="card-tags"><span class="tag tag-priv">Private</span><span class="tag tag-free">Free</span></div></div>
-      <div class="card-name">PDF Inspector</div>
-      <div class="card-desc">View page count, file size, and metadata of any PDF.</div>
+      <div class="card-top"><div class="card-ico">🔍</div><div class="card-tags"><span class="tag tag-priv">Private</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">PDF Inspector — View Metadata & Info</div>
+      <div class="card-desc">See page count, file size, author, title and version of any PDF.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
     <div class="card c2" onclick="open_tool('imgToPdf')">
-      <div class="card-top"><div class="card-icon">🖼️</div><div class="card-tags"><span class="tag tag-fast">Fast</span><span class="tag tag-free">Free</span></div></div>
-      <div class="card-name">Images → PDF</div>
-      <div class="card-desc">Convert one or multiple images into a single PDF document.</div>
+      <div class="card-top"><div class="card-ico">🖼️</div><div class="card-tags"><span class="tag tag-fast">Fast</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">Convert Images to PDF Online</div>
+      <div class="card-desc">Turn JPG or PNG images into a PDF — one page per image. A4, Letter, or fit.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
     <div class="card c2" onclick="open_tool('textToPdf')">
-      <div class="card-top"><div class="card-icon">📝</div><div class="card-tags"><span class="tag tag-fast">Fast</span><span class="tag tag-free">Free</span></div></div>
-      <div class="card-name">Text → PDF</div>
-      <div class="card-desc">Convert plain text or content into a downloadable PDF.</div>
+      <div class="card-top"><div class="card-ico">📝</div><div class="card-tags"><span class="tag tag-fast">Fast</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">Convert Text to PDF Online</div>
+      <div class="card-desc">Paste any text and download it as a formatted PDF. Set font size and margins.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
   </div>
 </section>
 
-<!-- ── CLUSTER 3 ── -->
+<!-- CLUSTER 3 -->
 <section class="cluster" data-c="3">
-  <div class="cluster-hdr">
-    <div class="cluster-dot cd3"></div>
-    <span class="cluster-name">Calculators</span>
-    <span class="cluster-sub">BMI · age · loan · percentage</span>
-    <div class="cluster-line"></div>
-    <div class="cluster-cnt">4 tools</div>
-  </div>
+  <div class="c-hdr"><div class="c-dot cd3"></div><span class="c-name">Calculate</span><span class="c-sub">health · finance · everyday math</span><div class="c-line"></div><div class="c-cnt">4 tools</div></div>
   <div class="grid">
     <div class="card c3" onclick="open_tool('bmiCalc')">
-      <div class="card-top"><div class="card-icon">⚖️</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-free">Free</span></div></div>
-      <div class="card-name">BMI Calculator</div>
-      <div class="card-desc">Calculate Body Mass Index with metric & imperial support.</div>
+      <div class="card-top"><div class="card-ico">⚖️</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">BMI Calculator — Body Mass Index</div>
+      <div class="card-desc">Calculate your BMI with kg/cm or lb/ft·in. See health category instantly.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
     <div class="card c3" onclick="open_tool('ageCalc')">
-      <div class="card-top"><div class="card-icon">🎂</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-free">Free</span></div></div>
-      <div class="card-name">Age Calculator</div>
-      <div class="card-desc">Find exact age in years, months, days — plus next birthday.</div>
+      <div class="card-top"><div class="card-ico">🎂</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">Age Calculator from Date of Birth</div>
+      <div class="card-desc">Find exact age in years, months, days and weeks. Includes next birthday countdown.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
     <div class="card c3" onclick="open_tool('loanCalc')">
-      <div class="card-top"><div class="card-icon">💰</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-free">Free</span></div></div>
-      <div class="card-name">Loan / EMI Calculator</div>
-      <div class="card-desc">Monthly EMI, total interest and payment breakdown.</div>
+      <div class="card-top"><div class="card-ico">💰</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-hot">🔥 Popular</span></div></div>
+      <div class="card-name">Loan EMI Calculator — Monthly Payment</div>
+      <div class="card-desc">Calculate monthly EMI, total interest and principal breakdown for any loan.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
     <div class="card c3" onclick="open_tool('percentCalc')">
-      <div class="card-top"><div class="card-icon">📊</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-free">Free</span></div></div>
-      <div class="card-name">Percentage Calculator</div>
-      <div class="card-desc">% of number, % change, and what % X is of Y.</div>
+      <div class="card-top"><div class="card-ico">📊</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">Percentage Calculator Online</div>
+      <div class="card-desc">Find % of a number, % change between values, or what % X is of Y.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
   </div>
 </section>
 
-<!-- ── CLUSTER 4 ── -->
+<!-- CLUSTER 4 -->
 <section class="cluster" data-c="4">
-  <div class="cluster-hdr">
-    <div class="cluster-dot cd4"></div>
-    <span class="cluster-name">Document Helpers</span>
-    <span class="cluster-sub">invoice · JSON · words · CSV</span>
-    <div class="cluster-line"></div>
-    <div class="cluster-cnt">4 tools</div>
-  </div>
+  <div class="c-hdr"><div class="c-dot cd4"></div><span class="c-name">Documents & Data</span><span class="c-sub">invoice · JSON · word count · CSV</span><div class="c-line"></div><div class="c-cnt">4 tools</div></div>
   <div class="grid">
     <div class="card c4" onclick="open_tool('invoiceGen')">
-      <div class="card-top"><div class="card-icon">🧾</div><div class="card-tags"><span class="tag tag-free">Free</span><span class="tag tag-fast">Fast</span></div></div>
-      <div class="card-name">Invoice Generator</div>
-      <div class="card-desc">Create and download professional invoices as PDF.</div>
+      <div class="card-top"><div class="card-ico">🧾</div><div class="card-tags"><span class="tag tag-free">Free</span><span class="tag tag-fast">Fast</span></div></div>
+      <div class="card-name">Free Invoice Generator — Download PDF</div>
+      <div class="card-desc">Create professional invoices with line items, tax and currency. Download as PDF.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
     <div class="card c4" onclick="open_tool('jsonFmt')">
-      <div class="card-top"><div class="card-icon">{ }</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-priv">Private</span></div></div>
-      <div class="card-name">JSON Formatter</div>
-      <div class="card-desc">Beautify, minify, and validate JSON. View as structured tree.</div>
+      <div class="card-top"><div class="card-ico">{ }</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-priv">Private</span></div></div>
+      <div class="card-name">JSON Formatter, Validator & Minifier</div>
+      <div class="card-desc">Beautify or minify JSON. Validate syntax and see key count instantly.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
     <div class="card c4" onclick="open_tool('wordCount')">
-      <div class="card-top"><div class="card-icon">📝</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-free">Free</span></div></div>
-      <div class="card-name">Word Counter</div>
-      <div class="card-desc">Words, characters, sentences, paragraphs & reading time.</div>
+      <div class="card-top"><div class="card-ico">📝</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">Word & Character Counter Online</div>
+      <div class="card-desc">Count words, characters, sentences, paragraphs and estimated reading time.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
     <div class="card c4" onclick="open_tool('csvViewer')">
-      <div class="card-top"><div class="card-icon">📋</div><div class="card-tags"><span class="tag tag-priv">Private</span><span class="tag tag-fast">Fast</span></div></div>
-      <div class="card-name">CSV Viewer</div>
-      <div class="card-desc">Paste or upload CSV and view it as a sortable table.</div>
+      <div class="card-top"><div class="card-ico">📋</div><div class="card-tags"><span class="tag tag-priv">Private</span><span class="tag tag-fast">Fast</span></div></div>
+      <div class="card-name">CSV Viewer — Paste or Upload to Table</div>
+      <div class="card-desc">Instantly view CSV data as a clean sortable table. Upload file or paste content.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
   </div>
 </section>
 
-<!-- ── CLUSTER 5 ── -->
+<!-- CLUSTER 5 -->
 <section class="cluster" data-c="5">
-  <div class="cluster-hdr">
-    <div class="cluster-dot cd5"></div>
-    <span class="cluster-name">Privacy & Security</span>
-    <span class="cluster-sub">passwords · hashes</span>
-    <div class="cluster-line"></div>
-    <div class="cluster-cnt">2 tools</div>
-  </div>
+  <div class="c-hdr"><div class="c-dot cd5"></div><span class="c-name">Privacy & Security</span><span class="c-sub">passwords · cryptographic hashes</span><div class="c-line"></div><div class="c-cnt">2 tools</div></div>
   <div class="grid">
     <div class="card c5" onclick="open_tool('passGen')">
-      <div class="card-top"><div class="card-icon">🔑</div><div class="card-tags"><span class="tag tag-priv">Private</span><span class="tag tag-fast">Instant</span></div></div>
-      <div class="card-name">Password Generator</div>
-      <div class="card-desc">Cryptographically random passwords with custom length & rules.</div>
+      <div class="card-top"><div class="card-ico">🔑</div><div class="card-tags"><span class="tag tag-priv">Private</span><span class="tag tag-fast">Instant</span></div></div>
+      <div class="card-name">Strong Password Generator Online</div>
+      <div class="card-desc">Generate cryptographically random passwords. Custom length, symbols, numbers.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
     <div class="card c5" onclick="open_tool('hashGen')">
-      <div class="card-top"><div class="card-icon">🔒</div><div class="card-tags"><span class="tag tag-priv">Private</span><span class="tag tag-fast">Instant</span></div></div>
-      <div class="card-name">Hash Generator</div>
-      <div class="card-desc">Generate SHA-1, SHA-256, SHA-512 hashes from any text.</div>
+      <div class="card-top"><div class="card-ico">🔒</div><div class="card-tags"><span class="tag tag-priv">Private</span><span class="tag tag-fast">Instant</span></div></div>
+      <div class="card-name">SHA-256 / SHA-512 Hash Generator</div>
+      <div class="card-desc">Generate SHA-1, SHA-256, SHA-512 hashes from any text using Web Crypto API.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
   </div>
 </section>
 
-<!-- ── CLUSTER 6 ── -->
+<!-- CLUSTER 6 -->
 <section class="cluster" data-c="6">
-  <div class="cluster-hdr">
-    <div class="cluster-dot cd6"></div>
-    <span class="cluster-name">File Conversion</span>
-    <span class="cluster-sub">CSV ↔ JSON · Base64</span>
-    <div class="cluster-line"></div>
-    <div class="cluster-cnt">2 tools</div>
-  </div>
+  <div class="c-hdr"><div class="c-dot cd6"></div><span class="c-name">Developer & Data Conversion</span><span class="c-sub">CSV ↔ JSON · Base64 encode/decode</span><div class="c-line"></div><div class="c-cnt">2 tools</div></div>
   <div class="grid">
     <div class="card c6" onclick="open_tool('csvJson')">
-      <div class="card-top"><div class="card-icon">⇄</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-priv">Private</span></div></div>
-      <div class="card-name">CSV ↔ JSON</div>
-      <div class="card-desc">Convert CSV to JSON and back. Paste data or upload a file.</div>
+      <div class="card-top"><div class="card-ico">⇄</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-priv">Private</span></div></div>
+      <div class="card-name">CSV to JSON Converter (and JSON to CSV)</div>
+      <div class="card-desc">Convert CSV files to JSON arrays or JSON objects back to CSV. Paste or upload.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
     <div class="card c6" onclick="open_tool('base64')">
-      <div class="card-top"><div class="card-icon">💾</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-priv">Private</span></div></div>
-      <div class="card-name">Base64 Encoder</div>
-      <div class="card-desc">Encode text or files to Base64, or decode Base64 strings.</div>
+      <div class="card-top"><div class="card-ico">💾</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-priv">Private</span></div></div>
+      <div class="card-name">Base64 Encode / Decode Online</div>
+      <div class="card-desc">Encode any text to Base64 or decode Base64 strings back to plain text.</div>
       <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
     </div>
   </div>
@@ -546,68 +535,89 @@ footer strong{color:var(--text2)}
 </main>
 
 <footer>
-  <p><strong>Toolify</strong> · All processing happens in your browser · No files sent to any server · Always free</p>
+  <p><strong>Toolify</strong> · All tools run entirely in your browser · No files are sent to any server · 100% free, always</p>
 </footer>
 
-<!-- ── MODAL ── -->
-<div class="overlay" id="overlay" onclick="overlay_click(event)">
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="ov_click(event)">
   <div class="modal" id="modal">
-    <div class="modal-hdr">
-      <div class="modal-ico" id="mIco"></div>
-      <div class="modal-titles">
-        <div class="modal-title" id="mTitle"></div>
-        <div class="modal-sub" id="mSub"></div>
-      </div>
-      <button class="modal-close" onclick="close_modal()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="m-hdr">
+      <div class="m-ico" id="mIco"></div>
+      <div class="m-titles"><div class="m-title" id="mTitle"></div><div class="m-sub" id="mSub"></div></div>
+      <button class="m-close" onclick="close_modal()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
-    <div class="modal-body" id="mBody"></div>
-    <div class="modal-foot" id="mFoot"></div>
+    <div class="m-body" id="mBody"></div>
+    <div class="m-related" id="mRelated"></div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-/* ══════════════════════════════════════
-   TOOL REGISTRY
-══════════════════════════════════════ */
-const T = {
-  imgCompress:{title:'Image Compressor',icon:'🗜️',sub:'Reduce image size with quality control',c:'c1',ico:'rgba(43,91,246,.1)',foot:['Client-side only','Never uploaded','JPG · PNG · WebP']},
-  imgResize:{title:'Image Resizer',icon:'📐',sub:'Custom dimensions or social media presets',c:'c1',ico:'rgba(43,91,246,.1)',foot:['Aspect ratio lock','Social presets','Client-side only']},
-  imgConvert:{title:'Format Converter',icon:'🔄',sub:'Convert between PNG, JPG and WebP',c:'c1',ico:'rgba(43,91,246,.1)',foot:['Lossless PNG option','Client-side only']},
-  imgMeta:{title:'Remove EXIF Data',icon:'🧹',sub:'Strip all metadata from images',c:'c1',ico:'rgba(43,91,246,.1)',foot:['Removes GPS · device · date','Files never uploaded']},
-  pdfMerge:{title:'Merge PDFs',icon:'📎',sub:'Combine multiple PDFs into one',c:'c2',ico:'rgba(240,68,56,.1)',foot:['Uses pdf-lib','Files never uploaded','Unlimited pages']},
-  pdfInfo:{title:'PDF Inspector',icon:'🔍',sub:'View metadata and properties of any PDF',c:'c2',ico:'rgba(240,68,56,.1)',foot:['Read-only','Files never uploaded']},
-  imgToPdf:{title:'Images → PDF',icon:'🖼️',sub:'Convert images into a PDF document',c:'c2',ico:'rgba(240,68,56,.1)',foot:['Multiple images','A4 · Letter · Fit','Files never uploaded']},
-  textToPdf:{title:'Text → PDF',icon:'📝',sub:'Convert plain text into a downloadable PDF',c:'c2',ico:'rgba(240,68,56,.1)',foot:['Word wrap','Multi-page','Instant download']},
-  bmiCalc:{title:'BMI Calculator',icon:'⚖️',sub:'Body Mass Index with health range guide',c:'c3',ico:'rgba(18,183,106,.1)',foot:['WHO standards','Metric & Imperial']},
-  ageCalc:{title:'Age Calculator',icon:'🎂',sub:'Exact age breakdown from any birthdate',c:'c3',ico:'rgba(18,183,106,.1)',foot:['Precise to the day','Next birthday countdown']},
-  loanCalc:{title:'Loan / EMI Calculator',icon:'💰',sub:'Monthly payment and interest breakdown',c:'c3',ico:'rgba(18,183,106,.1)',foot:['Standard amortization','Full breakdown']},
-  percentCalc:{title:'Percentage Calculator',icon:'📊',sub:'All percentage calculations in one place',c:'c3',ico:'rgba(18,183,106,.1)',foot:['3 calculation modes','Instant results']},
-  invoiceGen:{title:'Invoice Generator',icon:'🧾',sub:'Professional invoices downloadable as PDF',c:'c4',ico:'rgba(247,144,9,.1)',foot:['No account needed','Tax support','PDF download']},
-  jsonFmt:{title:'JSON Formatter',icon:'{ }',sub:'Beautify, minify and validate JSON',c:'c4',ico:'rgba(247,144,9,.1)',foot:['Syntax validation','Minify option','Copy to clipboard']},
-  wordCount:{title:'Word Counter',icon:'📝',sub:'Words, characters, sentences, reading time',c:'c4',ico:'rgba(247,144,9,.1)',foot:['Real-time','Reading time estimate']},
-  csvViewer:{title:'CSV Viewer',icon:'📋',sub:'View CSV as sortable, searchable table',c:'c4',ico:'rgba(247,144,9,.1)',foot:['Upload or paste','Sortable columns']},
-  passGen:{title:'Password Generator',icon:'🔑',sub:'Strong random passwords with custom rules',c:'c5',ico:'rgba(124,58,237,.1)',foot:['Crypto random','Never transmitted']},
-  hashGen:{title:'Hash Generator',icon:'🔒',sub:'SHA-1 / SHA-256 / SHA-512 from any text',c:'c5',ico:'rgba(124,58,237,.1)',foot:['Web Crypto API','Client-side only']},
-  csvJson:{title:'CSV ↔ JSON',icon:'⇄',sub:'Bidirectional CSV and JSON conversion',c:'c6',ico:'rgba(14,165,233,.1)',foot:['Paste or upload','Copy output']},
-  base64:{title:'Base64 Encoder / Decoder',icon:'💾',sub:'Encode text to Base64 or decode it back',c:'c6',ico:'rgba(14,165,233,.1)',foot:['Encode & decode','File support']}
+/* ═══════════════════════════════════
+   DATA: TOOLS + RELATED
+═══════════════════════════════════ */
+const TOOLS = {
+  imgCompress:{title:'Compress Image to 100KB / 200KB',icon:'🗜️',sub:'Reduce file size with quality control — JPG, PNG, WebP',c:'c1',bg:'rgba(43,91,246,.1)',
+    related:['imgResize','imgConvert','imgMeta'],foot:['Files never uploaded','Client-side only','JPG · PNG · WebP']},
+  imgResize:{title:'Resize Image Online',icon:'📐',sub:'Custom dimensions or social media presets',c:'c1',bg:'rgba(43,91,246,.1)',
+    related:['imgCompress','imgConvert','imgMeta'],foot:['Aspect ratio lock','Social presets','Client-side only']},
+  imgConvert:{title:'PNG to JPG / WebP Converter',icon:'🔄',sub:'Convert image format in your browser',c:'c1',bg:'rgba(43,91,246,.1)',
+    related:['imgCompress','imgResize','imgToPdf'],foot:['Lossless PNG option','Client-side only']},
+  imgMeta:{title:'Remove EXIF Data from Image',icon:'🧹',sub:'Strip GPS, device info and date metadata',c:'c1',bg:'rgba(43,91,246,.1)',
+    related:['imgCompress','imgConvert','passGen'],foot:['Removes GPS · device · date','Files never uploaded']},
+  pdfMerge:{title:'Merge PDF Files Online',icon:'📎',sub:'Combine multiple PDFs into one document',c:'c2',bg:'rgba(240,68,56,.1)',
+    related:['pdfInfo','imgToPdf','textToPdf'],foot:['Uses pdf-lib','Files never uploaded','Unlimited pages']},
+  pdfInfo:{title:'PDF Inspector — View Metadata',icon:'🔍',sub:'See page count, size, author, title of any PDF',c:'c2',bg:'rgba(240,68,56,.1)',
+    related:['pdfMerge','imgToPdf','textToPdf'],foot:['Read-only inspection','Files never uploaded']},
+  imgToPdf:{title:'Convert Images to PDF Online',icon:'🖼️',sub:'JPG / PNG → PDF, one image per page',c:'c2',bg:'rgba(240,68,56,.1)',
+    related:['pdfMerge','imgCompress','imgConvert'],foot:['Multiple images supported','A4 · Letter · Fit']},
+  textToPdf:{title:'Convert Text to PDF Online',icon:'📝',sub:'Paste text and download as formatted PDF',c:'c2',bg:'rgba(240,68,56,.1)',
+    related:['pdfMerge','invoiceGen','wordCount'],foot:['Word wrap','Multi-page','Instant download']},
+  bmiCalc:{title:'BMI Calculator',icon:'⚖️',sub:'Body Mass Index with health range guide',c:'c3',bg:'rgba(18,183,106,.1)',
+    related:['ageCalc','percentCalc','loanCalc'],foot:['WHO BMI standards','Metric & Imperial']},
+  ageCalc:{title:'Age Calculator from Date of Birth',icon:'🎂',sub:'Exact years, months, days + next birthday',c:'c3',bg:'rgba(18,183,106,.1)',
+    related:['bmiCalc','percentCalc','loanCalc'],foot:['Precise to the day','Next birthday countdown']},
+  loanCalc:{title:'Loan EMI Calculator',icon:'💰',sub:'Monthly payment, total interest breakdown',c:'c3',bg:'rgba(18,183,106,.1)',
+    related:['percentCalc','invoiceGen','ageCalc'],foot:['Standard amortization','Full breakdown']},
+  percentCalc:{title:'Percentage Calculator Online',icon:'📊',sub:'% of number, % change, X is % of Y',c:'c3',bg:'rgba(18,183,106,.1)',
+    related:['loanCalc','bmiCalc','wordCount'],foot:['3 calculation modes','Instant results']},
+  invoiceGen:{title:'Free Invoice Generator',icon:'🧾',sub:'Professional invoices — download as PDF',c:'c4',bg:'rgba(247,144,9,.1)',
+    related:['textToPdf','loanCalc','percentCalc'],foot:['No account needed','Tax support','PDF download']},
+  jsonFmt:{title:'JSON Formatter & Validator',icon:'{ }',sub:'Beautify, minify and validate JSON',c:'c4',bg:'rgba(247,144,9,.1)',
+    related:['csvJson','csvViewer','base64'],foot:['Syntax validation','Minify option','Copy to clipboard']},
+  wordCount:{title:'Word & Character Counter',icon:'📝',sub:'Words, characters, sentences, reading time',c:'c4',bg:'rgba(247,144,9,.1)',
+    related:['textToPdf','invoiceGen','jsonFmt'],foot:['Real-time counting','Reading time estimate']},
+  csvViewer:{title:'CSV Viewer Online',icon:'📋',sub:'View CSV as sortable table — paste or upload',c:'c4',bg:'rgba(247,144,9,.1)',
+    related:['csvJson','jsonFmt','base64'],foot:['Upload or paste','Sortable columns']},
+  passGen:{title:'Strong Password Generator',icon:'🔑',sub:'Cryptographically random — custom rules',c:'c5',bg:'rgba(124,58,237,.1)',
+    related:['hashGen','imgMeta','base64'],foot:['Crypto random','Never transmitted']},
+  hashGen:{title:'SHA-256 / SHA-512 Hash Generator',icon:'🔒',sub:'SHA-1, SHA-256, SHA-512 from any text',c:'c5',bg:'rgba(124,58,237,.1)',
+    related:['passGen','base64','imgMeta'],foot:['Web Crypto API','Client-side only']},
+  csvJson:{title:'CSV to JSON Converter',icon:'⇄',sub:'CSV ↔ JSON bidirectional conversion',c:'c6',bg:'rgba(14,165,233,.1)',
+    related:['jsonFmt','csvViewer','base64'],foot:['Paste or upload','Copy output']},
+  base64:{title:'Base64 Encode / Decode Online',icon:'💾',sub:'Encode text to Base64 or decode it back',c:'c6',bg:'rgba(14,165,233,.1)',
+    related:['hashGen','csvJson','jsonFmt'],foot:['Encode & decode modes','File support']}
 };
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════
    MODAL
-══════════════════════════════════════ */
-let curTool = null;
+═══════════════════════════════════ */
+let cur = null;
 
 function open_tool(id) {
-  curTool = id;
-  const t = T[id]; if(!t) return;
+  cur = id;
+  const t = TOOLS[id]; if(!t) return;
   document.getElementById('mIco').textContent = t.icon;
-  document.getElementById('mIco').style.background = t.ico;
+  document.getElementById('mIco').style.background = t.bg;
   document.getElementById('mTitle').textContent = t.title;
   document.getElementById('mSub').textContent = t.sub;
   document.getElementById('mBody').innerHTML = render(id);
-  document.getElementById('mFoot').innerHTML = (t.foot||[]).map((f,i)=>`<span class="foot-tag">${f}</span>`).join('');
+  // related tools
+  const rel = (t.related||[]).filter(r=>TOOLS[r]);
+  document.getElementById('mRelated').innerHTML = rel.length ? `
+    <div class="m-rel-label">People also use</div>
+    <div class="m-rel-row">${rel.map(r=>`<button class="rel-btn" onclick="open_tool('${r}')">${TOOLS[r].icon} ${TOOLS[r].title}</button>`).join('')}</div>` : '';
   document.getElementById('overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
   init_tool(id);
@@ -616,1174 +626,597 @@ function open_tool(id) {
 function close_modal() {
   document.getElementById('overlay').classList.remove('open');
   document.body.style.overflow = '';
-  curTool = null;
+  cur = null;
 }
 
-function overlay_click(e) { if(e.target===document.getElementById('overlay')) close_modal(); }
+function ov_click(e) { if(e.target===document.getElementById('overlay')) close_modal(); }
 document.addEventListener('keydown', e => { if(e.key==='Escape') close_modal(); });
 
-/* ══════════════════════════════════════
-   RENDER TOOLS
-══════════════════════════════════════ */
+/* ═══════════════════════════════════
+   RENDER TOOL HTML
+═══════════════════════════════════ */
+const today = new Date().toISOString().split('T')[0];
+
 function render(id) {
-  const today = new Date().toISOString().split('T')[0];
   const map = {
-
-    imgCompress: ()=>`
-      <div class="dz" id="compDz">
-        <input type="file" accept="image/*" id="compFile" onchange="on_comp_file(this)">
-        <span class="dz-ico">🗜️</span>
-        <div class="dz-t">Drop an image or click to browse</div>
-        <div class="dz-s">JPG, PNG, WebP supported</div>
-      </div>
-      <div class="f mt16">
-        <label>Quality: <strong id="qualV">82</strong>%</label>
-        <input type="range" id="qualR" min="10" max="100" value="82" oninput="document.getElementById('qualV').textContent=this.value">
-        <div class="hint">Lower = smaller file · Higher = better quality</div>
-      </div>
+    imgCompress:()=>`
+      <div class="dz" id="cDz"><input type="file" accept="image/*" id="cFile" onchange="on_cf(this)">
+        <span class="dz-ico">🗜️</span><div class="dz-t">Drop an image or click to browse</div><div class="dz-s">JPG, PNG, WebP</div></div>
+      <div class="f mt12"><label>Quality: <strong id="qV">82</strong>%</label>
+        <input type="range" id="qR" min="10" max="100" value="82" oninput="document.getElementById('qV').textContent=this.value">
+        <div class="hint">Lower = smaller file · Higher = better quality</div></div>
       <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_compress()">🗜️ Compress Image</button></div>
-      <div id="compOut"></div>`,
+      <div id="cOut"></div>`,
 
-    imgResize: ()=>`
-      <div class="dz">
-        <input type="file" accept="image/*" id="resFile" onchange="on_res_file(this)">
-        <span class="dz-ico">📐</span>
-        <div class="dz-t">Drop an image or click to browse</div>
-        <div class="dz-s">Original dimensions will be auto-filled</div>
-      </div>
-      <div class="mt16">
-        <div class="segs" id="resPresets">
-          <button class="seg on" onclick="set_preset(0,0,this)">Custom</button>
-          <button class="seg" onclick="set_preset(1080,1080,this)">Instagram 1:1</button>
-          <button class="seg" onclick="set_preset(1080,1920,this)">Story 9:16</button>
-          <button class="seg" onclick="set_preset(1200,630,this)">OG Image</button>
-          <button class="seg" onclick="set_preset(1920,1080,this)">Full HD</button>
-          <button class="seg" onclick="set_preset(800,600,this)">800×600</button>
+    imgResize:()=>`
+      <div class="dz"><input type="file" accept="image/*" id="rFile" onchange="on_rf(this)">
+        <span class="dz-ico">📐</span><div class="dz-t">Drop image — dimensions auto-filled</div><div class="dz-s">Any format</div></div>
+      <div class="mt12">
+        <div class="segs" id="rPresets">
+          <button class="seg on" onclick="sp(0,0,this)">Custom</button>
+          <button class="seg" onclick="sp(1080,1080,this)">Instagram 1:1</button>
+          <button class="seg" onclick="sp(1080,1920,this)">Story 9:16</button>
+          <button class="seg" onclick="sp(1200,630,this)">OG/Social</button>
+          <button class="seg" onclick="sp(1920,1080,this)">Full HD</button>
+          <button class="seg" onclick="sp(800,600,this)">800×600</button>
         </div>
         <div class="frow">
           <div class="f"><label>Width (px)</label><input type="number" id="rW" value="800" min="1" oninput="ar_w()"></div>
           <div class="f"><label>Height (px)</label><input type="number" id="rH" value="600" min="1" oninput="ar_h()"></div>
         </div>
-        <div class="chk"><input type="checkbox" id="keepAR" checked><span>Maintain aspect ratio</span></div>
+        <div class="chk"><input type="checkbox" id="kAR" checked><span>Maintain aspect ratio</span></div>
         <div class="f"><label>Output format</label>
-          <select id="resFmt"><option value="image/jpeg">JPG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select>
-        </div>
+          <select id="rFmt"><option value="image/jpeg">JPG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select></div>
       </div>
       <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_resize()">📐 Resize Image</button></div>
-      <div id="resOut"></div>`,
+      <div id="rOut"></div>`,
 
-    imgConvert: ()=>`
-      <div class="dz">
-        <input type="file" accept="image/*" id="cvtFile">
-        <span class="dz-ico">🔄</span>
-        <div class="dz-t">Drop an image or click to browse</div>
-        <div class="dz-s">PNG, JPG, WebP supported</div>
-      </div>
-      <div class="f mt16">
-        <label>Convert to format</label>
-        <select id="cvtFmt">
-          <option value="image/jpeg">JPG (JPEG)</option>
-          <option value="image/png">PNG (lossless)</option>
-          <option value="image/webp">WebP (modern)</option>
-        </select>
-      </div>
+    imgConvert:()=>`
+      <div class="dz"><input type="file" accept="image/*" id="vFile">
+        <span class="dz-ico">🔄</span><div class="dz-t">Drop an image or click to browse</div><div class="dz-s">PNG, JPG, WebP</div></div>
+      <div class="f mt12"><label>Convert to</label>
+        <select id="vFmt"><option value="image/jpeg">JPG (JPEG)</option><option value="image/png">PNG (lossless)</option><option value="image/webp">WebP (modern)</option></select></div>
       <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_convert()">🔄 Convert Image</button></div>
-      <div id="cvtOut"></div>`,
+      <div id="vOut"></div>`,
 
-    imgMeta: ()=>`
-      <div class="info">🔐 Your image is processed entirely in your browser. Nothing is ever uploaded to a server.</div>
-      <div class="dz mt12">
-        <input type="file" accept="image/*" id="metaFile" onchange="on_meta_file(this)">
-        <span class="dz-ico">🧹</span>
-        <div class="dz-t">Drop an image to strip its metadata</div>
-        <div class="dz-s">JPG (EXIF), PNG, WebP</div>
-      </div>
-      <div id="metaInfo"></div>
-      <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_meta()">🧹 Strip & Download Clean Image</button></div>
-      <div id="metaOut"></div>`,
+    imgMeta:()=>`
+      <div class="inf">🔐 Processed entirely in your browser. Your image is never uploaded anywhere.</div>
+      <div class="dz mt12"><input type="file" accept="image/*" id="mFile" onchange="on_mf(this)">
+        <span class="dz-ico">🧹</span><div class="dz-t">Drop image to strip metadata</div><div class="dz-s">JPG (EXIF), PNG, WebP</div></div>
+      <div id="mInfo"></div>
+      <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_meta()">🧹 Strip Metadata & Download</button></div>
+      <div id="mOut"></div>`,
 
-    pdfMerge: ()=>`
-      <div class="dz">
-        <input type="file" accept=".pdf" multiple id="mergeFiles" onchange="on_merge_files(this)">
-        <span class="dz-ico">📎</span>
-        <div class="dz-t">Select multiple PDF files</div>
-        <div class="dz-s">Hold Ctrl / Cmd to select more than one</div>
-      </div>
-      <div id="mergeList" class="mt12"></div>
-      <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_merge()">📎 Merge PDFs</button></div>
-      <div id="mergeOut"></div>`,
+    pdfMerge:()=>`
+      <div class="dz"><input type="file" accept=".pdf" multiple id="pfFiles" onchange="on_pff(this)">
+        <span class="dz-ico">📎</span><div class="dz-t">Select multiple PDF files</div><div class="dz-s">Hold Ctrl / Cmd to select more than one</div></div>
+      <div id="pfList" class="mt12"></div>
+      <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_merge()">📎 Merge All PDFs</button></div>
+      <div id="pfOut"></div>`,
 
-    pdfInfo: ()=>`
-      <div class="dz">
-        <input type="file" accept=".pdf" id="pdfInfoFile" onchange="do_pdf_info(this)">
-        <span class="dz-ico">🔍</span>
-        <div class="dz-t">Drop a PDF to inspect it</div>
-        <div class="dz-s">Read-only — file is never uploaded</div>
-      </div>
-      <div id="pdfInfoOut"></div>`,
+    pdfInfo:()=>`
+      <div class="dz"><input type="file" accept=".pdf" id="piFile" onchange="do_pdfinfo(this)">
+        <span class="dz-ico">🔍</span><div class="dz-t">Drop a PDF file to inspect it</div><div class="dz-s">Read-only — nothing is uploaded</div></div>
+      <div id="piOut"></div>`,
 
-    imgToPdf: ()=>`
-      <div class="dz">
-        <input type="file" accept="image/*" multiple id="i2pFiles" onchange="on_i2p_files(this)">
-        <span class="dz-ico">🖼️</span>
-        <div class="dz-t">Drop images (one or multiple)</div>
-        <div class="dz-s">JPG, PNG — each image becomes one PDF page</div>
-      </div>
-      <div id="i2pList" class="mt12"></div>
-      <div class="f mt12">
-        <label>Page size</label>
-        <select id="i2pSize">
-          <option value="a4">A4 (210×297mm)</option>
-          <option value="letter">Letter (216×279mm)</option>
-          <option value="fit">Fit to image</option>
-        </select>
-      </div>
-      <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_img2pdf()">📄 Create PDF</button></div>
-      <div id="i2pOut"></div>`,
+    imgToPdf:()=>`
+      <div class="dz"><input type="file" accept="image/*" multiple id="ipFiles" onchange="on_ipf(this)">
+        <span class="dz-ico">🖼️</span><div class="dz-t">Drop images (multiple allowed)</div><div class="dz-s">Each image = one PDF page</div></div>
+      <div id="ipList" class="mt12"></div>
+      <div class="f mt12"><label>Page size</label>
+        <select id="ipSz"><option value="a4">A4 (210×297mm)</option><option value="letter">Letter (216×279mm)</option><option value="fit">Fit to image</option></select></div>
+      <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_i2p()">📄 Create PDF</button></div>
+      <div id="ipOut"></div>`,
 
-    textToPdf: ()=>`
-      <div class="f">
-        <label>Document title</label>
-        <input type="text" id="txtTitle" placeholder="My Document">
-      </div>
-      <div class="f">
-        <label>Content</label>
-        <textarea id="txtContent" style="min-height:180px" placeholder="Type or paste your text here…"></textarea>
-      </div>
+    textToPdf:()=>`
+      <div class="f"><label>Document title</label><input type="text" id="tpTitle" placeholder="My Document"></div>
+      <div class="f"><label>Content</label><textarea id="tpContent" style="min-height:180px" placeholder="Type or paste your text here…"></textarea></div>
       <div class="frow">
         <div class="f"><label>Font size</label>
-          <select id="txtSize"><option value="10">10pt</option><option value="11">11pt</option><option value="12" selected>12pt</option><option value="14">14pt</option><option value="16">16pt</option></select>
-        </div>
+          <select id="tpFs"><option value="10">10pt</option><option value="11">11pt</option><option value="12" selected>12pt</option><option value="14">14pt</option><option value="16">16pt</option></select></div>
         <div class="f"><label>Margin</label>
-          <select id="txtMargin"><option value="15">Narrow (15mm)</option><option value="20" selected>Normal (20mm)</option><option value="25">Wide (25mm)</option></select>
-        </div>
+          <select id="tpMg"><option value="15">Narrow (15mm)</option><option value="20" selected>Normal (20mm)</option><option value="25">Wide (25mm)</option></select></div>
       </div>
-      <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_text2pdf()">📄 Generate PDF</button></div>
-      <div id="txtOut"></div>`,
+      <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_t2p()">📄 Generate PDF</button></div>
+      <div id="tpOut"></div>`,
 
-    bmiCalc: ()=>`
+    bmiCalc:()=>`
       <div class="tabs">
-        <button class="tb on" onclick="sw_tab(this,'bmi_m')">Metric (kg / cm)</button>
-        <button class="tb" onclick="sw_tab(this,'bmi_i')">Imperial (lb / ft·in)</button>
+        <button class="tb on" onclick="sw(this,'bm')">Metric (kg / cm)</button>
+        <button class="tb" onclick="sw(this,'bi')">Imperial (lb / ft · in)</button>
       </div>
-      <div class="tp on" id="bmi_m">
+      <div class="tp on" id="bm">
         <div class="frow">
-          <div class="f"><label>Weight (kg)</label><input type="number" id="bW" placeholder="70" oninput="calc_bmi()"></div>
-          <div class="f"><label>Height (cm)</label><input type="number" id="bH" placeholder="175" oninput="calc_bmi()"></div>
+          <div class="f"><label>Weight (kg)</label><input type="number" id="bWk" placeholder="70" oninput="do_bmi()"></div>
+          <div class="f"><label>Height (cm)</label><input type="number" id="bHc" placeholder="175" oninput="do_bmi()"></div>
         </div>
       </div>
-      <div class="tp" id="bmi_i">
+      <div class="tp" id="bi">
         <div class="frow3">
-          <div class="f"><label>Weight (lb)</label><input type="number" id="bWl" placeholder="154" oninput="calc_bmi()"></div>
-          <div class="f"><label>Feet</label><input type="number" id="bHft" placeholder="5" min="1" max="9" oninput="calc_bmi()"></div>
-          <div class="f"><label>Inches</label><input type="number" id="bHin" placeholder="10" min="0" max="11" oninput="calc_bmi()"></div>
+          <div class="f"><label>Weight (lb)</label><input type="number" id="bWl" placeholder="154" oninput="do_bmi()"></div>
+          <div class="f"><label>Feet</label><input type="number" id="bFt" placeholder="5" min="1" max="9" oninput="do_bmi()"></div>
+          <div class="f"><label>Inches</label><input type="number" id="bIn" placeholder="10" min="0" max="11" oninput="do_bmi()"></div>
         </div>
       </div>
-      <div id="bmiOut"></div>`,
+      <div id="bOut"></div>`,
 
-    ageCalc: ()=>`
+    ageCalc:()=>`
       <div class="frow">
-        <div class="f"><label>Date of Birth</label><input type="date" id="ageIn" oninput="calc_age()" max="${today}"></div>
-        <div class="f"><label>Calculate age as of</label><input type="date" id="ageRef" value="${today}" oninput="calc_age()"></div>
+        <div class="f"><label>Date of Birth</label><input type="date" id="aIn" oninput="do_age()" max="${today}"></div>
+        <div class="f"><label>Calculate age as of</label><input type="date" id="aRef" value="${today}" oninput="do_age()"></div>
       </div>
-      <div id="ageOut"></div>`,
+      <div id="aOut"></div>`,
 
-    loanCalc: ()=>`
+    loanCalc:()=>`
       <div class="frow">
-        <div class="f"><label>Loan Amount ($)</label><input type="number" id="lAmt" placeholder="10000" oninput="calc_loan()"></div>
-        <div class="f"><label>Annual Interest (%)</label><input type="number" id="lRate" placeholder="8.5" step="0.1" oninput="calc_loan()"></div>
+        <div class="f"><label>Loan Amount ($)</label><input type="number" id="lAmt" placeholder="10000" oninput="do_loan()"></div>
+        <div class="f"><label>Annual Interest (%)</label><input type="number" id="lRate" placeholder="8.5" step="0.1" oninput="do_loan()"></div>
       </div>
-      <div class="f">
-        <label>Loan Term: <strong id="lTermV">24</strong> months</label>
-        <input type="range" id="lTerm" min="1" max="360" value="24" oninput="document.getElementById('lTermV').textContent=this.value;calc_loan()">
-      </div>
-      <div id="loanOut"></div>`,
+      <div class="f"><label>Loan Term: <strong id="lTV">24</strong> months</label>
+        <input type="range" id="lTerm" min="1" max="360" value="24" oninput="document.getElementById('lTV').textContent=this.value;do_loan()"></div>
+      <div id="lOut"></div>`,
 
-    percentCalc: ()=>`
+    percentCalc:()=>`
       <div class="tabs">
-        <button class="tb on" onclick="sw_tab(this,'p1')">% of number</button>
-        <button class="tb" onclick="sw_tab(this,'p2')">% change</button>
-        <button class="tb" onclick="sw_tab(this,'p3')">X is % of Y</button>
+        <button class="tb on" onclick="sw(this,'pp1')">% of number</button>
+        <button class="tb" onclick="sw(this,'pp2')">% change</button>
+        <button class="tb" onclick="sw(this,'pp3')">X is % of Y</button>
       </div>
-      <div class="tp on" id="p1">
+      <div class="tp on" id="pp1">
         <div class="frow">
-          <div class="f"><label>Percentage (%)</label><input type="number" id="p1a" placeholder="15" oninput="calc_pct()"></div>
-          <div class="f"><label>Of number</label><input type="number" id="p1b" placeholder="200" oninput="calc_pct()"></div>
+          <div class="f"><label>Percentage (%)</label><input type="number" id="p1a" placeholder="15" oninput="do_pct()"></div>
+          <div class="f"><label>Of number</label><input type="number" id="p1b" placeholder="200" oninput="do_pct()"></div>
         </div>
       </div>
-      <div class="tp" id="p2">
+      <div class="tp" id="pp2">
         <div class="frow">
-          <div class="f"><label>From value</label><input type="number" id="p2a" placeholder="100" oninput="calc_pct()"></div>
-          <div class="f"><label>To value</label><input type="number" id="p2b" placeholder="125" oninput="calc_pct()"></div>
+          <div class="f"><label>From value</label><input type="number" id="p2a" placeholder="100" oninput="do_pct()"></div>
+          <div class="f"><label>To value</label><input type="number" id="p2b" placeholder="125" oninput="do_pct()"></div>
         </div>
       </div>
-      <div class="tp" id="p3">
+      <div class="tp" id="pp3">
         <div class="frow">
-          <div class="f"><label>Value (X)</label><input type="number" id="p3a" placeholder="30" oninput="calc_pct()"></div>
-          <div class="f"><label>Total (Y)</label><input type="number" id="p3b" placeholder="200" oninput="calc_pct()"></div>
+          <div class="f"><label>Value (X)</label><input type="number" id="p3a" placeholder="30" oninput="do_pct()"></div>
+          <div class="f"><label>Total (Y)</label><input type="number" id="p3b" placeholder="200" oninput="do_pct()"></div>
         </div>
       </div>
-      <div id="pctOut"></div>`,
+      <div id="pOut"></div>`,
 
-    invoiceGen: ()=>`
+    invoiceGen:()=>`
       <div class="frow">
-        <div class="f"><label>From (Your name / company)</label><input type="text" id="iFrom" placeholder="Acme Inc." oninput="inv_total()"></div>
-        <div class="f"><label>Bill To (Client)</label><input type="text" id="iTo" placeholder="Client Co." oninput="inv_total()"></div>
+        <div class="f"><label>From (your name / company)</label><input type="text" id="iFrom" placeholder="Acme Inc." oninput="itotal()"></div>
+        <div class="f"><label>Bill To (client)</label><input type="text" id="iTo" placeholder="Client Co." oninput="itotal()"></div>
       </div>
       <div class="frow">
         <div class="f"><label>Invoice #</label><input type="text" id="iNum" value="INV-001"></div>
         <div class="f"><label>Date</label><input type="date" id="iDate" value="${today}"></div>
       </div>
-      <div class="section-divider"></div>
-      <div class="rlabel">Line Items</div>
+      <div class="divider"></div>
+      <div class="rl">Line Items</div>
       <div id="iLines"></div>
-      <button class="btn btn-ghost btn-sm mt8" onclick="inv_add()">+ Add line item</button>
-      <div class="section-divider"></div>
+      <button class="btn btn-ghost btn-sm mt8" onclick="iadd()">+ Add line item</button>
+      <div class="divider"></div>
       <div class="frow">
-        <div class="f"><label>Tax (%)</label><input type="number" id="iTax" value="0" min="0" step="0.5" oninput="inv_total()"></div>
+        <div class="f"><label>Tax (%)</label><input type="number" id="iTax" value="0" min="0" step="0.5" oninput="itotal()"></div>
         <div class="f"><label>Currency</label>
-          <select id="iCur" onchange="inv_total()">
+          <select id="iCur" onchange="itotal()">
             <option value="$">USD ($)</option><option value="€">EUR (€)</option>
             <option value="£">GBP (£)</option><option value="₹">INR (₹)</option>
             <option value="C$">CAD (C$)</option><option value="A$">AUD (A$)</option>
-          </select>
-        </div>
+          </select></div>
       </div>
-      <div class="rbox" id="iTotal" style="display:none">
-        <div class="rlabel">Total Amount</div>
-        <div class="rval" id="iTotalV">$0.00</div>
-      </div>
-      <div class="btns"><button class="btn btn-blue btn-lg" onclick="inv_download()">📄 Download Invoice PDF</button></div>`,
+      <div class="rbox" id="iTB" style="display:none"><div class="rl">Total Amount</div><div class="rv" id="iTV">$0.00</div></div>
+      <div class="btns"><button class="btn btn-blue btn-lg" onclick="idl()">📄 Download Invoice PDF</button></div>`,
 
-    jsonFmt: ()=>`
-      <div class="f">
-        <label>Paste JSON</label>
-        <textarea id="jIn" style="min-height:140px;font-family:var(--mono);font-size:13px" placeholder='{"name":"Toolify","version":2}' oninput="j_fmt()"></textarea>
-      </div>
+    jsonFmt:()=>`
+      <div class="f"><label>Paste JSON</label>
+        <textarea id="jIn" style="min-height:130px;font-family:var(--mono);font-size:12.5px" placeholder='{"name":"Toolify","tools":20}' oninput="jfmt()"></textarea></div>
       <div class="btns">
-        <button class="btn btn-blue" onclick="j_fmt()">✨ Beautify</button>
-        <button class="btn btn-ghost" onclick="j_min()">🗜 Minify</button>
-        <button class="btn btn-ghost" onclick="j_copy()">📋 Copy</button>
-        <button class="btn btn-ghost" onclick="j_clear()">✕ Clear</button>
+        <button class="btn btn-blue" onclick="jfmt()">✨ Beautify</button>
+        <button class="btn btn-ghost" onclick="jmin()">🗜 Minify</button>
+        <button class="btn btn-ghost" onclick="jcopy()">📋 Copy</button>
+        <button class="btn btn-ghost" onclick="jclr()">✕ Clear</button>
       </div>
       <div id="jOut"></div>`,
 
-    wordCount: ()=>`
-      <div class="f">
-        <label>Paste or type your text</label>
-        <textarea id="wcIn" style="min-height:200px" placeholder="Start typing or paste content here…" oninput="count_words()"></textarea>
-      </div>
+    wordCount:()=>`
+      <div class="f"><label>Paste or type your text</label>
+        <textarea id="wcIn" style="min-height:190px" placeholder="Start typing or paste content here…" oninput="wc()"></textarea></div>
       <div id="wcOut"></div>`,
 
-    csvViewer: ()=>`
+    csvViewer:()=>`
       <div class="tabs">
-        <button class="tb on" onclick="sw_tab(this,'csvP')">Paste CSV</button>
-        <button class="tb" onclick="sw_tab(this,'csvU')">Upload File</button>
+        <button class="tb on" onclick="sw(this,'cvP')">Paste CSV</button>
+        <button class="tb" onclick="sw(this,'cvU')">Upload File</button>
       </div>
-      <div class="tp on" id="csvP">
-        <div class="f"><textarea id="csvIn" style="min-height:110px;font-family:var(--mono);font-size:12px" placeholder="name,age,city&#10;Alice,30,New York&#10;Bob,25,London" oninput="render_csv()"></textarea></div>
+      <div class="tp on" id="cvP">
+        <div class="f"><textarea id="cvIn" style="min-height:100px;font-family:var(--mono);font-size:12px" placeholder="name,age,city&#10;Alice,30,New York&#10;Bob,25,London" oninput="rcsv()"></textarea></div>
       </div>
-      <div class="tp" id="csvU">
-        <div class="dz" style="padding:20px"><input type="file" accept=".csv,.txt" id="csvFile" onchange="load_csv(this)">📂 Click or drop a CSV file</div>
+      <div class="tp" id="cvU">
+        <div class="dz" style="padding:20px"><input type="file" accept=".csv,.txt" id="cvFile" onchange="lcsv(this)">📂 Click or drop a CSV file</div>
       </div>
-      <div id="csvOut"></div>`,
+      <div id="cvOut"></div>`,
 
-    passGen: ()=>`
-      <div class="f">
-        <label>Length: <strong id="pLenV">16</strong> characters</label>
-        <input type="range" id="pLen" min="6" max="64" value="16" oninput="document.getElementById('pLenV').textContent=this.value;gen_pass()">
-      </div>
-      <div class="chk"><input type="checkbox" id="pUp" checked onchange="gen_pass()"><span>Uppercase (A–Z)</span></div>
-      <div class="chk"><input type="checkbox" id="pLo" checked onchange="gen_pass()"><span>Lowercase (a–z)</span></div>
-      <div class="chk"><input type="checkbox" id="pNu" checked onchange="gen_pass()"><span>Numbers (0–9)</span></div>
-      <div class="chk"><input type="checkbox" id="pSy" checked onchange="gen_pass()"><span>Symbols (!@#$%^&*)</span></div>
-      <div class="pass-out" id="pOut">
-        <div class="pass-val" id="pVal">—</div>
-        <button class="btn btn-ghost btn-sm" onclick="copy_pass()">Copy</button>
-      </div>
-      <div class="pass-strength" id="pStr"></div>
+    passGen:()=>`
+      <div class="f"><label>Length: <strong id="pLV">16</strong> characters</label>
+        <input type="range" id="pLen" min="6" max="64" value="16" oninput="document.getElementById('pLV').textContent=this.value;gpass()"></div>
+      <div class="chk"><input type="checkbox" id="pUp" checked onchange="gpass()"><span>Uppercase (A–Z)</span></div>
+      <div class="chk"><input type="checkbox" id="pLo" checked onchange="gpass()"><span>Lowercase (a–z)</span></div>
+      <div class="chk"><input type="checkbox" id="pNu" checked onchange="gpass()"><span>Numbers (0–9)</span></div>
+      <div class="chk"><input type="checkbox" id="pSy" checked onchange="gpass()"><span>Symbols (!@#$%^&*)</span></div>
+      <div class="pass-out" id="pOut"><div class="pass-val" id="pVal">—</div><button class="btn btn-ghost btn-sm" onclick="cpass()">Copy</button></div>
+      <div class="pbar" id="pBar"></div>
       <div class="btns">
-        <button class="btn btn-blue" onclick="gen_pass()">🔑 Regenerate</button>
-        <button class="btn btn-ghost" onclick="gen_multi()">Generate 5 options</button>
+        <button class="btn btn-blue" onclick="gpass()">🔑 Regenerate</button>
+        <button class="btn btn-ghost" onclick="gmulti()">Generate 5 options</button>
       </div>
       <div id="pMulti"></div>`,
 
-    hashGen: ()=>`
-      <div class="f">
-        <label>Input text</label>
-        <textarea id="hIn" style="min-height:100px" placeholder="Enter text to hash…" oninput="do_hash()"></textarea>
-      </div>
+    hashGen:()=>`
+      <div class="f"><label>Input text</label>
+        <textarea id="hIn" style="min-height:100px" placeholder="Enter text to hash…" oninput="dhash()"></textarea></div>
       <div id="hOut"></div>`,
 
-    csvJson: ()=>`
+    csvJson:()=>`
       <div class="tabs">
-        <button class="tb on" onclick="sw_tab(this,'c2j')">CSV → JSON</button>
-        <button class="tb" onclick="sw_tab(this,'j2c')">JSON → CSV</button>
+        <button class="tb on" onclick="sw(this,'c2j')">CSV → JSON</button>
+        <button class="tb" onclick="sw(this,'j2c')">JSON → CSV</button>
       </div>
       <div class="tp on" id="c2j">
-        <div class="f"><label>CSV Input</label><textarea id="c2jIn" style="min-height:120px;font-family:var(--mono);font-size:12.5px" placeholder="name,age&#10;Alice,30&#10;Bob,25"></textarea></div>
-        <div class="btns"><button class="btn btn-blue" onclick="csv_to_json()">Convert →</button><button class="btn btn-ghost" onclick="copy_el('c2jOut')">Copy JSON</button></div>
+        <div class="f"><label>CSV Input</label><textarea id="c2jIn" style="min-height:110px;font-family:var(--mono);font-size:12px" placeholder="name,age&#10;Alice,30&#10;Bob,25"></textarea></div>
+        <div class="btns"><button class="btn btn-blue" onclick="c2j()">Convert →</button><button class="btn btn-ghost" onclick="cpre('c2jOut')">Copy JSON</button></div>
         <div id="c2jOut"></div>
       </div>
       <div class="tp" id="j2c">
-        <div class="f"><label>JSON Input (array of objects)</label><textarea id="j2cIn" style="min-height:120px;font-family:var(--mono);font-size:12.5px" placeholder='[{"name":"Alice","age":30}]'></textarea></div>
-        <div class="btns"><button class="btn btn-blue" onclick="json_to_csv()">Convert →</button><button class="btn btn-ghost" onclick="copy_el('j2cOut')">Copy CSV</button></div>
+        <div class="f"><label>JSON (array of objects)</label><textarea id="j2cIn" style="min-height:110px;font-family:var(--mono);font-size:12px" placeholder='[{"name":"Alice","age":30}]'></textarea></div>
+        <div class="btns"><button class="btn btn-blue" onclick="j2c()">Convert →</button><button class="btn btn-ghost" onclick="cpre('j2cOut')">Copy CSV</button></div>
         <div id="j2cOut"></div>
       </div>`,
 
-    base64: ()=>`
+    base64:()=>`
       <div class="tabs">
-        <button class="tb on" onclick="sw_tab(this,'b64e')">Encode</button>
-        <button class="tb" onclick="sw_tab(this,'b64d')">Decode</button>
+        <button class="tb on" onclick="sw(this,'b4e')">Encode</button>
+        <button class="tb" onclick="sw(this,'b4d')">Decode</button>
       </div>
-      <div class="tp on" id="b64e">
-        <div class="f"><label>Text to encode</label><textarea id="b64eIn" style="min-height:100px" placeholder="Hello, World!" oninput="b64_enc()"></textarea></div>
-        <div id="b64eOut"></div>
+      <div class="tp on" id="b4e">
+        <div class="f"><label>Text to encode</label><textarea id="b4eIn" style="min-height:90px" placeholder="Hello, World!" oninput="b4enc()"></textarea></div>
+        <div id="b4eOut"></div>
       </div>
-      <div class="tp" id="b64d">
-        <div class="f"><label>Base64 to decode</label><textarea id="b64dIn" style="min-height:100px;font-family:var(--mono);font-size:12.5px" placeholder="SGVsbG8sIFdvcmxkIQ==" oninput="b64_dec()"></textarea></div>
-        <div id="b64dOut"></div>
+      <div class="tp" id="b4d">
+        <div class="f"><label>Base64 string to decode</label><textarea id="b4dIn" style="min-height:90px;font-family:var(--mono);font-size:12.5px" placeholder="SGVsbG8sIFdvcmxkIQ==" oninput="b4dec()"></textarea></div>
+        <div id="b4dOut"></div>
       </div>`
   };
-  return (map[id]||(() => '<p>Tool coming soon.</p>'))();
+  return (map[id]||(() => '<p style="color:var(--text3)">Coming soon.</p>'))();
 }
 
 function init_tool(id) {
-  if(id==='wordCount') count_words();
-  if(id==='passGen') gen_pass();
-  if(id==='invoiceGen') { _invItems=[]; inv_add(); }
-  if(id==='loanCalc') calc_loan();
+  if(id==='wordCount') wc();
+  if(id==='passGen') gpass();
+  if(id==='invoiceGen'){ _ii=[]; iadd(); }
+  if(id==='loanCalc') do_loan();
 }
 
-/* ══════════════════════════════════════
-   TABS / SEGS
-══════════════════════════════════════ */
-function sw_tab(btn, panelId) {
+/* ═══════════════════════════════════
+   TABS
+═══════════════════════════════════ */
+function sw(btn, pid) {
   const mb = document.getElementById('mBody');
   mb.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
   mb.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));
   btn.classList.add('on');
-  const p = document.getElementById(panelId);
+  const p = document.getElementById(pid);
   if(p) p.classList.add('on');
-  // re-calc
-  if(['p1','p2','p3'].includes(panelId)) calc_pct();
+  if(['pp1','pp2','pp3'].includes(pid)) do_pct();
 }
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════
    IMAGE TOOLS
-══════════════════════════════════════ */
-function on_comp_file(inp) {
-  const f = inp.files[0]; if(!f) return;
-  const dz = document.getElementById('compDz');
-  dz.querySelector('.dz-t').textContent = f.name;
-  dz.querySelector('.dz-s').textContent = fmtB(f.size);
-}
+═══════════════════════════════════ */
+window._AR = 1;
 
-function do_compress() {
-  const f = document.getElementById('compFile').files[0];
-  const q = parseInt(document.getElementById('qualR').value)/100;
-  const out = document.getElementById('compOut');
-  if(!f) { out.innerHTML = err('Please select an image first.'); return; }
-  out.innerHTML = loading('Compressing…');
-  const img = new Image(), url = URL.createObjectURL(f);
-  img.onload = () => {
-    const c = document.createElement('canvas');
-    c.width = img.naturalWidth; c.height = img.naturalHeight;
+function on_cf(i){ const f=i.files[0]; if(!f)return; const d=document.getElementById('cDz'); d.querySelector('.dz-t').textContent=f.name; d.querySelector('.dz-s').textContent=fmtB(f.size); }
+
+function do_compress(){
+  const f=document.getElementById('cFile').files[0], q=parseInt(document.getElementById('qR').value)/100, out=document.getElementById('cOut');
+  if(!f){ out.innerHTML=er('Please select an image.'); return; }
+  out.innerHTML=ld('Compressing…');
+  const img=new Image(), url=URL.createObjectURL(f);
+  img.onload=()=>{
+    const c=document.createElement('canvas'); c.width=img.naturalWidth; c.height=img.naturalHeight;
     c.getContext('2d').drawImage(img,0,0);
-    const mime = f.type==='image/png'?'image/png':'image/jpeg';
+    const mime=f.type==='image/png'?'image/png':'image/jpeg';
     c.toBlob(blob=>{
-      const pct = (((f.size-blob.size)/f.size)*100).toFixed(1);
-      const ext = mime==='image/png'?'png':'jpg';
-      window._compBlob = blob;
-      out.innerHTML = `
-        <div class="rgrid">
-          <div class="ri"><div class="ri-l">Original</div><div class="ri-v">${fmtB(f.size)}</div></div>
-          <div class="ri"><div class="ri-l">Compressed</div><div class="ri-v green">${fmtB(blob.size)}</div></div>
-          <div class="ri"><div class="ri-l">Saved</div><div class="ri-v green">${pct}%</div></div>
-          <div class="ri"><div class="ri-l">Quality</div><div class="ri-v">${Math.round(q*100)}%</div></div>
-        </div>
-        <div class="btns"><button class="btn btn-green" onclick="dl(window._compBlob,'compressed.${ext}')">⬇️ Download Compressed</button></div>`;
+      const pct=(((f.size-blob.size)/f.size)*100).toFixed(1), ext=mime==='image/png'?'png':'jpg';
+      window._cb=blob;
+      out.innerHTML=`<div class="rgrid"><div class="ri"><div class="ri-l">Original</div><div class="ri-v">${fmtB(f.size)}</div></div><div class="ri"><div class="ri-l">Compressed</div><div class="ri-v green">${fmtB(blob.size)}</div></div><div class="ri"><div class="ri-l">Saved</div><div class="ri-v green">${pct}%</div></div><div class="ri"><div class="ri-l">Quality</div><div class="ri-v">${Math.round(q*100)}%</div></div></div>
+      <div class="btns"><button class="btn btn-green" onclick="dl(window._cb,'compressed.${ext}')">⬇️ Download Compressed</button></div>`;
       URL.revokeObjectURL(url);
     }, mime, q);
   };
-  img.src = url;
+  img.src=url;
 }
 
-window._origAR = 1;
-function on_res_file(inp) {
-  const f = inp.files[0]; if(!f) return;
-  const img = new Image();
-  img.onload = () => {
-    document.getElementById('rW').value = img.naturalWidth;
-    document.getElementById('rH').value = img.naturalHeight;
-    window._origAR = img.naturalWidth / img.naturalHeight;
-  };
-  img.src = URL.createObjectURL(f);
+function on_rf(i){ const f=i.files[0]; if(!f)return; const img=new Image(); img.onload=()=>{ document.getElementById('rW').value=img.naturalWidth; document.getElementById('rH').value=img.naturalHeight; window._AR=img.naturalWidth/img.naturalHeight; }; img.src=URL.createObjectURL(f); }
+function sp(w,h,btn){ document.querySelectorAll('#rPresets .seg').forEach(b=>b.classList.remove('on')); btn.classList.add('on'); if(w){ document.getElementById('rW').value=w; document.getElementById('rH').value=h; } }
+function ar_w(){ if(document.getElementById('kAR')?.checked&&window._AR) document.getElementById('rH').value=Math.round(document.getElementById('rW').value/window._AR); }
+function ar_h(){ if(document.getElementById('kAR')?.checked&&window._AR) document.getElementById('rW').value=Math.round(document.getElementById('rH').value*window._AR); }
+
+function do_resize(){
+  const f=document.getElementById('rFile').files[0], out=document.getElementById('rOut');
+  if(!f){ out.innerHTML=er('Please select an image.'); return; }
+  const w=parseInt(document.getElementById('rW').value), h=parseInt(document.getElementById('rH').value), fmt=document.getElementById('rFmt').value;
+  if(!w||!h){ out.innerHTML=er('Enter valid dimensions.'); return; }
+  out.innerHTML=ld('Resizing…');
+  const img=new Image();
+  img.onload=()=>{
+    const c=document.createElement('canvas'); c.width=w; c.height=h;
+    const ctx=c.getContext('2d'); ctx.imageSmoothingQuality='high'; ctx.drawImage(img,0,0,w,h);
+    const ext={['image/jpeg']:'jpg',['image/png']:'png',['image/webp']:'webp'}[fmt];
+    c.toBlob(blob=>{ window._rb=blob; out.innerHTML=`<div class="ok">✅ Resized to ${w}×${h}px · ${fmtB(blob.size)}</div><div class="img-preview"><img src="${URL.createObjectURL(blob)}"></div><div class="btns"><button class="btn btn-green" onclick="dl(window._rb,'resized.${ext}')">⬇️ Download</button></div>`; }, fmt, .92); };
+  img.src=URL.createObjectURL(f);
 }
 
-function set_preset(w,h,btn) {
-  document.querySelectorAll('#resPresets .seg').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-  if(w){ document.getElementById('rW').value=w; document.getElementById('rH').value=h; }
-}
-
-function ar_w() {
-  if(document.getElementById('keepAR')?.checked && window._origAR)
-    document.getElementById('rH').value = Math.round(document.getElementById('rW').value / window._origAR);
-}
-function ar_h() {
-  if(document.getElementById('keepAR')?.checked && window._origAR)
-    document.getElementById('rW').value = Math.round(document.getElementById('rH').value * window._origAR);
-}
-
-function do_resize() {
-  const f = document.getElementById('resFile').files[0];
-  const out = document.getElementById('resOut');
-  if(!f) { out.innerHTML = err('Please select an image first.'); return; }
-  const w = parseInt(document.getElementById('rW').value);
-  const h = parseInt(document.getElementById('rH').value);
-  const fmt = document.getElementById('resFmt').value;
-  if(!w||!h||w<1||h<1) { out.innerHTML = err('Please enter valid dimensions.'); return; }
-  out.innerHTML = loading('Resizing…');
-  const img = new Image();
-  img.onload = () => {
-    const c = document.createElement('canvas');
-    c.width=w; c.height=h;
-    const ctx = c.getContext('2d');
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(img,0,0,w,h);
-    const ext = {['image/jpeg']:'jpg',['image/png']:'png',['image/webp']:'webp'}[fmt];
-    c.toBlob(blob=>{
-      window._resBlob = blob;
-      out.innerHTML = `
-        <div class="ok">✅ Resized to ${w} × ${h}px · ${fmtB(blob.size)}</div>
-        <div class="img-preview"><img src="${URL.createObjectURL(blob)}" alt="Resized"></div>
-        <div class="btns"><button class="btn btn-green" onclick="dl(window._resBlob,'resized.${ext}')">⬇️ Download</button></div>`;
-    }, fmt, fmt==='image/png'?1:.92);
-  };
-  img.src = URL.createObjectURL(f);
-}
-
-function do_convert() {
-  const f = document.getElementById('cvtFile').files[0];
-  const fmt = document.getElementById('cvtFmt').value;
-  const out = document.getElementById('cvtOut');
-  if(!f) { out.innerHTML = err('Please select an image first.'); return; }
-  out.innerHTML = loading('Converting…');
-  const ext = {['image/jpeg']:'jpg',['image/png']:'png',['image/webp']:'webp'}[fmt];
-  const img = new Image();
-  img.onload = () => {
-    const c = document.createElement('canvas');
-    c.width=img.naturalWidth; c.height=img.naturalHeight;
+function do_convert(){
+  const f=document.getElementById('vFile').files[0], fmt=document.getElementById('vFmt').value, out=document.getElementById('vOut');
+  if(!f){ out.innerHTML=er('Please select an image.'); return; }
+  out.innerHTML=ld('Converting…');
+  const ext={['image/jpeg']:'jpg',['image/png']:'png',['image/webp']:'webp'}[fmt];
+  const img=new Image();
+  img.onload=()=>{
+    const c=document.createElement('canvas'); c.width=img.naturalWidth; c.height=img.naturalHeight;
     c.getContext('2d').drawImage(img,0,0);
-    c.toBlob(blob=>{
-      window._cvtBlob = blob;
-      out.innerHTML = `
-        <div class="ok">✅ Converted to ${ext.toUpperCase()} · ${fmtB(blob.size)}</div>
-        <div class="img-preview"><img src="${URL.createObjectURL(blob)}" alt="Converted"></div>
-        <div class="btns"><button class="btn btn-green" onclick="dl(window._cvtBlob,'converted.${ext}')">⬇️ Download</button></div>`;
-    }, fmt, fmt==='image/png'?1:.92);
-  };
-  img.src = URL.createObjectURL(f);
+    c.toBlob(blob=>{ window._vb=blob; out.innerHTML=`<div class="ok">✅ Converted to ${ext.toUpperCase()} · ${fmtB(blob.size)}</div><div class="img-preview"><img src="${URL.createObjectURL(blob)}"></div><div class="btns"><button class="btn btn-green" onclick="dl(window._vb,'converted.${ext}')">⬇️ Download</button></div>`; }, fmt, fmt==='image/png'?1:.92); };
+  img.src=URL.createObjectURL(f);
 }
 
-function on_meta_file(inp) {
-  const f = inp.files[0]; if(!f) return;
-  document.getElementById('metaInfo').innerHTML = `<div class="info mt12">📁 <strong>${f.name}</strong> · ${fmtB(f.size)} — metadata will be stripped on download.</div>`;
-}
-
-function do_meta() {
-  const f = document.getElementById('metaFile').files[0];
-  const out = document.getElementById('metaOut');
-  if(!f) { out.innerHTML = err('Please select an image first.'); return; }
-  out.innerHTML = loading('Stripping metadata…');
-  const img = new Image();
-  img.onload = () => {
-    const c = document.createElement('canvas');
-    c.width=img.naturalWidth; c.height=img.naturalHeight;
+function on_mf(i){ const f=i.files[0]; if(!f)return; document.getElementById('mInfo').innerHTML=`<div class="inf mt12">📁 <strong>${f.name}</strong> · ${fmtB(f.size)} — metadata will be stripped on download.</div>`; }
+function do_meta(){
+  const f=document.getElementById('mFile').files[0], out=document.getElementById('mOut');
+  if(!f){ out.innerHTML=er('Please select an image.'); return; }
+  out.innerHTML=ld('Stripping metadata…');
+  const img=new Image();
+  img.onload=()=>{
+    const c=document.createElement('canvas'); c.width=img.naturalWidth; c.height=img.naturalHeight;
     c.getContext('2d').drawImage(img,0,0);
-    c.toBlob(blob=>{
-      window._metaBlob = blob;
-      out.innerHTML = `
-        <div class="ok">✅ All EXIF metadata removed · Clean file: ${fmtB(blob.size)}</div>
-        <div class="btns"><button class="btn btn-green" onclick="dl(window._metaBlob,'clean_${f.name.replace(/\.[^.]+$/,'.jpg')}')">⬇️ Download Clean Image</button></div>`;
-    },'image/jpeg',.96);
-  };
-  img.src = URL.createObjectURL(f);
+    c.toBlob(blob=>{ window._mb=blob; out.innerHTML=`<div class="ok">✅ All metadata removed · ${fmtB(blob.size)}</div><div class="btns"><button class="btn btn-green" onclick="dl(window._mb,'clean_image.jpg')">⬇️ Download Clean Image</button></div>`; },'image/jpeg',.96); };
+  img.src=URL.createObjectURL(f);
 }
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════
    PDF TOOLS
-══════════════════════════════════════ */
-function on_merge_files(inp) {
-  const files = Array.from(inp.files);
-  document.getElementById('mergeList').innerHTML = files.length
-    ? `<div class="info">📁 ${files.length} file(s) selected: ${files.map(f=>`<strong>${f.name}</strong>`).join(', ')}</div>` : '';
+═══════════════════════════════════ */
+function on_pff(i){ const fs=Array.from(i.files); document.getElementById('pfList').innerHTML=fs.length?`<div class="inf">📁 ${fs.length} file(s) selected: ${fs.map(f=>`<strong>${esc(f.name)}</strong>`).join(', ')}</div>`:''; }
+
+async function do_merge(){
+  const files=document.getElementById('pfFiles').files, out=document.getElementById('pfOut');
+  if(files.length<2){ out.innerHTML=er('Select at least 2 PDF files.'); return; }
+  if(typeof PDFLib==='undefined'){ out.innerHTML=er('pdf-lib still loading — please try again.'); return; }
+  out.innerHTML=ld(`Merging ${files.length} PDFs…`);
+  try{
+    const {PDFDocument}=PDFLib, merged=await PDFDocument.create();
+    for(const f of Array.from(files)){ const buf=await f.arrayBuffer(); const pdf=await PDFDocument.load(buf,{ignoreEncryption:true}); const pages=await merged.copyPages(pdf,pdf.getPageIndices()); pages.forEach(p=>merged.addPage(p)); }
+    const bytes=await merged.save(), blob=new Blob([bytes],{type:'application/pdf'});
+    window._pfb=blob;
+    out.innerHTML=`<div class="ok">✅ Merged ${files.length} PDFs · ${merged.getPageCount()} pages · ${fmtB(blob.size)}</div><div class="btns"><button class="btn btn-green" onclick="dl(window._pfb,'merged.pdf')">⬇️ Download Merged PDF</button></div>`;
+  }catch(e){ out.innerHTML=er('Error: '+e.message); }
 }
 
-async function do_merge() {
-  const files = document.getElementById('mergeFiles').files;
-  const out = document.getElementById('mergeOut');
-  if(files.length < 2) { out.innerHTML = err('Please select at least 2 PDF files.'); return; }
-  if(typeof PDFLib==='undefined') { out.innerHTML = err('pdf-lib still loading, please wait a moment and try again.'); return; }
-  out.innerHTML = loading(`Merging ${files.length} PDFs…`);
-  try {
-    const { PDFDocument } = PDFLib;
-    const merged = await PDFDocument.create();
-    for(const file of Array.from(files)) {
-      const buf = await file.arrayBuffer();
-      const pdf = await PDFDocument.load(buf, {ignoreEncryption:true});
-      const pages = await merged.copyPages(pdf, pdf.getPageIndices());
-      pages.forEach(p => merged.addPage(p));
-    }
-    const bytes = await merged.save();
-    const blob = new Blob([bytes],{type:'application/pdf'});
-    window._mergeBlob = blob;
-    out.innerHTML = `<div class="ok">✅ Merged ${files.length} PDFs · ${merged.getPageCount()} total pages · ${fmtB(blob.size)}</div>
-      <div class="btns"><button class="btn btn-green" onclick="dl(window._mergeBlob,'merged.pdf')">⬇️ Download Merged PDF</button></div>`;
-  } catch(e) { out.innerHTML = err('Error merging: '+e.message); }
-}
-
-function do_pdf_info(inp) {
-  const file = inp.files[0]; if(!file) return;
-  const out = document.getElementById('pdfInfoOut');
-  out.innerHTML = loading('Reading PDF…');
-  const reader = new FileReader();
-  reader.onload = e => {
-    try {
-      const bytes = new Uint8Array(e.target.result);
-      const txt = new TextDecoder('latin1').decode(bytes.slice(0,2000));
-      const pages = (txt.match(/\/Count\s+(\d+)/)||[])[1] || 'Unknown';
-      const title = decodeMetaStr((txt.match(/\/Title\s*\(([^)]{0,80})\)/)||[])[1] || '—');
-      const author = decodeMetaStr((txt.match(/\/Author\s*\(([^)]{0,80})\)/)||[])[1] || '—');
-      const creator = decodeMetaStr((txt.match(/\/Creator\s*\(([^)]{0,80})\)/)||[])[1] || '—');
-      const version = (txt.match(/%PDF-(\d+\.\d+)/)||[])[1] || 'Unknown';
-      out.innerHTML = `
-        <div class="rgrid mt12">
-          <div class="ri"><div class="ri-l">File Size</div><div class="ri-v">${fmtB(file.size)}</div></div>
-          <div class="ri"><div class="ri-l">Pages</div><div class="ri-v">${pages}</div></div>
-          <div class="ri"><div class="ri-l">PDF Version</div><div class="ri-v">${version}</div></div>
-          <div class="ri"><div class="ri-l">Modified</div><div class="ri-v" style="font-size:13px">${new Date(file.lastModified).toLocaleDateString()}</div></div>
-        </div>
-        <table class="rtable mt12">
-          <tr><td>File name</td><td>${esc(file.name)}</td></tr>
-          <tr><td>Title</td><td>${esc(title)}</td></tr>
-          <tr><td>Author</td><td>${esc(author)}</td></tr>
-          <tr><td>Creator</td><td>${esc(creator)}</td></tr>
-          <tr><td>MIME type</td><td>application/pdf</td></tr>
-        </table>`;
-    } catch(e) { out.innerHTML = err('Could not read PDF: '+e.message); }
+function do_pdfinfo(inp){
+  const f=inp.files[0], out=document.getElementById('piOut'); if(!f)return;
+  out.innerHTML=ld('Reading PDF…');
+  const r=new FileReader();
+  r.onload=e=>{
+    try{
+      const bytes=new Uint8Array(e.target.result), txt=new TextDecoder('latin1').decode(bytes.slice(0,2000));
+      const pages=(txt.match(/\/Count\s+(\d+)/)||[])[1]||'Unknown';
+      const title=(txt.match(/\/Title\s*\(([^)]{0,80})\)/)||[])[1]||'—';
+      const author=(txt.match(/\/Author\s*\(([^)]{0,80})\)/)||[])[1]||'—';
+      const creator=(txt.match(/\/Creator\s*\(([^)]{0,80})\)/)||[])[1]||'—';
+      const ver=(txt.match(/%PDF-(\d+\.\d+)/)||[])[1]||'Unknown';
+      out.innerHTML=`<div class="rgrid mt12"><div class="ri"><div class="ri-l">File Size</div><div class="ri-v">${fmtB(f.size)}</div></div><div class="ri"><div class="ri-l">Pages</div><div class="ri-v">${pages}</div></div><div class="ri"><div class="ri-l">PDF Version</div><div class="ri-v">${ver}</div></div><div class="ri"><div class="ri-l">Modified</div><div class="ri-v" style="font-size:12px">${new Date(f.lastModified).toLocaleDateString()}</div></div></div>
+      <table class="rtable mt12"><tr><td>File name</td><td>${esc(f.name)}</td></tr><tr><td>Title</td><td>${esc(title)}</td></tr><tr><td>Author</td><td>${esc(author)}</td></tr><tr><td>Creator</td><td>${esc(creator)}</td></tr></table>`;
+    }catch(e){ out.innerHTML=er('Could not read: '+e.message); }
   };
-  reader.readAsArrayBuffer(file);
+  r.readAsArrayBuffer(f);
 }
 
-function decodeMetaStr(s) { try { return decodeURIComponent(s); } catch { return s||'—'; } }
+function on_ipf(i){ const fs=Array.from(i.files); document.getElementById('ipList').innerHTML=fs.length?`<div class="inf">🖼️ ${fs.length} image(s) selected</div>`:''; }
 
-function on_i2p_files(inp) {
-  const files = Array.from(inp.files);
-  document.getElementById('i2pList').innerHTML = files.length
-    ? `<div class="info">🖼️ ${files.length} image(s) selected</div>` : '';
-}
-
-async function do_img2pdf() {
-  const files = document.getElementById('i2pFiles').files;
-  const out = document.getElementById('i2pOut');
-  if(!files.length) { out.innerHTML = err('Please select at least one image.'); return; }
-  if(typeof window.jspdf==='undefined') { out.innerHTML = err('jsPDF still loading — please wait a moment.'); return; }
-  out.innerHTML = loading(`Creating PDF from ${files.length} image(s)…`);
-  try {
-    const { jsPDF } = window.jspdf;
-    const size = document.getElementById('i2pSize').value;
-    let pdf = null;
-    for(let i=0;i<files.length;i++) {
-      const dataUrl = await file_to_dataurl(files[i]);
-      const img = await load_img(dataUrl);
-      let pw, ph;
-      if(size==='a4'){ pw=210; ph=297; }
-      else if(size==='letter'){ pw=215.9; ph=279.4; }
-      else { pw=img.naturalWidth*0.2646; ph=img.naturalHeight*0.2646; }
-      const orient = pw>ph?'l':'p';
-      if(!pdf) pdf = new jsPDF({orientation:orient,unit:'mm',format:size==='fit'?[pw,ph]:size});
-      else pdf.addPage(size==='fit'?[pw,ph]:size, orient);
-      const m=8, maxW=pw-m*2, maxH=ph-m*2;
-      const ratio = Math.min(maxW/img.naturalWidth, maxH/img.naturalHeight);
-      const dw=img.naturalWidth*ratio, dh=img.naturalHeight*ratio;
-      const imgFmt = files[i].type==='image/png'?'PNG':'JPEG';
-      pdf.addImage(dataUrl, imgFmt, (pw-dw)/2, (ph-dh)/2, dw, dh);
+async function do_i2p(){
+  const files=document.getElementById('ipFiles').files, out=document.getElementById('ipOut');
+  if(!files.length){ out.innerHTML=er('Select at least one image.'); return; }
+  if(typeof window.jspdf==='undefined'){ out.innerHTML=er('jsPDF loading — please wait.'); return; }
+  out.innerHTML=ld(`Creating PDF from ${files.length} image(s)…`);
+  try{
+    const {jsPDF}=window.jspdf, sz=document.getElementById('ipSz').value;
+    let pdf=null;
+    for(let i=0;i<files.length;i++){
+      const du=await f2du(files[i]), img=await limg(du);
+      let pw,ph;
+      if(sz==='a4'){pw=210;ph=297;}else if(sz==='letter'){pw=215.9;ph=279.4;}else{pw=img.naturalWidth*.2646;ph=img.naturalHeight*.2646;}
+      const ori=pw>ph?'l':'p';
+      if(!pdf) pdf=new jsPDF({orientation:ori,unit:'mm',format:sz==='fit'?[pw,ph]:sz});
+      else pdf.addPage(sz==='fit'?[pw,ph]:sz,ori);
+      const m=8,mW=pw-m*2,mH=ph-m*2,ratio=Math.min(mW/img.naturalWidth,mH/img.naturalHeight);
+      const dw=img.naturalWidth*ratio,dh=img.naturalHeight*ratio;
+      pdf.addImage(du,files[i].type==='image/png'?'PNG':'JPEG',(pw-dw)/2,(ph-dh)/2,dw,dh);
     }
-    const blob = pdf.output('blob');
-    window._i2pBlob = blob;
-    out.innerHTML = `<div class="ok">✅ PDF created · ${files.length} page(s) · ${fmtB(blob.size)}</div>
-      <div class="btns"><button class="btn btn-green" onclick="dl(window._i2pBlob,'images.pdf')">⬇️ Download PDF</button></div>`;
-  } catch(e) { out.innerHTML = err('Error: '+e.message); }
+    const blob=pdf.output('blob'); window._ipb=blob;
+    out.innerHTML=`<div class="ok">✅ PDF created · ${files.length} page(s) · ${fmtB(blob.size)}</div><div class="btns"><button class="btn btn-green" onclick="dl(window._ipb,'images.pdf')">⬇️ Download PDF</button></div>`;
+  }catch(e){ out.innerHTML=er('Error: '+e.message); }
 }
 
-function do_text2pdf() {
-  const title = document.getElementById('txtTitle').value.trim()||'Document';
-  const content = document.getElementById('txtContent').value;
-  const out = document.getElementById('txtOut');
-  if(!content.trim()) { out.innerHTML = err('Please enter some text.'); return; }
-  if(typeof window.jspdf==='undefined') { out.innerHTML = err('jsPDF still loading — please wait a moment.'); return; }
-  try {
-    const { jsPDF } = window.jspdf;
-    const fs = parseInt(document.getElementById('txtSize').value);
-    const margin = parseInt(document.getElementById('txtMargin').value);
-    const pdf = new jsPDF({unit:'mm',format:'a4'});
-    const pw=210, ph=297, maxW=pw-margin*2;
-    let y = margin+8;
-    // Title
-    pdf.setFont('helvetica','bold');
-    pdf.setFontSize(fs+5);
-    const titleLines = pdf.splitTextToSize(title, maxW);
-    titleLines.forEach(l => { pdf.text(l, margin, y); y += (fs+5)*0.38; });
-    y += 3;
-    pdf.setDrawColor(180);
-    pdf.setLineWidth(0.4);
-    pdf.line(margin, y, pw-margin, y);
-    y += 6;
-    // Body
-    pdf.setFont('helvetica','normal');
-    pdf.setFontSize(fs);
-    const lh = fs*0.42;
-    const bodyLines = pdf.splitTextToSize(content, maxW);
-    bodyLines.forEach(l => {
-      if(y+lh > ph-margin) { pdf.addPage(); y=margin+8; }
-      pdf.text(l, margin, y);
-      y += lh;
-    });
-    const blob = pdf.output('blob');
-    window._txtBlob = blob;
-    out.innerHTML = `<div class="ok">✅ PDF ready · ${pdf.getNumberOfPages()} page(s) · ${fmtB(blob.size)}</div>
-      <div class="btns"><button class="btn btn-green" onclick="dl(window._txtBlob,'${title.replace(/[^a-z0-9]/gi,'_')}.pdf')">⬇️ Download PDF</button></div>`;
-  } catch(e) { out.innerHTML = err('Error: '+e.message); }
+function do_t2p(){
+  const title=document.getElementById('tpTitle').value.trim()||'Document', content=document.getElementById('tpContent').value, out=document.getElementById('tpOut');
+  if(!content.trim()){ out.innerHTML=er('Please enter some text.'); return; }
+  if(typeof window.jspdf==='undefined'){ out.innerHTML=er('jsPDF loading — please wait.'); return; }
+  try{
+    const {jsPDF}=window.jspdf, fs=parseInt(document.getElementById('tpFs').value), mg=parseInt(document.getElementById('tpMg').value);
+    const pdf=new jsPDF({unit:'mm',format:'a4'}), pw=210,ph=297,mW=pw-mg*2;
+    let y=mg+8;
+    pdf.setFont('helvetica','bold'); pdf.setFontSize(fs+5);
+    pdf.splitTextToSize(title,mW).forEach(l=>{ pdf.text(l,mg,y); y+=(fs+5)*.38; });
+    y+=3; pdf.setDrawColor(180); pdf.setLineWidth(.4); pdf.line(mg,y,pw-mg,y); y+=6;
+    pdf.setFont('helvetica','normal'); pdf.setFontSize(fs);
+    const lh=fs*.42;
+    pdf.splitTextToSize(content,mW).forEach(l=>{ if(y+lh>ph-mg){pdf.addPage();y=mg+8;} pdf.text(l,mg,y); y+=lh; });
+    const blob=pdf.output('blob'); window._tpb=blob;
+    out.innerHTML=`<div class="ok">✅ PDF ready · ${pdf.getNumberOfPages()} page(s) · ${fmtB(blob.size)}</div><div class="btns"><button class="btn btn-green" onclick="dl(window._tpb,'${title.replace(/[^a-z0-9]/gi,'_')}.pdf')">⬇️ Download PDF</button></div>`;
+  }catch(e){ out.innerHTML=er('Error: '+e.message); }
 }
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════
    CALCULATORS
-══════════════════════════════════════ */
-function calc_bmi() {
-  const isM = document.getElementById('bmi_m')?.classList.contains('on');
+═══════════════════════════════════ */
+function do_bmi(){
+  const isM=document.getElementById('bm')?.classList.contains('on');
   let bmi;
-  if(isM) {
-    const w=parseFloat(document.getElementById('bW')?.value);
-    const h=parseFloat(document.getElementById('bH')?.value);
-    if(!w||!h) return;
-    bmi = w/((h/100)**2);
-  } else {
-    const w=parseFloat(document.getElementById('bWl')?.value);
-    const ft=parseFloat(document.getElementById('bHft')?.value)||0;
-    const inch=parseFloat(document.getElementById('bHin')?.value)||0;
-    if(!w||(!ft&&!inch)) return;
-    const totalIn = ft*12+inch;
-    bmi = (w/(totalIn**2))*703;
-  }
-  if(bmi<=0||isNaN(bmi)) return;
-  const cats = [{max:18.5,label:'Underweight',color:'#0ea5e9'},{max:25,label:'Normal weight',color:'#12b76a'},{max:30,label:'Overweight',color:'#f79009'},{max:999,label:'Obese',color:'#f04438'}];
-  const cat = cats.find(c=>bmi<c.max);
-  const pct = Math.min(bmi/40*100,100);
-  document.getElementById('bmiOut').innerHTML = `
-    <div class="rbox">
-      <div class="rlabel">Your BMI</div>
-      <div class="rval">${bmi.toFixed(1)}<span class="runit">kg/m²</span></div>
-      <div style="margin-top:8px;font-size:15px;font-weight:700;color:${cat.color}">${cat.label}</div>
-      <div class="bmi-scale mt8">
-        <div class="bmi-seg" style="background:#0ea5e9;opacity:.7"></div>
-        <div class="bmi-seg" style="background:#12b76a;opacity:.7"></div>
-        <div class="bmi-seg" style="background:#f79009;opacity:.7"></div>
-        <div class="bmi-seg" style="background:#f04438;opacity:.7"></div>
-      </div>
-      <div class="bmi-pointer"><div class="bmi-pointer-arrow" style="left:${pct}%"></div></div>
-    </div>
-    <table class="rtable mt12">
-      <tr><td>Underweight</td><td style="color:#0ea5e9">&lt; 18.5</td></tr>
-      <tr><td>Normal weight</td><td style="color:#12b76a">18.5 – 24.9</td></tr>
-      <tr><td>Overweight</td><td style="color:#f79009">25 – 29.9</td></tr>
-      <tr><td>Obese</td><td style="color:#f04438">≥ 30</td></tr>
-    </table>`;
+  if(isM){ const w=parseFloat(document.getElementById('bWk')?.value), h=parseFloat(document.getElementById('bHc')?.value); if(!w||!h)return; bmi=w/((h/100)**2); }
+  else{ const w=parseFloat(document.getElementById('bWl')?.value), ft=parseFloat(document.getElementById('bFt')?.value)||0, inch=parseFloat(document.getElementById('bIn')?.value)||0; if(!w||(!ft&&!inch))return; bmi=(w/((ft*12+inch)**2))*703; }
+  if(!bmi||isNaN(bmi)||bmi<=0)return;
+  const cats=[{max:18.5,l:'Underweight',c:'#0ea5e9'},{max:25,l:'Normal weight',c:'#12b76a'},{max:30,l:'Overweight',c:'#f79009'},{max:999,l:'Obese',c:'#f04438'}];
+  const cat=cats.find(c=>bmi<c.max), pct=Math.min(bmi/40*100,100);
+  document.getElementById('bOut').innerHTML=`<div class="rbox"><div class="rl">Your BMI</div><div class="rv">${bmi.toFixed(1)}<span class="ru">kg/m²</span></div><div style="margin-top:7px;font-size:14px;font-weight:800;color:${cat.c}">${cat.l}</div><div class="bmi-scale mt8"><div class="bmi-seg" style="background:#0ea5e9;opacity:.7"></div><div class="bmi-seg" style="background:#12b76a;opacity:.7"></div><div class="bmi-seg" style="background:#f79009;opacity:.7"></div><div class="bmi-seg" style="background:#f04438;opacity:.7"></div></div><div class="bmi-ptr"><div class="bmi-arrow" style="left:${pct}%"></div></div></div>
+  <table class="rtable mt12"><tr><td>Underweight</td><td style="color:#0ea5e9">&lt; 18.5</td></tr><tr><td>Normal weight</td><td style="color:#12b76a">18.5 – 24.9</td></tr><tr><td>Overweight</td><td style="color:#f79009">25 – 29.9</td></tr><tr><td>Obese</td><td style="color:#f04438">≥ 30</td></tr></table>`;
 }
 
-function calc_age() {
-  const dobV = document.getElementById('ageIn').value;
-  const refV = document.getElementById('ageRef').value;
-  const out = document.getElementById('ageOut');
-  if(!dobV) return;
-  const dob = new Date(dobV), ref = new Date(refV);
-  if(dob>ref) { out.innerHTML = err('Birth date cannot be after the reference date.'); return; }
-  let y=ref.getFullYear()-dob.getFullYear();
-  let m=ref.getMonth()-dob.getMonth();
-  let d=ref.getDate()-dob.getDate();
-  if(d<0){ m--; d+=new Date(ref.getFullYear(),ref.getMonth(),0).getDate(); }
-  if(m<0){ y--; m+=12; }
-  const totalDays = Math.floor((ref-dob)/864e5);
-  const next = new Date(ref.getFullYear(),dob.getMonth(),dob.getDate());
-  if(next<=ref) next.setFullYear(next.getFullYear()+1);
-  const dtn = Math.ceil((next-ref)/864e5);
-  out.innerHTML = `
-    <div class="rbox">
-      <div class="rlabel">Exact Age</div>
-      <div class="rval">${y}<span class="runit">yr</span> ${m}<span class="runit">mo</span> ${d}<span class="runit">d</span></div>
-    </div>
-    <div class="rgrid mt12">
-      <div class="ri"><div class="ri-l">Total Days</div><div class="ri-v">${totalDays.toLocaleString()}</div></div>
-      <div class="ri"><div class="ri-l">Total Weeks</div><div class="ri-v">${Math.floor(totalDays/7).toLocaleString()}</div></div>
-      <div class="ri"><div class="ri-l">Total Months</div><div class="ri-v">${(y*12+m).toLocaleString()}</div></div>
-      <div class="ri"><div class="ri-l">Next Birthday</div><div class="ri-v">${dtn}d</div></div>
-    </div>`;
+function do_age(){
+  const dv=document.getElementById('aIn').value, rv=document.getElementById('aRef').value, out=document.getElementById('aOut');
+  if(!dv)return;
+  const dob=new Date(dv),ref=new Date(rv);
+  if(dob>ref){ out.innerHTML=er('Birth date cannot be after reference date.'); return; }
+  let y=ref.getFullYear()-dob.getFullYear(), m=ref.getMonth()-dob.getMonth(), d=ref.getDate()-dob.getDate();
+  if(d<0){m--;d+=new Date(ref.getFullYear(),ref.getMonth(),0).getDate();}
+  if(m<0){y--;m+=12;}
+  const td=Math.floor((ref-dob)/864e5);
+  const nx=new Date(ref.getFullYear(),dob.getMonth(),dob.getDate()); if(nx<=ref) nx.setFullYear(nx.getFullYear()+1);
+  const dtn=Math.ceil((nx-ref)/864e5);
+  out.innerHTML=`<div class="rbox"><div class="rl">Exact Age</div><div class="rv">${y}<span class="ru">yr</span> ${m}<span class="ru">mo</span> ${d}<span class="ru">d</span></div></div>
+  <div class="rgrid mt12"><div class="ri"><div class="ri-l">Total Days</div><div class="ri-v">${td.toLocaleString()}</div></div><div class="ri"><div class="ri-l">Total Weeks</div><div class="ri-v">${Math.floor(td/7).toLocaleString()}</div></div><div class="ri"><div class="ri-l">Total Months</div><div class="ri-v">${(y*12+m).toLocaleString()}</div></div><div class="ri"><div class="ri-l">Next Birthday</div><div class="ri-v">${dtn}d</div></div></div>`;
 }
 
-function calc_loan() {
-  const P = parseFloat(document.getElementById('lAmt')?.value);
-  const r = parseFloat(document.getElementById('lRate')?.value)/100/12;
-  const n = parseInt(document.getElementById('lTerm')?.value);
-  const out = document.getElementById('loanOut');
-  if(!P||isNaN(r)||!n) return;
-  const emi = r===0 ? P/n : P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
-  const total = emi*n, interest = total-P;
-  const pp = (P/total*100).toFixed(1), ip = (interest/total*100).toFixed(1);
-  out.innerHTML = `
-    <div class="rbox">
-      <div class="rlabel">Monthly Payment (EMI)</div>
-      <div class="rval">$${emi.toFixed(2)}</div>
-    </div>
-    <div class="rgrid mt12">
-      <div class="ri"><div class="ri-l">Total Payment</div><div class="ri-v">$${Math.round(total).toLocaleString()}</div></div>
-      <div class="ri"><div class="ri-l">Total Interest</div><div class="ri-v red">$${Math.round(interest).toLocaleString()}</div></div>
-      <div class="ri"><div class="ri-l">Principal</div><div class="ri-v">$${Math.round(P).toLocaleString()}</div></div>
-      <div class="ri"><div class="ri-l">Interest Rate</div><div class="ri-v">${(parseFloat(document.getElementById('lRate').value)).toFixed(2)}%</div></div>
-    </div>
-    <div class="prog mt8"><div class="prog-bar" style="width:${pp}%;background:var(--blue)"></div></div>
-    <div style="font-size:12px;color:var(--text3);margin-top:4px;display:flex;justify-content:space-between">
-      <span>Principal ${pp}%</span><span>Interest ${ip}%</span>
-    </div>`;
+function do_loan(){
+  const P=parseFloat(document.getElementById('lAmt')?.value), r=parseFloat(document.getElementById('lRate')?.value)/100/12, n=parseInt(document.getElementById('lTerm')?.value), out=document.getElementById('lOut');
+  if(!P||isNaN(r)||!n)return;
+  const emi=r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1), total=emi*n, interest=total-P;
+  const pp=(P/total*100).toFixed(1), ip=(interest/total*100).toFixed(1);
+  out.innerHTML=`<div class="rbox"><div class="rl">Monthly EMI</div><div class="rv">$${emi.toFixed(2)}</div></div>
+  <div class="rgrid mt12"><div class="ri"><div class="ri-l">Total Payment</div><div class="ri-v">$${Math.round(total).toLocaleString()}</div></div><div class="ri"><div class="ri-l">Total Interest</div><div class="ri-v red">$${Math.round(interest).toLocaleString()}</div></div><div class="ri"><div class="ri-l">Principal</div><div class="ri-v">$${Math.round(P).toLocaleString()}</div></div><div class="ri"><div class="ri-l">Rate</div><div class="ri-v">${(parseFloat(document.getElementById('lRate').value)).toFixed(2)}%</div></div></div>
+  <div class="prog mt8"><div class="prog-bar" style="width:${pp}%;background:var(--blue)"></div></div>
+  <div style="font-size:11px;color:var(--text3);margin-top:4px;display:flex;justify-content:space-between"><span>Principal ${pp}%</span><span>Interest ${ip}%</span></div>`;
 }
 
-function calc_pct() {
-  const out = document.getElementById('pctOut');
-  const active = document.querySelector('#mBody .tp.on');
-  if(!active||!out) return;
-  if(active.id==='p1') {
-    const p=parseFloat(document.getElementById('p1a')?.value);
-    const n=parseFloat(document.getElementById('p1b')?.value);
-    if(isNaN(p)||isNaN(n)) return;
-    const r=(p/100)*n;
-    out.innerHTML=`<div class="rbox"><div class="rlabel">Result</div><div class="rval">${fmt_num(r)}</div><div style="margin-top:6px;font-size:14px;color:var(--text2)">${p}% of ${n} = <strong>${fmt_num(r)}</strong></div></div>`;
-  } else if(active.id==='p2') {
-    const a=parseFloat(document.getElementById('p2a')?.value);
-    const b=parseFloat(document.getElementById('p2b')?.value);
-    if(isNaN(a)||isNaN(b)) return;
-    const ch=((b-a)/a)*100;
-    const col=ch>=0?'var(--green)':'var(--red)';
-    out.innerHTML=`<div class="rbox"><div class="rlabel">Percentage Change</div><div class="rval" style="color:${col}">${ch>=0?'+':''}${ch.toFixed(2)}%</div><div style="margin-top:6px;font-size:14px;color:var(--text2)">${a} → ${b} = <strong style="color:${col}">${ch>=0?'increase':'decrease'} of ${Math.abs(ch).toFixed(2)}%</strong></div></div>`;
-  } else if(active.id==='p3') {
-    const x=parseFloat(document.getElementById('p3a')?.value);
-    const y=parseFloat(document.getElementById('p3b')?.value);
-    if(isNaN(x)||isNaN(y)||y===0) return;
-    const p=(x/y)*100;
-    out.innerHTML=`<div class="rbox"><div class="rlabel">Result</div><div class="rval">${p.toFixed(2)}%</div><div style="margin-top:6px;font-size:14px;color:var(--text2)">${x} is <strong>${p.toFixed(2)}%</strong> of ${y}</div></div>`;
-  }
+function do_pct(){
+  const out=document.getElementById('pOut'), a=document.querySelector('#mBody .tp.on');
+  if(!a||!out)return;
+  if(a.id==='pp1'){ const p=parseFloat(document.getElementById('p1a')?.value),n=parseFloat(document.getElementById('p1b')?.value); if(isNaN(p)||isNaN(n))return; const r=(p/100)*n; out.innerHTML=`<div class="rbox"><div class="rl">Result</div><div class="rv">${+r.toFixed(8)}</div><div style="margin-top:6px;font-size:13px;color:var(--text2)">${p}% of ${n} = <strong>${+r.toFixed(4)}</strong></div></div>`; }
+  else if(a.id==='pp2'){ const x=parseFloat(document.getElementById('p2a')?.value),y=parseFloat(document.getElementById('p2b')?.value); if(isNaN(x)||isNaN(y))return; const ch=((y-x)/x)*100, col=ch>=0?'var(--green)':'var(--red)'; out.innerHTML=`<div class="rbox"><div class="rl">Percentage Change</div><div class="rv" style="color:${col}">${ch>=0?'+':''}${ch.toFixed(2)}%</div><div style="margin-top:6px;font-size:13px;color:var(--text2)">${x} → ${y} = <strong style="color:${col}">${ch>=0?'increase':'decrease'} of ${Math.abs(ch).toFixed(2)}%</strong></div></div>`; }
+  else if(a.id==='pp3'){ const x=parseFloat(document.getElementById('p3a')?.value),y=parseFloat(document.getElementById('p3b')?.value); if(isNaN(x)||isNaN(y)||y===0)return; const p=(x/y)*100; out.innerHTML=`<div class="rbox"><div class="rl">Result</div><div class="rv">${p.toFixed(2)}%</div><div style="margin-top:6px;font-size:13px;color:var(--text2)">${x} is <strong>${p.toFixed(2)}%</strong> of ${y}</div></div>`; }
 }
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════
    INVOICE
-══════════════════════════════════════ */
-let _invItems = [];
-
-function inv_add() {
-  _invItems.push({desc:'',qty:1,price:0});
-  inv_render();
+═══════════════════════════════════ */
+let _ii=[];
+function iadd(){ _ii.push({d:'',q:1,p:0}); irender(); }
+function irem(i){ _ii.splice(i,1); irender(); }
+function irender(){
+  document.getElementById('iLines').innerHTML=_ii.map((it,i)=>`<div class="inv-row"><input type="text" placeholder="Description" value="${esc(it.d)}" oninput="_ii[${i}].d=this.value;itotal()"><input type="number" placeholder="Qty" value="${it.q}" min="1" oninput="_ii[${i}].q=+this.value;itotal()"><input type="number" placeholder="Price" value="${it.p||''}" step="0.01" oninput="_ii[${i}].p=+this.value;itotal()"><button class="btn btn-ghost btn-sm" onclick="irem(${i})">✕</button></div>`).join('');
+  itotal();
 }
-
-function inv_remove(i) {
-  _invItems.splice(i,1); inv_render();
+function itotal(){
+  const cur=document.getElementById('iCur')?.value||'$', tax=parseFloat(document.getElementById('iTax')?.value||0);
+  const sub=_ii.reduce((s,it)=>s+(it.q*(it.p||0)),0), total=sub+sub*tax/100;
+  const b=document.getElementById('iTB'); if(b){b.style.display='block';document.getElementById('iTV').textContent=cur+total.toFixed(2);}
 }
-
-function inv_render() {
-  document.getElementById('iLines').innerHTML = _invItems.map((it,i)=>`
-    <div class="inv-row">
-      <input type="text" placeholder="Description" value="${esc(it.desc)}" oninput="_invItems[${i}].desc=this.value;inv_total()">
-      <input type="number" placeholder="Qty" value="${it.qty}" min="1" oninput="_invItems[${i}].qty=+this.value;inv_total()">
-      <input type="number" placeholder="Price" value="${it.price||''}" step="0.01" oninput="_invItems[${i}].price=+this.value;inv_total()">
-      <button class="btn btn-ghost btn-sm" style="margin-bottom:0" onclick="inv_remove(${i})">✕</button>
-    </div>`).join('');
-  inv_total();
-}
-
-function inv_total() {
-  const cur = document.getElementById('iCur')?.value||'$';
-  const tax = parseFloat(document.getElementById('iTax')?.value||0);
-  const sub = _invItems.reduce((s,it)=>s+(it.qty*it.price),0);
-  const total = sub + sub*tax/100;
-  const b = document.getElementById('iTotal');
-  if(b){ b.style.display='block'; document.getElementById('iTotalV').textContent=cur+total.toFixed(2); }
-}
-
-function inv_download() {
-  if(typeof window.jspdf==='undefined') { toast('jsPDF still loading, please wait…'); return; }
-  const { jsPDF } = window.jspdf;
-  const from = document.getElementById('iFrom').value||'Your Company';
-  const to = document.getElementById('iTo').value||'Client';
-  const num = document.getElementById('iNum').value||'INV-001';
-  const date = document.getElementById('iDate').value;
-  const cur = document.getElementById('iCur').value;
-  const tax = parseFloat(document.getElementById('iTax').value||0);
-  const sub = _invItems.reduce((s,it)=>s+(it.qty*it.price),0);
-  const taxAmt = sub*tax/100, total = sub+taxAmt;
-
-  const pdf = new jsPDF({unit:'mm',format:'a4'});
-  const pw=210, margin=20;
-  let y=margin;
-
-  // Header
-  pdf.setFont('helvetica','bold');
-  pdf.setFontSize(28);
-  pdf.setTextColor(15,17,23);
-  pdf.text('INVOICE',margin,y+10);
-  pdf.setFontSize(11);
-  pdf.setFont('helvetica','normal');
-  pdf.setTextColor(74,80,96);
-  pdf.text(`#${num}`,margin,y+18);
-  pdf.text(from,pw-margin,y+10,{align:'right'});
-  pdf.text(`Date: ${date}`,pw-margin,y+18,{align:'right'});
-  y+=28;
-
-  // Bill To
-  pdf.setDrawColor(226,229,235);
-  pdf.setLineWidth(0.5);
-  pdf.line(margin,y,pw-margin,y);
-  y+=8;
-  pdf.setFontSize(9);
-  pdf.setTextColor(139,146,165);
-  pdf.text('BILL TO',margin,y);
-  y+=6;
-  pdf.setFontSize(14);
-  pdf.setTextColor(15,17,23);
-  pdf.setFont('helvetica','bold');
-  pdf.text(to,margin,y);
-  y+=12;
-
-  // Table header
-  pdf.setFillColor(238,240,244);
-  pdf.rect(margin,y,pw-margin*2,9,'F');
-  pdf.setFontSize(9);
-  pdf.setFont('helvetica','bold');
-  pdf.setTextColor(74,80,96);
-  pdf.text('DESCRIPTION',margin+3,y+6);
-  pdf.text('QTY',pw-70,y+6,{align:'right'});
-  pdf.text('PRICE',pw-50,y+6,{align:'right'});
-  pdf.text('AMOUNT',pw-margin,y+6,{align:'right'});
-  y+=12;
-
-  // Items
-  pdf.setFont('helvetica','normal');
-  pdf.setFontSize(11);
-  _invItems.forEach((it,i) => {
-    pdf.setTextColor(15,17,23);
-    pdf.text(it.desc||'—',margin+3,y);
-    pdf.setTextColor(74,80,96);
-    pdf.text(String(it.qty),pw-70,y,{align:'right'});
-    pdf.text(cur+(it.price||0).toFixed(2),pw-50,y,{align:'right'});
-    pdf.text(cur+(it.qty*(it.price||0)).toFixed(2),pw-margin,y,{align:'right'});
-    y+=8;
-    pdf.setDrawColor(226,229,235);
-    pdf.line(margin,y-1,pw-margin,y-1);
-  });
+function idl(){
+  if(typeof window.jspdf==='undefined'){toast('jsPDF loading…');return;}
+  const {jsPDF}=window.jspdf;
+  const from=document.getElementById('iFrom').value||'Your Company', to=document.getElementById('iTo').value||'Client';
+  const num=document.getElementById('iNum').value||'INV-001', date=document.getElementById('iDate').value;
+  const cur=document.getElementById('iCur').value, tax=parseFloat(document.getElementById('iTax').value||0);
+  const sub=_ii.reduce((s,it)=>s+(it.q*(it.p||0)),0), taxA=sub*tax/100, total=sub+taxA;
+  const pdf=new jsPDF({unit:'mm',format:'a4'}); const pw=210,mg=20; let y=mg;
+  pdf.setFont('helvetica','bold'); pdf.setFontSize(26); pdf.setTextColor(13,15,20); pdf.text('INVOICE',mg,y+10);
+  pdf.setFontSize(10); pdf.setFont('helvetica','normal'); pdf.setTextColor(74,80,96); pdf.text(`#${num}`,mg,y+18);
+  pdf.text(from,pw-mg,y+10,{align:'right'}); pdf.text(`Date: ${date}`,pw-mg,y+18,{align:'right'});
+  y+=26; pdf.setDrawColor(226,229,235); pdf.setLineWidth(.5); pdf.line(mg,y,pw-mg,y); y+=8;
+  pdf.setFontSize(8); pdf.setTextColor(139,146,165); pdf.text('BILL TO',mg,y); y+=5;
+  pdf.setFontSize(13); pdf.setFont('helvetica','bold'); pdf.setTextColor(13,15,20); pdf.text(to,mg,y); y+=12;
+  pdf.setFillColor(238,240,244); pdf.rect(mg,y,pw-mg*2,8,'F');
+  pdf.setFontSize(8); pdf.setFont('helvetica','bold'); pdf.setTextColor(74,80,96);
+  pdf.text('DESCRIPTION',mg+3,y+5.5); pdf.text('QTY',pw-68,y+5.5,{align:'right'}); pdf.text('PRICE',pw-48,y+5.5,{align:'right'}); pdf.text('AMOUNT',pw-mg,y+5.5,{align:'right'}); y+=12;
+  pdf.setFont('helvetica','normal'); pdf.setFontSize(11);
+  _ii.forEach(it=>{ pdf.setTextColor(13,15,20); pdf.text(it.d||'—',mg+3,y); pdf.setTextColor(74,80,96); pdf.text(String(it.q),pw-68,y,{align:'right'}); pdf.text(cur+(it.p||0).toFixed(2),pw-48,y,{align:'right'}); pdf.text(cur+(it.q*(it.p||0)).toFixed(2),pw-mg,y,{align:'right'}); y+=8; pdf.setDrawColor(226,229,235); pdf.line(mg,y-1,pw-mg,y-1); });
   y+=4;
-
-  // Totals
-  const totals = [{label:'Subtotal',val:cur+sub.toFixed(2)}];
-  if(tax) totals.push({label:`Tax (${tax}%)`,val:cur+taxAmt.toFixed(2)});
-  totals.push({label:'TOTAL',val:cur+total.toFixed(2),bold:true});
-  totals.forEach(t=>{
-    pdf.setFont('helvetica', t.bold?'bold':'normal');
-    pdf.setFontSize(t.bold?13:11);
-    pdf.setTextColor(t.bold?15:74, t.bold?17:80, t.bold?23:96);
-    pdf.text(t.label, pw-70, y);
-    pdf.text(t.val, pw-margin, y, {align:'right'});
-    y += t.bold?0:7;
-    if(t.bold){ y+=4; }
-  });
-
-  const blob = pdf.output('blob');
-  dl(blob, `invoice-${num}.pdf`);
+  [{l:'Subtotal',v:cur+sub.toFixed(2),b:false},...(tax?[{l:`Tax (${tax}%)`,v:cur+taxA.toFixed(2),b:false}]:[]),{l:'TOTAL',v:cur+total.toFixed(2),b:true}].forEach(t=>{ pdf.setFont('helvetica',t.b?'bold':'normal'); pdf.setFontSize(t.b?13:10); pdf.setTextColor(t.b?13:74,t.b?15:80,t.b?20:96); pdf.text(t.l,pw-68,y); pdf.text(t.v,pw-mg,y,{align:'right'}); y+=t.b?0:7; if(t.b)y+=4; });
+  dl(pdf.output('blob'),`invoice-${num}.pdf`);
 }
 
-/* ══════════════════════════════════════
-   JSON FORMATTER
-══════════════════════════════════════ */
-function j_fmt() {
-  const raw = document.getElementById('jIn').value;
-  const out = document.getElementById('jOut');
-  if(!raw.trim()) { out.innerHTML=''; return; }
-  try {
-    const parsed = JSON.parse(raw);
-    window._jParsed = parsed;
-    const pretty = JSON.stringify(parsed,null,2);
-    out.innerHTML = `<pre class="codeout">${esc(pretty)}</pre><div class="ok mt8">✅ Valid JSON · ${count_keys(parsed)} keys</div>`;
-  } catch(e) { out.innerHTML = err('Invalid JSON: '+e.message); }
-}
+/* ═══════════════════════════════════
+   JSON / WORD / CSV / PASS / HASH / etc.
+═══════════════════════════════════ */
+function jfmt(){ const r=document.getElementById('jIn').value, o=document.getElementById('jOut'); if(!r.trim()){o.innerHTML='';return;} try{const p=JSON.parse(r);window._jp=p;o.innerHTML=`<pre class="co">${esc(JSON.stringify(p,null,2))}</pre><div class="ok mt8">✅ Valid JSON · ${ck(p)} keys</div>`;}catch(e){o.innerHTML=er('Invalid JSON: '+e.message);} }
+function jmin(){ try{document.getElementById('jOut').innerHTML=`<pre class="co">${esc(JSON.stringify(JSON.parse(document.getElementById('jIn').value)))}</pre>`;}catch(e){document.getElementById('jOut').innerHTML=er('Invalid JSON: '+e.message);} }
+function jcopy(){ const p=document.querySelector('#jOut pre'); if(p){navigator.clipboard.writeText(p.textContent);toast('Copied!');} }
+function jclr(){ document.getElementById('jIn').value='';document.getElementById('jOut').innerHTML=''; }
+function ck(o,c=0){ if(typeof o==='object'&&o!==null)for(const k in o){c++;c=ck(o[k],c);} return c; }
 
-function j_min() {
-  try { document.getElementById('jOut').innerHTML=`<pre class="codeout">${esc(JSON.stringify(JSON.parse(document.getElementById('jIn').value)))}</pre>`; }
-  catch(e) { document.getElementById('jOut').innerHTML=err('Invalid JSON: '+e.message); }
-}
+function wc(){ const t=document.getElementById('wcIn')?.value||'', w=t.trim()?t.trim().split(/\s+/).length:0; document.getElementById('wcOut').innerHTML=`<div class="rgrid mt12"><div class="ri"><div class="ri-l">Words</div><div class="ri-v">${w.toLocaleString()}</div></div><div class="ri"><div class="ri-l">Characters</div><div class="ri-v">${t.length.toLocaleString()}</div></div><div class="ri"><div class="ri-l">No Spaces</div><div class="ri-v">${t.replace(/\s/g,'').length.toLocaleString()}</div></div><div class="ri"><div class="ri-l">Sentences</div><div class="ri-v">${t.split(/[.!?]+\s/).filter(s=>s.trim()).length}</div></div><div class="ri"><div class="ri-l">Paragraphs</div><div class="ri-v">${t.split(/\n\n+/).filter(p=>p.trim()).length}</div></div><div class="ri"><div class="ri-l">Read Time</div><div class="ri-v">${Math.max(1,Math.ceil(w/200))} min</div></div></div>`; }
 
-function j_copy() {
-  const pre = document.querySelector('#jOut pre');
-  if(pre) { navigator.clipboard.writeText(pre.textContent); toast('Copied!'); }
-}
+function lcsv(i){ const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{document.getElementById('cvIn').value=e.target.result;rcsv();};r.readAsText(f); }
+function rcsv(){ const raw=document.getElementById('cvIn')?.value||'',out=document.getElementById('cvOut'); if(!raw.trim()){out.innerHTML='';return;} const rows=raw.trim().split('\n').map(r=>r.split(',').map(c=>c.trim().replace(/^"|"$/g,''))); if(rows.length<2){out.innerHTML=er('Need header + at least one data row.');return;} const h=rows[0],d=rows.slice(1); out.innerHTML=`<div class="small mt8">${d.length} rows · ${h.length} cols</div><div class="csv-wrap"><table class="csv-t"><thead><tr>${h.map(x=>`<th>${esc(x)}</th>`).join('')}</tr></thead><tbody>${d.map((row,i)=>`<tr>${row.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`; }
 
-function j_clear() {
-  document.getElementById('jIn').value='';
-  document.getElementById('jOut').innerHTML='';
-}
+function gpass(){ const len=parseInt(document.getElementById('pLen')?.value||16),up=document.getElementById('pUp')?.checked,lo=document.getElementById('pLo')?.checked,nu=document.getElementById('pNu')?.checked,sy=document.getElementById('pSy')?.checked; let ch=''; if(up)ch+='ABCDEFGHIJKLMNOPQRSTUVWXYZ';if(lo)ch+='abcdefghijklmnopqrstuvwxyz';if(nu)ch+='0123456789';if(sy)ch+='!@#$%^&*()_+-=[]{}|;:,.<>?'; if(!ch)ch='abcdefghijklmnopqrstuvwxyz'; const arr=new Uint32Array(len); crypto.getRandomValues(arr); const pass=Array.from(arr).map(v=>ch[v%ch.length]).join(''); const el=document.getElementById('pVal'); if(el)el.textContent=pass; window._lp=pass; let sc=0;if(len>=8)sc++;if(len>=12)sc++;if(len>=16)sc++;if(up&&lo)sc++;if(nu)sc++;if(sy)sc++; const bar=document.getElementById('pBar'); if(bar){bar.style.background=['#f04438','#f79009','#f79009','#12b76a','#12b76a','#12b76a'][Math.min(sc,5)];bar.style.width=((sc+1)/7*100)+'%';} }
+function gmulti(){ const ps=[]; for(let i=0;i<5;i++){gpass();ps.push(window._lp);} document.getElementById('pMulti').innerHTML=ps.map(p=>`<div class="pass-out mt8"><div class="pass-val">${p}</div><button class="btn btn-ghost btn-sm" onclick="navigator.clipboard.writeText('${p.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}').then(()=>toast('Copied!'))">Copy</button></div>`).join(''); }
+function cpass(){ const p=document.getElementById('pVal')?.textContent; if(p&&p!=='—'){navigator.clipboard.writeText(p).then(()=>toast('Password copied!'));} }
 
-function count_keys(o,c=0){ if(typeof o==='object'&&o!==null){ for(const k in o){ c++; c=count_keys(o[k],c); } } return c; }
+async function dhash(){ const t=document.getElementById('hIn')?.value||'',out=document.getElementById('hOut'); if(!t){out.innerHTML='';return;} const enc=new TextEncoder(),data=enc.encode(t); const hs=await Promise.all([['SHA-1','SHA-1'],['SHA-256','SHA-256'],['SHA-512','SHA-512']].map(async([n,a])=>{ const b=await crypto.subtle.digest(a,data); const h=Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join(''); return[n,h]; })); out.innerHTML=hs.map(([n,h])=>`<div class="rbox mt8"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px"><div class="rl" style="margin:0">${n}</div><button class="btn btn-ghost btn-sm" onclick="navigator.clipboard.writeText('${h}').then(()=>toast('Copied!'))">Copy</button></div><div style="font-family:var(--mono);font-size:11px;word-break:break-all">${h}</div></div>`).join(''); }
 
-/* ══════════════════════════════════════
-   WORD COUNTER
-══════════════════════════════════════ */
-function count_words() {
-  const t = document.getElementById('wcIn')?.value||'';
-  const words = t.trim()?t.trim().split(/\s+/).length:0;
-  const chars = t.length;
-  const cns = t.replace(/\s/g,'').length;
-  const sents = t.split(/[.!?]+\s/).filter(s=>s.trim()).length;
-  const paras = t.split(/\n\n+/).filter(p=>p.trim()).length;
-  const rt = Math.max(1,Math.ceil(words/200));
-  document.getElementById('wcOut').innerHTML = `
-    <div class="rgrid mt12">
-      <div class="ri"><div class="ri-l">Words</div><div class="ri-v">${words.toLocaleString()}</div></div>
-      <div class="ri"><div class="ri-l">Characters</div><div class="ri-v">${chars.toLocaleString()}</div></div>
-      <div class="ri"><div class="ri-l">No Spaces</div><div class="ri-v">${cns.toLocaleString()}</div></div>
-      <div class="ri"><div class="ri-l">Sentences</div><div class="ri-v">${sents}</div></div>
-      <div class="ri"><div class="ri-l">Paragraphs</div><div class="ri-v">${paras}</div></div>
-      <div class="ri"><div class="ri-l">Read Time</div><div class="ri-v">${rt} min</div></div>
-    </div>`;
-}
+function c2j(){ const raw=document.getElementById('c2jIn')?.value||'',out=document.getElementById('c2jOut'); try{const rows=raw.trim().split('\n').map(r=>r.split(',').map(c=>c.trim().replace(/^"|"$/g,''))),h=rows[0]; window._c2j=JSON.stringify(rows.slice(1).map(r=>{const o={};h.forEach((k,i)=>o[k]=r[i]||'');return o;}),null,2); out.innerHTML=`<pre class="co">${esc(window._c2j)}</pre>`;}catch(e){out.innerHTML=er(e.message);} }
+function j2c(){ const raw=document.getElementById('j2cIn')?.value||'',out=document.getElementById('j2cOut'); try{const arr=JSON.parse(raw);if(!Array.isArray(arr))throw new Error('Expected array');const h=Object.keys(arr[0]);window._j2c=[h.join(','),...arr.map(r=>h.map(k=>`"${(r[k]??'').toString().replace(/"/g,'""')}"`).join(','))].join('\n');out.innerHTML=`<pre class="co">${esc(window._j2c)}</pre>`;}catch(e){out.innerHTML=er(e.message);} }
+function cpre(id){ const el=document.getElementById(id)?.querySelector('pre');if(el){navigator.clipboard.writeText(el.textContent).then(()=>toast('Copied!'));} }
 
-/* ══════════════════════════════════════
-   CSV VIEWER
-══════════════════════════════════════ */
-function load_csv(inp) {
-  const f = inp.files[0]; if(!f) return;
-  const r = new FileReader();
-  r.onload = e => { document.getElementById('csvIn').value=e.target.result; render_csv(); };
-  r.readAsText(f);
-}
+function b4enc(){ const v=document.getElementById('b4eIn')?.value||'',out=document.getElementById('b4eOut'); if(!v){out.innerHTML='';return;} try{const e=btoa(unescape(encodeURIComponent(v)));window._b4e=e;out.innerHTML=`<div class="rbox" style="display:flex;align-items:flex-start;gap:8px"><div style="font-family:var(--mono);font-size:12px;word-break:break-all;flex:1">${esc(e)}</div><button class="btn btn-ghost btn-sm" style="flex-shrink:0" onclick="navigator.clipboard.writeText(window._b4e).then(()=>toast('Copied!'))">Copy</button></div>`;}catch(e){out.innerHTML=er(e.message);} }
+function b4dec(){ const v=document.getElementById('b4dIn')?.value.trim()||'',out=document.getElementById('b4dOut'); if(!v){out.innerHTML='';return;} try{const d=decodeURIComponent(escape(atob(v)));out.innerHTML=`<div class="rbox"><div class="rl">Decoded</div><div style="font-size:13.5px;word-break:break-word;line-height:1.6;margin-top:4px">${esc(d)}</div></div>`;}catch(e){out.innerHTML=er('Invalid Base64: '+e.message);} }
 
-function render_csv() {
-  const raw = document.getElementById('csvIn')?.value||'';
-  const out = document.getElementById('csvOut');
-  if(!raw.trim()){ out.innerHTML=''; return; }
-  const rows = raw.trim().split('\n').map(r=>r.split(',').map(c=>c.trim().replace(/^"|"$/g,'')));
-  if(rows.length<2){ out.innerHTML=err('Need at least a header row and one data row.'); return; }
-  const headers=rows[0], data=rows.slice(1);
-  out.innerHTML = `
-    <div class="small mt8">${data.length} rows · ${headers.length} columns</div>
-    <div class="csv-wrap">
-      <table class="csv-table">
-        <thead><tr>${headers.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead>
-        <tbody>${data.map((row,i)=>`<tr>${row.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody>
-      </table>
-    </div>`;
-}
-
-/* ══════════════════════════════════════
-   PASSWORD GENERATOR
-══════════════════════════════════════ */
-function gen_pass() {
-  const len = parseInt(document.getElementById('pLen')?.value||16);
-  const up = document.getElementById('pUp')?.checked;
-  const lo = document.getElementById('pLo')?.checked;
-  const nu = document.getElementById('pNu')?.checked;
-  const sy = document.getElementById('pSy')?.checked;
-  let chars='';
-  if(up) chars+='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  if(lo) chars+='abcdefghijklmnopqrstuvwxyz';
-  if(nu) chars+='0123456789';
-  if(sy) chars+='!@#$%^&*()_+-=[]{}|;:,.<>?';
-  if(!chars) chars='abcdefghijklmnopqrstuvwxyz';
-  const arr = new Uint32Array(len);
-  crypto.getRandomValues(arr);
-  const pass = Array.from(arr).map(v=>chars[v%chars.length]).join('');
-  const el = document.getElementById('pVal');
-  if(el) el.textContent = pass;
-  window._lastPass = pass;
-  // strength bar
-  let score=0;
-  if(len>=8)score++;if(len>=12)score++;if(len>=16)score++;
-  if(up&&lo)score++;if(nu)score++;if(sy)score++;
-  const colors=['#f04438','#f79009','#f79009','#12b76a','#12b76a','#12b76a'];
-  const bar=document.getElementById('pStr');
-  if(bar){ bar.style.background=colors[Math.min(score,5)]; bar.style.width=((score+1)/7*100)+'%'; }
-}
-
-function gen_multi() {
-  const passes=[];
-  for(let i=0;i<5;i++){ gen_pass(); passes.push(window._lastPass); }
-  document.getElementById('pMulti').innerHTML = passes.map(p=>`
-    <div class="pass-out mt8">
-      <div class="pass-val">${p}</div>
-      <button class="btn btn-ghost btn-sm" onclick="navigator.clipboard.writeText('${p.replace(/'/g,"\\'")}').then(()=>toast('Copied!'))">Copy</button>
-    </div>`).join('');
-}
-
-function copy_pass() {
-  const p=document.getElementById('pVal')?.textContent;
-  if(p&&p!=='—'){ navigator.clipboard.writeText(p).then(()=>toast('Password copied!')); }
-}
-
-/* ══════════════════════════════════════
-   HASH GENERATOR
-══════════════════════════════════════ */
-async function do_hash() {
-  const txt = document.getElementById('hIn')?.value||'';
-  const out = document.getElementById('hOut');
-  if(!txt){ out.innerHTML=''; return; }
-  const enc = new TextEncoder();
-  const data = enc.encode(txt);
-  const algos = [['SHA-1','SHA-1'],['SHA-256','SHA-256'],['SHA-512','SHA-512']];
-  const hashes = await Promise.all(algos.map(async([name,algo])=>{
-    const buf = await crypto.subtle.digest(algo,data);
-    const hex = Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-    return [name,hex];
-  }));
-  out.innerHTML = hashes.map(([name,hex])=>`
-    <div class="rbox mt8">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-        <div class="rlabel" style="margin-bottom:0">${name}</div>
-        <button class="btn btn-ghost btn-sm" onclick="navigator.clipboard.writeText('${hex}').then(()=>toast('Hash copied!'))">Copy</button>
-      </div>
-      <div style="font-family:var(--mono);font-size:11.5px;word-break:break-all;color:var(--text)">${hex}</div>
-    </div>`).join('');
-}
-
-/* ══════════════════════════════════════
-   CSV ↔ JSON
-══════════════════════════════════════ */
-function csv_to_json() {
-  const raw = document.getElementById('c2jIn')?.value||'';
-  const out = document.getElementById('c2jOut');
-  try {
-    const rows = raw.trim().split('\n').map(r=>r.split(',').map(c=>c.trim().replace(/^"|"$/g,'')));
-    const headers=rows[0];
-    const json=rows.slice(1).map(row=>{ const o={}; headers.forEach((h,i)=>o[h]=row[i]||''); return o; });
-    window._c2jResult = JSON.stringify(json,null,2);
-    out.innerHTML=`<pre class="codeout">${esc(window._c2jResult)}</pre>`;
-  } catch(e){ out.innerHTML=err(e.message); }
-}
-
-function json_to_csv() {
-  const raw = document.getElementById('j2cIn')?.value||'';
-  const out = document.getElementById('j2cOut');
-  try {
-    const arr=JSON.parse(raw);
-    if(!Array.isArray(arr)) throw new Error('Expected an array of objects');
-    const headers=Object.keys(arr[0]);
-    const csv=[headers.join(','),...arr.map(row=>headers.map(h=>`"${(row[h]??'').toString().replace(/"/g,'""')}"`).join(','))].join('\n');
-    window._j2cResult=csv;
-    out.innerHTML=`<pre class="codeout">${esc(csv)}</pre>`;
-  } catch(e){ out.innerHTML=err(e.message); }
-}
-
-function copy_el(id) {
-  const el=document.getElementById(id)?.querySelector('pre');
-  if(el){ navigator.clipboard.writeText(el.textContent).then(()=>toast('Copied!')); }
-}
-
-/* ══════════════════════════════════════
-   BASE64
-══════════════════════════════════════ */
-function b64_enc() {
-  const v=document.getElementById('b64eIn')?.value||'';
-  const out=document.getElementById('b64eOut');
-  if(!v){ out.innerHTML=''; return; }
-  try {
-    const encoded=btoa(unescape(encodeURIComponent(v)));
-    out.innerHTML=`
-      <div class="rbox" style="display:flex;align-items:flex-start;gap:10px">
-        <div style="font-family:var(--mono);font-size:12.5px;word-break:break-all;flex:1">${encoded}</div>
-        <button class="btn btn-ghost btn-sm" style="flex-shrink:0" onclick="navigator.clipboard.writeText(atob('${btoa(encoded)}') ? '${encoded}' : '').then ? navigator.clipboard.writeText('${encoded.replace(/'/g,"\\'")}').then(()=>toast('Copied!')) : null">Copy</button>
-      </div>`;
-    // simpler copy
-    window._b64enc = encoded;
-    out.innerHTML=`
-      <div class="rbox" style="display:flex;align-items:flex-start;gap:10px">
-        <div style="font-family:var(--mono);font-size:12.5px;word-break:break-all;flex:1">${esc(encoded)}</div>
-        <button class="btn btn-ghost btn-sm" style="flex-shrink:0" onclick="navigator.clipboard.writeText(window._b64enc).then(()=>toast('Copied!'))">Copy</button>
-      </div>`;
-  } catch(e){ out.innerHTML=err('Encoding error: '+e.message); }
-}
-
-function b64_dec() {
-  const v=document.getElementById('b64dIn')?.value.trim()||'';
-  const out=document.getElementById('b64dOut');
-  if(!v){ out.innerHTML=''; return; }
-  try {
-    const decoded=decodeURIComponent(escape(atob(v)));
-    out.innerHTML=`<div class="rbox"><div class="rlabel">Decoded</div><div style="font-size:14px;word-break:break-word;line-height:1.6;margin-top:4px">${esc(decoded)}</div></div>`;
-  } catch(e){ out.innerHTML=err('Invalid Base64: '+e.message); }
-}
-
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════
    SEARCH + FILTER
-══════════════════════════════════════ */
-document.getElementById('gSearch').addEventListener('input', function() {
-  const q = this.value.toLowerCase().trim();
-  document.getElementById('noResTerm').textContent = q;
-  const clusters = document.querySelectorAll('.cluster');
-  let any = false;
-  clusters.forEach(cl => {
-    let has = false;
-    cl.querySelectorAll('.card').forEach(card => {
-      const nm = card.querySelector('.card-name')?.textContent.toLowerCase()||'';
-      const ds = card.querySelector('.card-desc')?.textContent.toLowerCase()||'';
-      const m = !q || nm.includes(q) || ds.includes(q);
-      card.classList.toggle('hidden', !m);
-      if(m) has = true;
-    });
-    cl.classList.toggle('hidden', !has);
-    if(has) any = true;
+═══════════════════════════════════ */
+document.getElementById('gSearch').addEventListener('input', function(){
+  const q=this.value.toLowerCase().trim();
+  document.getElementById('noResTerm').textContent=q;
+  let any=false;
+  document.querySelectorAll('.cluster').forEach(cl=>{
+    let has=false;
+    cl.querySelectorAll('.card').forEach(card=>{ const m=!q||card.querySelector('.card-name')?.textContent.toLowerCase().includes(q)||card.querySelector('.card-desc')?.textContent.toLowerCase().includes(q); card.classList.toggle('hidden',!m); if(m)has=true; });
+    cl.classList.toggle('hidden',!has); if(has)any=true;
   });
-  document.getElementById('noRes').classList.toggle('hidden', any||!q);
-  // reset filter pills
-  if(q) { document.querySelectorAll('.fpill').forEach(p=>p.classList.remove('active')); }
+  document.getElementById('noRes').classList.toggle('hidden',any||!q);
+  if(q) document.querySelectorAll('.fpill').forEach(p=>p.classList.remove('on'));
 });
 
-document.getElementById('filterBar').addEventListener('click', e => {
-  const btn = e.target.closest('.fpill');
-  if(!btn) return;
-  document.querySelectorAll('.fpill').forEach(p=>p.classList.remove('active'));
-  btn.classList.add('active');
+document.querySelector('.filter-wrap').addEventListener('click',e=>{
+  const btn=e.target.closest('.fpill'); if(!btn)return;
+  document.querySelectorAll('.fpill').forEach(p=>p.classList.remove('on')); btn.classList.add('on');
   document.getElementById('gSearch').value='';
-  const f = btn.dataset.f;
-  document.querySelectorAll('.cluster').forEach(cl => {
-    cl.classList.toggle('hidden', f!=='all' && cl.dataset.c!==f);
-    cl.querySelectorAll('.card').forEach(c=>c.classList.remove('hidden'));
-  });
+  const f=btn.dataset.f;
+  document.querySelectorAll('.cluster').forEach(cl=>{ cl.classList.toggle('hidden',f!=='all'&&cl.dataset.c!==f); cl.querySelectorAll('.card').forEach(c=>c.classList.remove('hidden')); });
   document.getElementById('noRes').classList.add('hidden');
 });
 
-/* ══════════════════════════════════════
-   HELPERS
-══════════════════════════════════════ */
-function fmtB(b){ if(b<1024)return b+' B'; if(b<1048576)return(b/1024).toFixed(1)+' KB'; return(b/1048576).toFixed(2)+' MB'; }
+/* ═══════════════════════════════════
+   UTILS
+═══════════════════════════════════ */
+function fmtB(b){ if(b<1024)return b+' B';if(b<1048576)return(b/1024).toFixed(1)+' KB';return(b/1048576).toFixed(2)+' MB'; }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function fmt_num(n){ const s=n.toFixed(6); return parseFloat(s).toString(); }
-function dl(blob,name){ if(!blob)return; const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),3000); }
-function file_to_dataurl(f){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=e=>res(e.target.result); r.onerror=()=>rej(new Error('Failed to read file')); r.readAsDataURL(f); }); }
-function load_img(src){ return new Promise((res,rej)=>{ const img=new Image(); img.onload=()=>res(img); img.onerror=()=>rej(new Error('Failed to load image')); img.src=src; }); }
-function loading(msg){ return `<div class="loading"><div class="spin"></div>${msg}</div>`; }
-function err(msg){ return `<div class="err">❌ ${msg}</div>`; }
-
-function toast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(window._toastTimer);
-  window._toastTimer = setTimeout(()=>t.classList.remove('show'), 2000);
-}
+function dl(blob,name){ if(!blob)return;const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000); }
+function f2du(f){ return new Promise((res,rej)=>{const r=new FileReader();r.onload=e=>res(e.target.result);r.onerror=()=>rej(new Error('Read failed'));r.readAsDataURL(f);}); }
+function limg(src){ return new Promise((res,rej)=>{const img=new Image();img.onload=()=>res(img);img.onerror=()=>rej(new Error('Image load failed'));img.src=src;}); }
+function ld(msg){ return `<div class="loading"><div class="spin"></div>${msg}</div>`; }
+function er(msg){ return `<div class="er">❌ ${msg}</div>`; }
+function toast(msg){ const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove('show'),2000); }
 </script>
 </body>
 </html>
