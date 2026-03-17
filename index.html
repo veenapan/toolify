@@ -4,1728 +4,1786 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Toolify — Free Online Utilities</title>
+<meta name="description" content="20 free browser-based tools for images, PDFs, calculators, and more. No signup, no uploads, 100% private.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 <style>
-  /* ── Reset & Variables ── */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #f8f7f4;
-    --surface: #ffffff;
-    --surface2: #f2f1ee;
-    --border: #e4e2dc;
-    --text: #1a1917;
-    --text2: #6b6860;
-    --text3: #9e9b94;
-    --accent: #2563eb;
-    --accent-light: #eff4ff;
-    --accent2: #16a34a;
-    --accent3: #dc2626;
-    --accent4: #9333ea;
-    --accent5: #ea580c;
-    --accent6: #0891b2;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
-    --shadow: 0 4px 16px rgba(0,0,0,.08), 0 1px 4px rgba(0,0,0,.04);
-    --shadow-lg: 0 20px 60px rgba(0,0,0,.12), 0 4px 16px rgba(0,0,0,.06);
-    --radius: 12px;
-    --radius-sm: 8px;
-    --radius-lg: 18px;
-    --font: 'DM Sans', sans-serif;
-    --mono: 'DM Mono', monospace;
-    --transition: .18s cubic-bezier(.4,0,.2,1);
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.5; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f6f7f9;
+  --bg2:#eef0f4;
+  --white:#ffffff;
+  --border:#e2e5eb;
+  --border2:#d0d4dc;
+  --text:#0f1117;
+  --text2:#4a5060;
+  --text3:#8b92a5;
+  --blue:#2B5BF6;
+  --blue-light:#EEF1FE;
+  --blue-mid:#c7d0fc;
+  --green:#12b76a;
+  --green-light:#ecfdf5;
+  --red:#f04438;
+  --red-light:#fff1f0;
+  --orange:#f79009;
+  --purple:#7c3aed;
+  --cyan:#0ea5e9;
+  --shadow-xs:0 1px 2px rgba(15,17,23,.06);
+  --shadow-sm:0 1px 3px rgba(15,17,23,.08),0 1px 2px rgba(15,17,23,.04);
+  --shadow:0 4px 12px rgba(15,17,23,.08),0 1px 4px rgba(15,17,23,.04);
+  --shadow-md:0 8px 24px rgba(15,17,23,.10),0 2px 8px rgba(15,17,23,.06);
+  --shadow-lg:0 20px 48px rgba(15,17,23,.14),0 4px 16px rgba(15,17,23,.06);
+  --r-sm:8px;
+  --r:12px;
+  --r-lg:16px;
+  --r-xl:20px;
+  --font:'Outfit',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --ease:.2s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.55;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px}
 
-  /* ── Scrollbar ── */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+/* ── HEADER ── */
+header{
+  position:sticky;top:0;z-index:200;
+  background:rgba(246,247,249,.88);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.hdr{max-width:1200px;margin:0 auto;padding:0 24px;height:58px;display:flex;align-items:center;gap:16px}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0}
+.logo-icon{width:34px;height:34px;background:var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.logo-text{font-size:17px;font-weight:700;color:var(--text);letter-spacing:-.4px}
+.logo-text span{color:var(--blue)}
+.hdr-search{flex:1;max-width:340px;position:relative}
+.hdr-search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:15px;height:15px;stroke:var(--text3);fill:none;stroke-width:2;stroke-linecap:round;pointer-events:none}
+.hdr-search input{width:100%;padding:8px 12px 8px 34px;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--white);font-family:var(--font);font-size:14px;color:var(--text);outline:none;transition:var(--ease)}
+.hdr-search input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(43,91,246,.12)}
+.hdr-search input::placeholder{color:var(--text3)}
+.hdr-pill{font-size:12px;font-weight:500;color:var(--text2);background:var(--white);border:1.5px solid var(--border);padding:4px 12px;border-radius:99px;white-space:nowrap;margin-left:auto}
 
-  /* ── Header ── */
-  header {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(248,247,244,.92); backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 24px;
-  }
-  .header-inner { max-width: 1200px; margin: 0 auto; height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .logo-mark { width: 32px; height: 32px; background: var(--text); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
-  .logo-mark svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; }
-  .logo-name { font-size: 18px; font-weight: 600; color: var(--text); letter-spacing: -.3px; }
-  .logo-name span { color: var(--accent); }
-  .header-search { flex: 1; max-width: 360px; position: relative; }
-  .header-search input { width: 100%; padding: 8px 12px 8px 36px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); font-family: var(--font); font-size: 14px; color: var(--text); outline: none; transition: var(--transition); }
-  .header-search input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,.1); }
-  .header-search .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text3); width: 16px; height: 16px; }
-  .header-search input::placeholder { color: var(--text3); }
-  .tool-count-badge { font-size: 12px; font-weight: 500; color: var(--text2); background: var(--surface2); border: 1px solid var(--border); padding: 4px 10px; border-radius: 99px; white-space: nowrap; }
+/* ── HERO ── */
+.hero{padding:52px 24px 36px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(43,91,246,.10) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:580px;margin:0 auto;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:var(--blue);background:var(--blue-light);border:1.5px solid var(--blue-mid);padding:4px 12px;border-radius:99px;margin-bottom:18px;letter-spacing:.2px;text-transform:uppercase}
+.hero-badge span{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}
+.hero h1{font-size:clamp(30px,5vw,48px);font-weight:700;letter-spacing:-1.5px;line-height:1.1;margin-bottom:14px;color:var(--text)}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.hero p{font-size:16px;color:var(--text2);font-weight:400;max-width:440px;margin:0 auto;line-height:1.7}
+.stats{display:flex;justify-content:center;gap:0;margin:28px auto 0;max-width:440px;background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.stat{flex:1;padding:14px 8px;text-align:center;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-n{font-size:20px;font-weight:700;color:var(--text);letter-spacing:-1px}
+.stat-l{font-size:11px;color:var(--text3);margin-top:1px;font-weight:500}
 
-  /* ── Hero ── */
-  .hero { padding: 64px 24px 48px; text-align: center; }
-  .hero-inner { max-width: 640px; margin: 0 auto; }
-  .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: var(--accent); background: var(--accent-light); border: 1px solid rgba(37,99,235,.15); padding: 4px 12px; border-radius: 99px; margin-bottom: 20px; letter-spacing: .3px; text-transform: uppercase; }
-  .hero h1 { font-size: clamp(32px,5vw,52px); font-weight: 600; letter-spacing: -1.5px; line-height: 1.1; color: var(--text); margin-bottom: 16px; }
-  .hero h1 em { font-style: normal; color: var(--accent); }
-  .hero p { font-size: 17px; color: var(--text2); font-weight: 300; max-width: 480px; margin: 0 auto; line-height: 1.7; }
+/* ── FILTER PILLS ── */
+.filter-bar{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.fpill{font-size:13px;font-weight:500;padding:6px 14px;border-radius:99px;border:1.5px solid var(--border);background:var(--white);color:var(--text2);cursor:pointer;transition:var(--ease);white-space:nowrap}
+.fpill:hover{border-color:var(--blue);color:var(--blue)}
+.fpill.active{background:var(--blue);color:#fff;border-color:var(--blue)}
 
-  /* ── Stats Bar ── */
-  .stats-bar { display: flex; justify-content: center; gap: 32px; padding: 24px; flex-wrap: wrap; }
-  .stat { text-align: center; }
-  .stat-num { font-size: 24px; font-weight: 600; color: var(--text); letter-spacing: -1px; }
-  .stat-label { font-size: 12px; color: var(--text3); margin-top: 2px; }
+/* ── MAIN ── */
+.main{max-width:1200px;margin:0 auto;padding:0 24px 80px}
 
-  /* ── Main Layout ── */
-  .main { max-width: 1200px; margin: 0 auto; padding: 0 24px 80px; }
+/* ── CLUSTER ── */
+.cluster{margin-bottom:48px}
+.cluster-hdr{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.cluster-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.cluster-name{font-size:13px;font-weight:600;color:var(--text);letter-spacing:.1px;text-transform:uppercase}
+.cluster-sub{font-size:12px;color:var(--text3);margin-left:4px}
+.cluster-line{flex:1;height:1px;background:var(--border)}
+.cluster-cnt{font-size:11.5px;font-weight:600;color:var(--text3);background:var(--bg2);border:1px solid var(--border);padding:2px 9px;border-radius:99px}
 
-  /* ── Cluster Section ── */
-  .cluster { margin-bottom: 56px; }
-  .cluster-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-  .cluster-icon { width: 36px; height: 36px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
-  .cluster-meta { flex: 1; }
-  .cluster-title { font-size: 18px; font-weight: 600; color: var(--text); letter-spacing: -.3px; }
-  .cluster-sub { font-size: 13px; color: var(--text3); margin-top: 1px; }
-  .cluster-count { font-size: 12px; font-weight: 500; color: var(--text3); background: var(--surface2); border: 1px solid var(--border); padding: 3px 10px; border-radius: 99px; }
+/* ── TOOL GRID ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.card{
+  background:var(--white);border:1.5px solid var(--border);
+  border-radius:var(--r-lg);padding:18px;cursor:pointer;
+  transition:var(--ease);position:relative;overflow:hidden;
+  display:flex;flex-direction:column;gap:12px;
+}
+.card::after{content:'';position:absolute;inset:0;opacity:0;transition:var(--ease);border-radius:var(--r-lg);background:var(--c-accent)}
+.card:hover{border-color:var(--c-accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--c-accent) 15%,transparent),var(--shadow-md);transform:translateY(-2px)}
+.card:hover::after{opacity:.04}
+.card:active{transform:translateY(0)}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between}
+.card-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;background:color-mix(in srgb,var(--c-accent) 10%,transparent);flex-shrink:0;position:relative;z-index:1}
+.card-tags{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end;position:relative;z-index:1}
+.tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:99px;letter-spacing:.1px}
+.tag-free{background:var(--green-light);color:var(--green)}
+.tag-fast{background:var(--blue-light);color:var(--blue)}
+.tag-priv{background:#f5f3ff;color:var(--purple)}
+.card-name{font-size:14px;font-weight:600;color:var(--text);letter-spacing:-.2px;line-height:1.3;position:relative;z-index:1}
+.card-desc{font-size:12.5px;color:var(--text2);line-height:1.55;position:relative;z-index:1}
+.card-arrow{position:absolute;right:14px;bottom:14px;width:22px;height:22px;border-radius:6px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;opacity:0;transition:var(--ease);z-index:1}
+.card-arrow svg{width:10px;height:10px;stroke:var(--text2);fill:none;stroke-width:2.5;stroke-linecap:round}
+.card:hover .card-arrow{opacity:1;transform:translate(1px,-1px)}
 
-  /* ── Tool Grid ── */
-  .tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
-  .tool-card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 20px; cursor: pointer; transition: var(--transition); position: relative; overflow: hidden;
-    display: flex; flex-direction: column; gap: 10px;
-  }
-  .tool-card::before { content: ''; position: absolute; inset: 0; opacity: 0; transition: var(--transition); }
-  .tool-card:hover { border-color: transparent; box-shadow: var(--shadow), 0 0 0 2px var(--card-accent); transform: translateY(-2px); }
-  .tool-card:hover::before { opacity: .04; background: var(--card-accent); }
-  .tool-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-  .tool-icon-wrap { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-  .tool-badges { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
-  .badge { font-size: 10px; font-weight: 500; padding: 2px 6px; border-radius: 4px; border: 1px solid; white-space: nowrap; }
-  .badge-free { color: var(--accent2); border-color: rgba(22,163,74,.25); background: rgba(22,163,74,.06); }
-  .badge-fast { color: var(--accent); border-color: rgba(37,99,235,.2); background: rgba(37,99,235,.06); }
-  .badge-private { color: var(--accent4); border-color: rgba(147,51,234,.2); background: rgba(147,51,234,.06); }
-  .tool-name { font-size: 14px; font-weight: 600; color: var(--text); letter-spacing: -.2px; line-height: 1.3; }
-  .tool-desc { font-size: 12.5px; color: var(--text2); line-height: 1.5; }
-  .tool-arrow { position: absolute; bottom: 16px; right: 16px; width: 20px; height: 20px; color: var(--text3); opacity: 0; transition: var(--transition); }
-  .tool-card:hover .tool-arrow { opacity: 1; transform: translate(2px,-2px); }
+/* cluster accent vars */
+.c1{--c-accent:#2B5BF6}.c2{--c-accent:#f04438}.c3{--c-accent:#12b76a}.c4{--c-accent:#f79009}.c5{--c-accent:#7c3aed}.c6{--c-accent:#0ea5e9}
+.cd1{background:var(--blue)}.cd2{background:var(--red)}.cd3{background:var(--green)}.cd4{background:var(--orange)}.cd5{background:var(--purple)}.cd6{background:var(--cyan)}
 
-  /* Cluster accent colors */
-  .c1 { --card-accent: #2563eb; } .c1 .tool-icon-wrap { background: rgba(37,99,235,.08); }
-  .c2 { --card-accent: #dc2626; } .c2 .tool-icon-wrap { background: rgba(220,38,38,.08); }
-  .c3 { --card-accent: #16a34a; } .c3 .tool-icon-wrap { background: rgba(22,163,74,.08); }
-  .c4 { --card-accent: #ea580c; } .c4 .tool-icon-wrap { background: rgba(234,88,12,.08); }
-  .c5 { --card-accent: #9333ea; } .c5 .tool-icon-wrap { background: rgba(147,51,234,.08); }
-  .c6 { --card-accent: #0891b2; } .c6 .tool-icon-wrap { background: rgba(8,145,178,.08); }
+/* ── MODAL ── */
+.overlay{position:fixed;inset:0;z-index:500;background:rgba(15,17,23,.45);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--white);border-radius:var(--r-xl);box-shadow:var(--shadow-lg);width:100%;max-width:660px;max-height:90vh;display:flex;flex-direction:column;transform:translateY(16px) scale(.98);transition:transform .22s cubic-bezier(.34,1.4,.64,1),opacity .2s;opacity:0;border:1.5px solid var(--border)}
+.overlay.open .modal{transform:none;opacity:1}
+.modal-hdr{padding:20px 22px 16px;border-bottom:1.5px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0}
+.modal-ico{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.modal-titles{flex:1;min-width:0}
+.modal-title{font-size:17px;font-weight:700;letter-spacing:-.3px}
+.modal-sub{font-size:12.5px;color:var(--text2);margin-top:2px}
+.modal-close{width:32px;height:32px;border-radius:var(--r-sm);border:1.5px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);transition:var(--ease);flex-shrink:0}
+.modal-close:hover{background:var(--bg2);color:var(--text)}
+.modal-close svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round}
+.modal-body{padding:22px;overflow-y:auto;flex:1}
+.modal-foot{padding:12px 22px;border-top:1.5px solid var(--border);background:var(--bg);border-radius:0 0 var(--r-xl) var(--r-xl);display:flex;gap:6px;flex-wrap:wrap;flex-shrink:0}
+.foot-tag{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:5px}
+.foot-tag:not(:first-child)::before{content:'·';margin-right:1px}
 
-  /* Cluster header icon bg */
-  .ci1 { background: rgba(37,99,235,.1); }
-  .ci2 { background: rgba(220,38,38,.1); }
-  .ci3 { background: rgba(22,163,74,.1); }
-  .ci4 { background: rgba(234,88,12,.1); }
-  .ci5 { background: rgba(147,51,234,.1); }
-  .ci6 { background: rgba(8,145,178,.1); }
+/* ── FORM ── */
+.f{margin-bottom:16px}
+.f label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
+.f input[type=text],.f input[type=number],.f input[type=date],.f select,.f textarea{width:100%;padding:9px 13px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg);outline:none;transition:var(--ease);-webkit-appearance:none}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(43,91,246,.12);background:var(--white)}
+.f textarea{resize:vertical;min-height:110px;line-height:1.6}
+.f .hint{font-size:11.5px;color:var(--text3);margin-top:4px}
+.f input[type=range]{width:100%;accent-color:var(--blue);cursor:pointer;margin-top:4px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 
-  /* ── Modal Overlay ── */
-  .modal-overlay {
-    position: fixed; inset: 0; z-index: 200;
-    background: rgba(26,25,23,.5); backdrop-filter: blur(6px);
-    display: flex; align-items: center; justify-content: center; padding: 20px;
-    opacity: 0; pointer-events: none; transition: opacity .22s ease;
-  }
-  .modal-overlay.open { opacity: 1; pointer-events: all; }
-  .modal {
-    background: var(--surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
-    width: 100%; max-width: 700px; max-height: 88vh; display: flex; flex-direction: column;
-    transform: translateY(20px) scale(.98); transition: transform .22s cubic-bezier(.34,1.56,.64,1), opacity .22s ease;
-    opacity: 0;
-  }
-  .modal-overlay.open .modal { transform: translateY(0) scale(1); opacity: 1; }
-  .modal-header { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-  .modal-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
-  .modal-title-wrap { flex: 1; }
-  .modal-title { font-size: 18px; font-weight: 600; letter-spacing: -.3px; }
-  .modal-subtitle { font-size: 13px; color: var(--text2); margin-top: 2px; }
-  .modal-close { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--border); background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text2); transition: var(--transition); flex-shrink: 0; }
-  .modal-close:hover { background: var(--surface2); color: var(--text); }
-  .modal-body { padding: 24px; overflow-y: auto; flex: 1; }
-  .modal-footer { padding: 16px 24px; border-top: 1px solid var(--border); background: var(--surface2); border-radius: 0 0 var(--radius-lg) var(--radius-lg); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex-shrink: 0; }
-  .modal-tag { font-size: 11px; color: var(--text3); display: flex; align-items: center; gap: 4px; }
-  .modal-tag::before { content: '•'; }
-  .modal-tag:first-child::before { display: none; }
+/* ── DROP ZONE ── */
+.dz{border:2px dashed var(--border2);border-radius:var(--r-lg);padding:32px 20px;text-align:center;cursor:pointer;transition:var(--ease);background:var(--bg);position:relative}
+.dz:hover,.dz.drag{border-color:var(--blue);background:var(--blue-light)}
+.dz input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.dz-ico{font-size:32px;margin-bottom:8px;display:block}
+.dz-t{font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px}
+.dz-s{font-size:12.5px;color:var(--text3)}
 
-  /* ── Form Elements ── */
-  .field { margin-bottom: 18px; }
-  .field label { display: block; font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
-  .field input[type=text], .field input[type=number], .field select, .field textarea {
-    width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm);
-    font-family: var(--font); font-size: 14px; color: var(--text); background: var(--bg);
-    outline: none; transition: var(--transition);
-  }
-  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,.1); background: #fff; }
-  .field textarea { resize: vertical; min-height: 100px; }
-  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .field-hint { font-size: 12px; color: var(--text3); margin-top: 4px; }
-  .field input[type=range] { width: 100%; accent-color: var(--accent); margin-top: 6px; }
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 18px;border-radius:var(--r-sm);font-family:var(--font);font-size:14px;font-weight:600;cursor:pointer;border:none;transition:var(--ease);text-decoration:none;letter-spacing:-.1px}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-blue:hover{background:#1e4fd8;box-shadow:0 4px 14px rgba(43,91,246,.35)}
+.btn-ghost{background:var(--white);color:var(--text);border:1.5px solid var(--border)}
+.btn-ghost:hover{background:var(--bg2)}
+.btn-green{background:var(--green);color:#fff}
+.btn-green:hover{background:#0da55f;box-shadow:0 4px 14px rgba(18,183,106,.3)}
+.btn-red{background:var(--red);color:#fff}
+.btn-lg{padding:10px 22px;font-size:15px;border-radius:var(--r)}
+.btn-sm{padding:6px 12px;font-size:12px;border-radius:6px}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
 
-  /* ── Drop Zone ── */
-  .drop-zone {
-    border: 2px dashed var(--border); border-radius: var(--radius); padding: 40px 24px;
-    text-align: center; cursor: pointer; transition: var(--transition); background: var(--bg);
-    position: relative;
-  }
-  .drop-zone:hover, .drop-zone.drag-over { border-color: var(--accent); background: var(--accent-light); }
-  .drop-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-  .drop-zone-icon { font-size: 36px; margin-bottom: 10px; display: block; }
-  .drop-zone-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
-  .drop-zone-sub { font-size: 13px; color: var(--text3); }
+/* ── ALERTS ── */
+.ok{background:var(--green-light);border:1.5px solid rgba(18,183,106,.25);border-radius:var(--r-sm);padding:12px 14px;color:var(--green);font-size:13.5px;display:flex;align-items:flex-start;gap:8px;margin-top:14px;font-weight:500}
+.err{background:var(--red-light);border:1.5px solid rgba(240,68,56,.2);border-radius:var(--r-sm);padding:12px 14px;color:var(--red);font-size:13.5px;margin-top:14px;font-weight:500}
+.info{background:var(--blue-light);border:1.5px solid var(--blue-mid);border-radius:var(--r-sm);padding:12px 14px;color:var(--blue);font-size:13px;margin-top:14px}
 
-  /* ── Buttons ── */
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 9px 18px; border-radius: var(--radius-sm); font-family: var(--font); font-size: 14px; font-weight: 500; cursor: pointer; border: none; transition: var(--transition); text-decoration: none; }
-  .btn-primary { background: var(--accent); color: #fff; }
-  .btn-primary:hover { background: #1d4ed8; box-shadow: 0 4px 12px rgba(37,99,235,.3); }
-  .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
-  .btn-secondary:hover { background: var(--border); }
-  .btn-success { background: var(--accent2); color: #fff; }
-  .btn-success:hover { background: #15803d; }
-  .btn-danger { background: var(--accent3); color: #fff; }
-  .btn-lg { padding: 11px 24px; font-size: 15px; border-radius: 10px; }
-  .btn-sm { padding: 6px 12px; font-size: 12px; }
-  .btn:disabled { opacity: .5; cursor: not-allowed; }
-  .btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+/* ── RESULTS ── */
+.rbox{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r);padding:16px;margin-top:16px}
+.rlabel{font-size:10.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.rval{font-size:30px;font-weight:700;color:var(--text);letter-spacing:-1.5px;font-family:var(--mono)}
+.runit{font-size:14px;font-weight:400;color:var(--text2);margin-left:3px;font-family:var(--font)}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:14px}
+.ri{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:12px}
+.ri-l{font-size:11px;color:var(--text3);margin-bottom:4px;font-weight:500}
+.ri-v{font-size:17px;font-weight:700;color:var(--text);font-family:var(--mono);letter-spacing:-.5px}
+.rtable{width:100%;border-collapse:collapse;font-size:13.5px}
+.rtable tr{border-bottom:1px solid var(--border)}
+.rtable tr:last-child{border:none}
+.rtable td{padding:9px 2px}
+.rtable td:first-child{color:var(--text2);width:55%}
+.rtable td:last-child{font-weight:600;font-family:var(--mono);color:var(--text)}
+.prog{height:5px;background:var(--border);border-radius:99px;overflow:hidden;margin-top:10px}
+.prog-bar{height:100%;border-radius:99px;transition:width .5s ease}
+pre.codeout{font-family:var(--mono);font-size:12.5px;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:14px;overflow:auto;white-space:pre-wrap;word-break:break-word;color:var(--text);line-height:1.6;max-height:240px;margin-top:12px}
 
-  /* ── Result Area ── */
-  .result-area { margin-top: 20px; }
-  .result-box { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; position: relative; }
-  .result-label { font-size: 11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
-  .result-value { font-size: 28px; font-weight: 600; color: var(--text); letter-spacing: -1px; font-family: var(--mono); }
-  .result-unit { font-size: 14px; font-weight: 400; color: var(--text2); margin-left: 4px; }
-  .result-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-top: 16px; }
-  .result-item { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px; }
-  .result-item-label { font-size: 11px; color: var(--text3); margin-bottom: 4px; }
-  .result-item-val { font-size: 18px; font-weight: 600; color: var(--text); font-family: var(--mono); letter-spacing: -.5px; }
-  .result-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  .result-table tr { border-bottom: 1px solid var(--border); }
-  .result-table tr:last-child { border: none; }
-  .result-table td { padding: 9px 4px; }
-  .result-table td:first-child { color: var(--text2); width: 50%; }
-  .result-table td:last-child { font-weight: 500; font-family: var(--mono); }
-  .result-success { background: rgba(22,163,74,.06); border: 1px solid rgba(22,163,74,.2); border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 16px; color: var(--accent2); font-size: 14px; display: flex; align-items: center; gap: 8px; }
-  .result-error { background: rgba(220,38,38,.06); border: 1px solid rgba(220,38,38,.2); border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 16px; color: var(--accent3); font-size: 14px; }
-  pre.code-out { font-family: var(--mono); font-size: 13px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; overflow: auto; white-space: pre-wrap; word-break: break-word; color: var(--text); line-height: 1.6; max-height: 260px; }
+/* ── TABS ── */
+.tabs{display:flex;background:var(--bg2);border-radius:var(--r-sm);padding:3px;gap:2px;margin-bottom:18px}
+.tb{flex:1;padding:7px;text-align:center;font-size:13px;font-weight:600;cursor:pointer;border-radius:6px;border:none;background:transparent;color:var(--text2);transition:var(--ease);font-family:var(--font)}
+.tb.on{background:var(--white);color:var(--text);box-shadow:var(--shadow-xs)}
+.tp{display:none}.tp.on{display:block}
 
-  /* ── Progress ── */
-  .progress { height: 6px; background: var(--border); border-radius: 99px; overflow: hidden; margin-top: 10px; }
-  .progress-bar { height: 100%; background: var(--accent); border-radius: 99px; transition: width .4s ease; }
+/* ── SEGS ── */
+.segs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.seg{padding:6px 13px;border-radius:99px;font-size:12.5px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--white);color:var(--text2);transition:var(--ease);font-family:var(--font)}
+.seg.on{background:var(--blue);color:#fff;border-color:var(--blue)}
 
-  /* ── Image Preview ── */
-  .img-preview-wrap { margin-top: 16px; text-align: center; }
-  .img-preview-wrap img { max-width: 100%; max-height: 260px; border-radius: var(--radius-sm); border: 1px solid var(--border); object-fit: contain; }
-  .img-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
-  .img-compare-item { text-align: center; }
-  .img-compare-item img { max-width: 100%; max-height: 180px; border-radius: var(--radius-sm); border: 1px solid var(--border); object-fit: contain; }
-  .img-compare-label { font-size: 12px; color: var(--text3); margin-top: 6px; }
+/* ── CHECKS ── */
+.chk{display:flex;align-items:center;gap:9px;margin-bottom:10px;cursor:pointer;user-select:none}
+.chk input{width:16px;height:16px;accent-color:var(--blue);cursor:pointer;flex-shrink:0}
+.chk span{font-size:14px;color:var(--text);font-weight:400}
 
-  /* ── Tabs ── */
-  .tabs { display: flex; gap: 2px; background: var(--surface2); border-radius: 8px; padding: 3px; margin-bottom: 20px; }
-  .tab-btn { flex: 1; padding: 7px; text-align: center; font-size: 13px; font-weight: 500; cursor: pointer; border-radius: 6px; border: none; background: transparent; color: var(--text2); transition: var(--transition); font-family: var(--font); }
-  .tab-btn.active { background: #fff; color: var(--text); box-shadow: var(--shadow-sm); }
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
+/* ── IMG PREVIEW ── */
+.img-preview{margin-top:14px;text-align:center}
+.img-preview img{max-width:100%;max-height:240px;border-radius:var(--r-sm);border:1.5px solid var(--border);object-fit:contain}
+.img-compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.ic-item{text-align:center}
+.ic-item img{max-width:100%;max-height:160px;border-radius:var(--r-sm);border:1.5px solid var(--border);object-fit:contain}
+.ic-label{font-size:11.5px;color:var(--text3);margin-top:5px;font-weight:500}
 
-  /* ── Segmented control ── */
-  .segment-group { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
-  .segment-btn { padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid var(--border); background: var(--bg); color: var(--text2); transition: var(--transition); font-family: var(--font); }
-  .segment-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+/* ── NO RESULTS ── */
+.nores{text-align:center;padding:56px 24px;color:var(--text3)}
+.nores-ico{font-size:36px;margin-bottom:10px}
+.nores p{font-size:15px}
 
-  /* ── Checkbox / Toggle ── */
-  .checkbox-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; cursor: pointer; }
-  .checkbox-row input { width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
-  .checkbox-row span { font-size: 14px; color: var(--text); }
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;background:var(--white)}
+footer p{font-size:13px;color:var(--text3)}
+footer strong{color:var(--text2)}
 
-  /* ── No-result ── */
-  .no-results { text-align: center; padding: 60px 24px; color: var(--text3); }
-  .no-results-icon { font-size: 40px; margin-bottom: 12px; }
-  .no-results p { font-size: 15px; }
+/* ── TOAST ── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--text);color:#fff;padding:9px 20px;border-radius:var(--r-sm);font-size:13.5px;font-weight:600;z-index:9999;pointer-events:none;opacity:0;transition:all .3s cubic-bezier(.34,1.4,.64,1);white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-  /* ── Footer ── */
-  footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; }
-  footer p { font-size: 13px; color: var(--text3); }
-  footer strong { color: var(--text2); font-weight: 500; }
+/* ── CSV TABLE ── */
+.csv-wrap{overflow-x:auto;margin-top:14px}
+.csv-table{width:100%;border-collapse:collapse;font-size:13px}
+.csv-table th{text-align:left;padding:8px 12px;background:var(--bg2);border:1px solid var(--border);font-weight:700;white-space:nowrap;color:var(--text);position:sticky;top:0}
+.csv-table td{padding:7px 12px;border:1px solid var(--border);color:var(--text2)}
+.csv-table tr:nth-child(even) td{background:var(--bg)}
 
-  /* ── Utility ── */
-  .hidden { display: none !important; }
-  .mt-8 { margin-top: 8px; } .mt-12 { margin-top: 12px; } .mt-16 { margin-top: 16px; }
-  .flex { display: flex; } .items-center { align-items: center; } .gap-8 { gap: 8px; }
-  .text-sm { font-size: 13px; } .text-xs { font-size: 12px; }
-  .color-green { color: var(--accent2); } .color-red { color: var(--accent3); } .color-blue { color: var(--accent); }
-  .fw-600 { font-weight: 600; }
-  .mono { font-family: var(--mono); }
+/* ── LOADING ── */
+.loading{display:flex;align-items:center;gap:10px;padding:14px;color:var(--text2);font-size:14px;font-weight:500;margin-top:14px}
+.spin{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-  /* ── Responsive ── */
-  @media (max-width: 640px) {
-    .header-search { display: none; }
-    .hero { padding: 40px 16px 32px; }
-    .main { padding: 0 16px 60px; }
-    .tool-grid { grid-template-columns: 1fr 1fr; }
-    .field-row { grid-template-columns: 1fr; }
-    .img-compare { grid-template-columns: 1fr; }
-    .modal { max-height: 92vh; }
-    .modal-body { padding: 16px; }
-    .stats-bar { gap: 20px; }
-  }
-  @media (max-width: 380px) { .tool-grid { grid-template-columns: 1fr; } }
+/* ── INVOICE ── */
+.inv-row{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:8px;align-items:end;margin-bottom:8px}
+.inv-row input{width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-family:var(--font);font-size:13px;color:var(--text);background:var(--bg);outline:none;transition:var(--ease)}
+.inv-row input:focus{border-color:var(--blue);background:var(--white)}
+
+/* ── PASS OUTPUT ── */
+.pass-out{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
+.pass-val{font-family:var(--mono);font-size:14px;word-break:break-all;color:var(--text);font-weight:500;flex:1}
+.pass-strength{height:4px;border-radius:99px;margin-top:8px;transition:all .3s}
+
+/* ── BMI bar ── */
+.bmi-scale{display:flex;height:8px;border-radius:99px;overflow:hidden;margin-top:12px}
+.bmi-seg{flex:1}
+.bmi-pointer{position:relative;margin-top:4px}
+.bmi-pointer-arrow{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:6px solid var(--text);position:absolute;transform:translateX(-50%);transition:left .5s ease}
+
+/* ── HIDDEN ── */
+.hidden{display:none!important}
+.mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}
+.green{color:var(--green)}.red{color:var(--red)}.blue{color:var(--blue)}
+.fw7{font-weight:700}.mono{font-family:var(--mono)}
+.small{font-size:12px;color:var(--text3)}
+.section-divider{height:1px;background:var(--border);margin:20px 0}
+
+@media(max-width:640px){
+  .hdr-search{display:none}
+  .hero{padding:36px 16px 28px}
+  .main{padding:0 16px 60px}
+  .filter-bar{padding:0 16px}
+  .grid{grid-template-columns:1fr 1fr}
+  .frow,.frow3{grid-template-columns:1fr}
+  .img-compare{grid-template-columns:1fr}
+  .modal{max-height:94vh}
+  .modal-body{padding:16px}
+  .inv-row{grid-template-columns:1fr 1fr}
+  .stats{max-width:100%}
+}
+@media(max-width:380px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<!-- ── HEADER ── -->
 <header>
-  <div class="header-inner">
+  <div class="hdr">
     <a href="#" class="logo">
-      <div class="logo-mark">
-        <svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></svg>
       </div>
-      <span class="logo-name">Tool<span>ify</span></span>
+      <span class="logo-text">Tool<span>ify</span></span>
     </a>
-    <div class="header-search">
-      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="globalSearch" placeholder="Search tools…" autocomplete="off">
+    <div class="hdr-search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="gSearch" placeholder="Search 20 tools…" autocomplete="off">
     </div>
-    <div class="tool-count-badge">20 tools · 100% free</div>
+    <div class="hdr-pill">20 tools · 100% free</div>
   </div>
 </header>
 
-<!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      Free · No signup · Works in browser
+    <div class="hero-badge"><span></span>Free · Private · Instant</div>
+    <h1>Every tool you need,<br><em>right in your browser</em></h1>
+    <p>20 powerful utilities for images, PDFs, calculations and more. No signup, no uploads to servers.</p>
+    <div class="stats">
+      <div class="stat"><div class="stat-n">20</div><div class="stat-l">Tools</div></div>
+      <div class="stat"><div class="stat-n">0</div><div class="stat-l">Signup</div></div>
+      <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Free</div></div>
+      <div class="stat"><div class="stat-n">∞</div><div class="stat-l">Uses</div></div>
     </div>
-    <h1>Your browser-based<br><em>utility toolkit</em></h1>
-    <p>20 powerful tools for images, PDFs, calculations, documents, and more — all free, private, and instant.</p>
   </div>
 </section>
 
-<div class="stats-bar">
-  <div class="stat"><div class="stat-num">20</div><div class="stat-label">Tools</div></div>
-  <div class="stat"><div class="stat-num">0</div><div class="stat-label">Signup Required</div></div>
-  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Client-Side</div></div>
-  <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Free Uses</div></div>
+<div class="filter-bar" id="filterBar">
+  <button class="fpill active" data-f="all">All Tools</button>
+  <button class="fpill" data-f="1">🖼️ Image</button>
+  <button class="fpill" data-f="2">📄 PDF</button>
+  <button class="fpill" data-f="3">🧮 Calculator</button>
+  <button class="fpill" data-f="4">🧾 Document</button>
+  <button class="fpill" data-f="5">🔐 Privacy</button>
+  <button class="fpill" data-f="6">📦 Convert</button>
 </div>
 
-<!-- ── MAIN ── -->
-<main class="main" id="toolsGrid">
+<main class="main" id="main">
 
-  <!-- CLUSTER 1: IMAGE TOOLS -->
-  <section class="cluster" data-cluster="1">
-    <div class="cluster-header">
-      <div class="cluster-icon ci1">🖼️</div>
-      <div class="cluster-meta">
-        <div class="cluster-title">Image Tools</div>
-        <div class="cluster-sub">Compress, resize, convert and manipulate images instantly</div>
-      </div>
-      <div class="cluster-count">4 tools</div>
-    </div>
-    <div class="tool-grid">
-      <div class="tool-card c1" onclick="openTool('imgCompress')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">🗜️</div>
-          <div class="tool-badges"><span class="badge badge-fast">Fast</span><span class="badge badge-private">Private</span></div>
-        </div>
-        <div class="tool-name">Image Compressor</div>
-        <div class="tool-desc">Reduce image file size with target KB/MB control. Supports JPG, PNG, WebP.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-      <div class="tool-card c1" onclick="openTool('imgResize')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">📐</div>
-          <div class="tool-badges"><span class="badge badge-fast">Fast</span><span class="badge badge-private">Private</span></div>
-        </div>
-        <div class="tool-name">Image Resizer</div>
-        <div class="tool-desc">Resize to custom dimensions or presets like Instagram, Twitter, LinkedIn.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-      <div class="tool-card c1" onclick="openTool('imgConvert')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">🔄</div>
-          <div class="tool-badges"><span class="badge badge-fast">Fast</span><span class="badge badge-free">Free</span></div>
-        </div>
-        <div class="tool-name">Format Converter</div>
-        <div class="tool-desc">Convert between PNG, JPG, WebP formats directly in your browser.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-      <div class="tool-card c1" onclick="openTool('imgMeta')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">🧹</div>
-          <div class="tool-badges"><span class="badge badge-private">Private</span><span class="badge badge-free">Free</span></div>
-        </div>
-        <div class="tool-name">Remove EXIF Data</div>
-        <div class="tool-desc">Strip metadata (location, device, date) from images before sharing.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- CLUSTER 2: PDF TOOLS -->
-  <section class="cluster" data-cluster="2">
-    <div class="cluster-header">
-      <div class="cluster-icon ci2">📄</div>
-      <div class="cluster-meta">
-        <div class="cluster-title">PDF Tools</div>
-        <div class="cluster-sub">Merge, split, compress, and manage your PDF files</div>
-      </div>
-      <div class="cluster-count">4 tools</div>
-    </div>
-    <div class="tool-grid">
-      <div class="tool-card c2" onclick="openTool('pdfMerge')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">📎</div>
-          <div class="tool-badges"><span class="badge badge-fast">Fast</span><span class="badge badge-free">Free</span></div>
-        </div>
-        <div class="tool-name">Merge PDFs</div>
-        <div class="tool-desc">Combine multiple PDF files into one. Drag to reorder before merging.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-      <div class="tool-card c2" onclick="openTool('pdfInfo')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">🔍</div>
-          <div class="tool-badges"><span class="badge badge-private">Private</span><span class="badge badge-free">Free</span></div>
-        </div>
-        <div class="tool-name">PDF Inspector</div>
-        <div class="tool-desc">View page count, file size, metadata and properties of any PDF file.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-      <div class="tool-card c2" onclick="openTool('imgToPdf')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">🖼️→📄</div>
-          <div class="tool-badges"><span class="badge badge-fast">Fast</span><span class="badge badge-free">Free</span></div>
-        </div>
-        <div class="tool-name">Image → PDF</div>
-        <div class="tool-desc">Convert one or multiple images (JPG/PNG) into a single PDF document.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-      <div class="tool-card c2" onclick="openTool('textToPdf')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">📝→📄</div>
-          <div class="tool-badges"><span class="badge badge-fast">Fast</span><span class="badge badge-free">Free</span></div>
-        </div>
-        <div class="tool-name">Text → PDF</div>
-        <div class="tool-desc">Convert plain text or formatted content into a downloadable PDF file.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- CLUSTER 3: CALCULATORS -->
-  <section class="cluster" data-cluster="3">
-    <div class="cluster-header">
-      <div class="cluster-icon ci3">🧮</div>
-      <div class="cluster-meta">
-        <div class="cluster-title">Practical Calculators</div>
-        <div class="cluster-sub">Financial, health, and everyday calculation tools</div>
-      </div>
-      <div class="cluster-count">4 tools</div>
-    </div>
-    <div class="tool-grid">
-      <div class="tool-card c3" onclick="openTool('bmiCalc')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">⚖️</div>
-          <div class="tool-badges"><span class="badge badge-fast">Instant</span><span class="badge badge-free">Free</span></div>
-        </div>
-        <div class="tool-name">BMI Calculator</div>
-        <div class="tool-desc">Calculate Body Mass Index with weight & height. Supports kg/lb and cm/ft.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-      <div class="tool-card c3" onclick="openTool('ageCalc')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">🎂</div>
-          <div class="tool-badges"><span class="badge badge-fast">Instant</span><span class="badge badge-free">Free</span></div>
-        </div>
-        <div class="tool-name">Age Calculator</div>
-        <div class="tool-desc">Find exact age in years, months, days and hours from a birthdate.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-      <div class="tool-card c3" onclick="openTool('loanCalc')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">💰</div>
-          <div class="tool-badges"><span class="badge badge-fast">Instant</span><span class="badge badge-free">Free</span></div>
-        </div>
-        <div class="tool-name">Loan / EMI Calculator</div>
-        <div class="tool-desc">Calculate monthly EMI, total interest, and payment schedule for any loan.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-      <div class="tool-card c3" onclick="openTool('percentCalc')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">📊</div>
-          <div class="tool-badges"><span class="badge badge-fast">Instant</span><span class="badge badge-free">Free</span></div>
-        </div>
-        <div class="tool-name">Percentage Calculator</div>
-        <div class="tool-desc">Calculate percentage of a number, increase/decrease, and difference.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- CLUSTER 4: DOCUMENT HELPERS -->
-  <section class="cluster" data-cluster="4">
-    <div class="cluster-header">
-      <div class="cluster-icon ci4">🧾</div>
-      <div class="cluster-meta">
-        <div class="cluster-title">Document Helpers</div>
-        <div class="cluster-sub">Generate invoices, format text, and work with structured data</div>
-      </div>
-      <div class="cluster-count">4 tools</div>
-    </div>
-    <div class="tool-grid">
-      <div class="tool-card c4" onclick="openTool('invoiceGen')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">🧾</div>
-          <div class="tool-badges"><span class="badge badge-free">Free</span><span class="badge badge-fast">Fast</span></div>
-        </div>
-        <div class="tool-name">Invoice Generator</div>
-        <div class="tool-desc">Create and download professional invoices as PDF with your branding.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-      <div class="tool-card c4" onclick="openTool('jsonFmt')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">{ }</div>
-          <div class="tool-badges"><span class="badge badge-fast">Instant</span><span class="badge badge-private">Private</span></div>
-        </div>
-        <div class="tool-name">JSON Formatter</div>
-        <div class="tool-desc">Beautify, minify, and validate JSON data. View as tree structure.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-      <div class="tool-card c4" onclick="openTool('wordCount')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">📝</div>
-          <div class="tool-badges"><span class="badge badge-fast">Instant</span><span class="badge badge-free">Free</span></div>
-        </div>
-        <div class="tool-name">Word Counter</div>
-        <div class="tool-desc">Count words, characters, sentences, paragraphs and reading time.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-      <div class="tool-card c4" onclick="openTool('csvViewer')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">📋</div>
-          <div class="tool-badges"><span class="badge badge-private">Private</span><span class="badge badge-fast">Fast</span></div>
-        </div>
-        <div class="tool-name">CSV Viewer</div>
-        <div class="tool-desc">Paste or upload CSV data and view it as a searchable, sortable table.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- CLUSTER 5: PRIVACY TOOLS -->
-  <section class="cluster" data-cluster="5">
-    <div class="cluster-header">
-      <div class="cluster-icon ci5">🔐</div>
-      <div class="cluster-meta">
-        <div class="cluster-title">Privacy & Cleanup</div>
-        <div class="cluster-sub">Protect your data before sharing files online</div>
-      </div>
-      <div class="cluster-count">2 tools</div>
-    </div>
-    <div class="tool-grid">
-      <div class="tool-card c5" onclick="openTool('passGen')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">🔑</div>
-          <div class="tool-badges"><span class="badge badge-private">Private</span><span class="badge badge-fast">Instant</span></div>
-        </div>
-        <div class="tool-name">Password Generator</div>
-        <div class="tool-desc">Generate strong, random passwords with custom length and character rules.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-      <div class="tool-card c5" onclick="openTool('hashGen')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">🔒</div>
-          <div class="tool-badges"><span class="badge badge-private">Private</span><span class="badge badge-fast">Instant</span></div>
-        </div>
-        <div class="tool-name">Hash Generator</div>
-        <div class="tool-desc">Generate MD5, SHA-1, SHA-256 hashes from any text string instantly.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- CLUSTER 6: FILE CONVERSION -->
-  <section class="cluster" data-cluster="6">
-    <div class="cluster-header">
-      <div class="cluster-icon ci6">📦</div>
-      <div class="cluster-meta">
-        <div class="cluster-title">File Conversion</div>
-        <div class="cluster-sub">Convert between common file and data formats</div>
-      </div>
-      <div class="cluster-count">2 tools</div>
-    </div>
-    <div class="tool-grid">
-      <div class="tool-card c6" onclick="openTool('csvJson')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">⇄</div>
-          <div class="tool-badges"><span class="badge badge-fast">Instant</span><span class="badge badge-private">Private</span></div>
-        </div>
-        <div class="tool-name">CSV ↔ JSON</div>
-        <div class="tool-desc">Convert CSV data to JSON and back. Paste data or upload a file.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-      <div class="tool-card c6" onclick="openTool('base64')">
-        <div class="tool-card-top">
-          <div class="tool-icon-wrap">💾</div>
-          <div class="tool-badges"><span class="badge badge-fast">Instant</span><span class="badge badge-private">Private</span></div>
-        </div>
-        <div class="tool-name">Base64 Encoder</div>
-        <div class="tool-desc">Encode text or files to Base64, or decode Base64 strings back to text.</div>
-        <svg class="tool-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- No results -->
-  <div class="no-results hidden" id="noResults">
-    <div class="no-results-icon">🔍</div>
-    <p>No tools found for "<span id="searchTerm"></span>"</p>
+<!-- ── CLUSTER 1 ── -->
+<section class="cluster" data-c="1">
+  <div class="cluster-hdr">
+    <div class="cluster-dot cd1"></div>
+    <span class="cluster-name">Image Tools</span>
+    <span class="cluster-sub">compress · resize · convert · clean</span>
+    <div class="cluster-line"></div>
+    <div class="cluster-cnt">4 tools</div>
   </div>
+  <div class="grid">
+    <div class="card c1" onclick="open_tool('imgCompress')">
+      <div class="card-top"><div class="card-icon">🗜️</div><div class="card-tags"><span class="tag tag-fast">Fast</span><span class="tag tag-priv">Private</span></div></div>
+      <div class="card-name">Image Compressor</div>
+      <div class="card-desc">Reduce file size with quality control. Supports JPG, PNG, WebP.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+    <div class="card c1" onclick="open_tool('imgResize')">
+      <div class="card-top"><div class="card-icon">📐</div><div class="card-tags"><span class="tag tag-fast">Fast</span><span class="tag tag-priv">Private</span></div></div>
+      <div class="card-name">Image Resizer</div>
+      <div class="card-desc">Resize to custom dimensions or social media presets.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+    <div class="card c1" onclick="open_tool('imgConvert')">
+      <div class="card-top"><div class="card-icon">🔄</div><div class="card-tags"><span class="tag tag-fast">Fast</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">Format Converter</div>
+      <div class="card-desc">Convert between PNG, JPG, and WebP formats instantly.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+    <div class="card c1" onclick="open_tool('imgMeta')">
+      <div class="card-top"><div class="card-icon">🧹</div><div class="card-tags"><span class="tag tag-priv">Private</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">Remove EXIF Data</div>
+      <div class="card-desc">Strip GPS, device & date metadata from images before sharing.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+  </div>
+</section>
 
+<!-- ── CLUSTER 2 ── -->
+<section class="cluster" data-c="2">
+  <div class="cluster-hdr">
+    <div class="cluster-dot cd2"></div>
+    <span class="cluster-name">PDF Tools</span>
+    <span class="cluster-sub">merge · inspect · convert</span>
+    <div class="cluster-line"></div>
+    <div class="cluster-cnt">4 tools</div>
+  </div>
+  <div class="grid">
+    <div class="card c2" onclick="open_tool('pdfMerge')">
+      <div class="card-top"><div class="card-icon">📎</div><div class="card-tags"><span class="tag tag-fast">Fast</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">Merge PDFs</div>
+      <div class="card-desc">Combine multiple PDF files into one document.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+    <div class="card c2" onclick="open_tool('pdfInfo')">
+      <div class="card-top"><div class="card-icon">🔍</div><div class="card-tags"><span class="tag tag-priv">Private</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">PDF Inspector</div>
+      <div class="card-desc">View page count, file size, and metadata of any PDF.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+    <div class="card c2" onclick="open_tool('imgToPdf')">
+      <div class="card-top"><div class="card-icon">🖼️</div><div class="card-tags"><span class="tag tag-fast">Fast</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">Images → PDF</div>
+      <div class="card-desc">Convert one or multiple images into a single PDF document.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+    <div class="card c2" onclick="open_tool('textToPdf')">
+      <div class="card-top"><div class="card-icon">📝</div><div class="card-tags"><span class="tag tag-fast">Fast</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">Text → PDF</div>
+      <div class="card-desc">Convert plain text or content into a downloadable PDF.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CLUSTER 3 ── -->
+<section class="cluster" data-c="3">
+  <div class="cluster-hdr">
+    <div class="cluster-dot cd3"></div>
+    <span class="cluster-name">Calculators</span>
+    <span class="cluster-sub">BMI · age · loan · percentage</span>
+    <div class="cluster-line"></div>
+    <div class="cluster-cnt">4 tools</div>
+  </div>
+  <div class="grid">
+    <div class="card c3" onclick="open_tool('bmiCalc')">
+      <div class="card-top"><div class="card-icon">⚖️</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">BMI Calculator</div>
+      <div class="card-desc">Calculate Body Mass Index with metric & imperial support.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+    <div class="card c3" onclick="open_tool('ageCalc')">
+      <div class="card-top"><div class="card-icon">🎂</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">Age Calculator</div>
+      <div class="card-desc">Find exact age in years, months, days — plus next birthday.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+    <div class="card c3" onclick="open_tool('loanCalc')">
+      <div class="card-top"><div class="card-icon">💰</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">Loan / EMI Calculator</div>
+      <div class="card-desc">Monthly EMI, total interest and payment breakdown.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+    <div class="card c3" onclick="open_tool('percentCalc')">
+      <div class="card-top"><div class="card-icon">📊</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">Percentage Calculator</div>
+      <div class="card-desc">% of number, % change, and what % X is of Y.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CLUSTER 4 ── -->
+<section class="cluster" data-c="4">
+  <div class="cluster-hdr">
+    <div class="cluster-dot cd4"></div>
+    <span class="cluster-name">Document Helpers</span>
+    <span class="cluster-sub">invoice · JSON · words · CSV</span>
+    <div class="cluster-line"></div>
+    <div class="cluster-cnt">4 tools</div>
+  </div>
+  <div class="grid">
+    <div class="card c4" onclick="open_tool('invoiceGen')">
+      <div class="card-top"><div class="card-icon">🧾</div><div class="card-tags"><span class="tag tag-free">Free</span><span class="tag tag-fast">Fast</span></div></div>
+      <div class="card-name">Invoice Generator</div>
+      <div class="card-desc">Create and download professional invoices as PDF.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+    <div class="card c4" onclick="open_tool('jsonFmt')">
+      <div class="card-top"><div class="card-icon">{ }</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-priv">Private</span></div></div>
+      <div class="card-name">JSON Formatter</div>
+      <div class="card-desc">Beautify, minify, and validate JSON. View as structured tree.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+    <div class="card c4" onclick="open_tool('wordCount')">
+      <div class="card-top"><div class="card-icon">📝</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-free">Free</span></div></div>
+      <div class="card-name">Word Counter</div>
+      <div class="card-desc">Words, characters, sentences, paragraphs & reading time.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+    <div class="card c4" onclick="open_tool('csvViewer')">
+      <div class="card-top"><div class="card-icon">📋</div><div class="card-tags"><span class="tag tag-priv">Private</span><span class="tag tag-fast">Fast</span></div></div>
+      <div class="card-name">CSV Viewer</div>
+      <div class="card-desc">Paste or upload CSV and view it as a sortable table.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CLUSTER 5 ── -->
+<section class="cluster" data-c="5">
+  <div class="cluster-hdr">
+    <div class="cluster-dot cd5"></div>
+    <span class="cluster-name">Privacy & Security</span>
+    <span class="cluster-sub">passwords · hashes</span>
+    <div class="cluster-line"></div>
+    <div class="cluster-cnt">2 tools</div>
+  </div>
+  <div class="grid">
+    <div class="card c5" onclick="open_tool('passGen')">
+      <div class="card-top"><div class="card-icon">🔑</div><div class="card-tags"><span class="tag tag-priv">Private</span><span class="tag tag-fast">Instant</span></div></div>
+      <div class="card-name">Password Generator</div>
+      <div class="card-desc">Cryptographically random passwords with custom length & rules.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+    <div class="card c5" onclick="open_tool('hashGen')">
+      <div class="card-top"><div class="card-icon">🔒</div><div class="card-tags"><span class="tag tag-priv">Private</span><span class="tag tag-fast">Instant</span></div></div>
+      <div class="card-name">Hash Generator</div>
+      <div class="card-desc">Generate SHA-1, SHA-256, SHA-512 hashes from any text.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CLUSTER 6 ── -->
+<section class="cluster" data-c="6">
+  <div class="cluster-hdr">
+    <div class="cluster-dot cd6"></div>
+    <span class="cluster-name">File Conversion</span>
+    <span class="cluster-sub">CSV ↔ JSON · Base64</span>
+    <div class="cluster-line"></div>
+    <div class="cluster-cnt">2 tools</div>
+  </div>
+  <div class="grid">
+    <div class="card c6" onclick="open_tool('csvJson')">
+      <div class="card-top"><div class="card-icon">⇄</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-priv">Private</span></div></div>
+      <div class="card-name">CSV ↔ JSON</div>
+      <div class="card-desc">Convert CSV to JSON and back. Paste data or upload a file.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+    <div class="card c6" onclick="open_tool('base64')">
+      <div class="card-top"><div class="card-icon">💾</div><div class="card-tags"><span class="tag tag-fast">Instant</span><span class="tag tag-priv">Private</span></div></div>
+      <div class="card-name">Base64 Encoder</div>
+      <div class="card-desc">Encode text or files to Base64, or decode Base64 strings.</div>
+      <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<div class="nores hidden" id="noRes">
+  <div class="nores-ico">🔍</div>
+  <p>No tools found for "<span id="noResTerm"></span>"</p>
+</div>
 </main>
 
 <footer>
-  <p><strong>Toolify</strong> · All tools run entirely in your browser · No files are uploaded to any server · 100% private</p>
+  <p><strong>Toolify</strong> · All processing happens in your browser · No files sent to any server · Always free</p>
 </footer>
 
-<!-- ═══════════════════════════════════════════
-     MODAL OVERLAY
-═══════════════════════════════════════════ -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+<!-- ── MODAL ── -->
+<div class="overlay" id="overlay" onclick="overlay_click(event)">
   <div class="modal" id="modal">
-    <div class="modal-header" id="modalHeader">
-      <div class="modal-icon" id="modalIcon"></div>
-      <div class="modal-title-wrap">
-        <div class="modal-title" id="modalTitle"></div>
-        <div class="modal-subtitle" id="modalSubtitle"></div>
+    <div class="modal-hdr">
+      <div class="modal-ico" id="mIco"></div>
+      <div class="modal-titles">
+        <div class="modal-title" id="mTitle"></div>
+        <div class="modal-sub" id="mSub"></div>
       </div>
-      <button class="modal-close" onclick="closeModal()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
+      <button class="modal-close" onclick="close_modal()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
-    <div class="modal-body" id="modalBody"></div>
-    <div class="modal-footer" id="modalFooter"></div>
+    <div class="modal-body" id="mBody"></div>
+    <div class="modal-foot" id="mFoot"></div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     SCRIPTS
-═══════════════════════════════════════════ -->
+<div class="toast" id="toast"></div>
+
 <script>
-/* ════════════════════════════════════════════
+/* ══════════════════════════════════════
    TOOL REGISTRY
-════════════════════════════════════════════ */
-const TOOLS = {
-  imgCompress: {
-    title: 'Image Compressor', icon: '🗜️', subtitle: 'Reduce image file size with quality control',
-    cluster: 'c1', footer: ['Client-side processing', 'Files never uploaded', 'Supports JPG · PNG · WebP']
-  },
-  imgResize: {
-    title: 'Image Resizer', icon: '📐', subtitle: 'Resize to custom dimensions or social presets',
-    cluster: 'c1', footer: ['Client-side processing', 'Maintain aspect ratio option', 'Social media presets']
-  },
-  imgConvert: {
-    title: 'Image Format Converter', icon: '🔄', subtitle: 'Convert between PNG, JPG, and WebP',
-    cluster: 'c1', footer: ['Client-side processing', 'Lossless conversion available', 'No quality loss on PNG']
-  },
-  imgMeta: {
-    title: 'Remove EXIF Data', icon: '🧹', subtitle: 'Strip all metadata from images before sharing',
-    cluster: 'c1', footer: ['Files never uploaded', 'Removes GPS, device, date', 'Privacy protection']
-  },
-  pdfMerge: {
-    title: 'Merge PDFs', icon: '📎', subtitle: 'Combine multiple PDF files into one document',
-    cluster: 'c2', footer: ['Uses PDF-lib in browser', 'Files never uploaded', 'Unlimited pages']
-  },
-  pdfInfo: {
-    title: 'PDF Inspector', icon: '🔍', subtitle: 'View metadata and properties of any PDF',
-    cluster: 'c2', footer: ['Read-only inspection', 'Files never uploaded', 'Instant results']
-  },
-  imgToPdf: {
-    title: 'Image → PDF', icon: '🖼️', subtitle: 'Convert images into a PDF document',
-    cluster: 'c2', footer: ['Multiple images supported', 'Adjustable page size', 'Files never uploaded']
-  },
-  textToPdf: {
-    title: 'Text → PDF', icon: '📝', subtitle: 'Convert plain text into a downloadable PDF',
-    cluster: 'c2', footer: ['Font size control', 'Margin settings', 'Instant download']
-  },
-  bmiCalc: {
-    title: 'BMI Calculator', icon: '⚖️', subtitle: 'Body Mass Index with health range guide',
-    cluster: 'c3', footer: ['WHO BMI standards', 'Metric & Imperial', 'Instant results']
-  },
-  ageCalc: {
-    title: 'Age Calculator', icon: '🎂', subtitle: 'Exact age from birthdate with full breakdown',
-    cluster: 'c3', footer: ['Precise to the day', 'Next birthday countdown', 'Instant results']
-  },
-  loanCalc: {
-    title: 'Loan / EMI Calculator', icon: '💰', subtitle: 'Monthly payment and total interest calculator',
-    cluster: 'c3', footer: ['Standard amortization', 'Full payment schedule', 'Instant results']
-  },
-  percentCalc: {
-    title: 'Percentage Calculator', icon: '📊', subtitle: 'All types of percentage calculations in one place',
-    cluster: 'c3', footer: ['3 calculation modes', 'Reverse percentages', 'Instant results']
-  },
-  invoiceGen: {
-    title: 'Invoice Generator', icon: '🧾', subtitle: 'Create professional invoices and download as PDF',
-    cluster: 'c4', footer: ['No account needed', 'PDF download', 'Add line items & tax']
-  },
-  jsonFmt: {
-    title: 'JSON Formatter', icon: '{ }', subtitle: 'Beautify, minify and validate JSON data',
-    cluster: 'c4', footer: ['Syntax validation', 'Minify option', 'Copy to clipboard']
-  },
-  wordCount: {
-    title: 'Word Counter', icon: '📝', subtitle: 'Words, characters, sentences, reading time',
-    cluster: 'c4', footer: ['Real-time counting', 'Reading time estimate', 'No paste limit']
-  },
-  csvViewer: {
-    title: 'CSV Viewer', icon: '📋', subtitle: 'View CSV data as a sortable, searchable table',
-    cluster: 'c4', footer: ['Upload or paste CSV', 'Sortable columns', 'Search filter']
-  },
-  passGen: {
-    title: 'Password Generator', icon: '🔑', subtitle: 'Strong random passwords with custom rules',
-    cluster: 'c5', footer: ['Never transmitted', 'Cryptographically random', 'Copy instantly']
-  },
-  hashGen: {
-    title: 'Hash Generator', icon: '🔒', subtitle: 'MD5 / SHA-1 / SHA-256 from any text',
-    cluster: 'c5', footer: ['Uses Web Crypto API', 'Client-side only', 'Instant results']
-  },
-  csvJson: {
-    title: 'CSV ↔ JSON Converter', icon: '⇄', subtitle: 'Bidirectional CSV and JSON conversion',
-    cluster: 'c6', footer: ['Handles nested data', 'Paste or upload', 'Copy output instantly']
-  },
-  base64: {
-    title: 'Base64 Encoder / Decoder', icon: '💾', subtitle: 'Encode text to Base64 or decode back',
-    cluster: 'c6', footer: ['Encode & decode modes', 'File support', 'Copy instantly']
-  }
+══════════════════════════════════════ */
+const T = {
+  imgCompress:{title:'Image Compressor',icon:'🗜️',sub:'Reduce image size with quality control',c:'c1',ico:'rgba(43,91,246,.1)',foot:['Client-side only','Never uploaded','JPG · PNG · WebP']},
+  imgResize:{title:'Image Resizer',icon:'📐',sub:'Custom dimensions or social media presets',c:'c1',ico:'rgba(43,91,246,.1)',foot:['Aspect ratio lock','Social presets','Client-side only']},
+  imgConvert:{title:'Format Converter',icon:'🔄',sub:'Convert between PNG, JPG and WebP',c:'c1',ico:'rgba(43,91,246,.1)',foot:['Lossless PNG option','Client-side only']},
+  imgMeta:{title:'Remove EXIF Data',icon:'🧹',sub:'Strip all metadata from images',c:'c1',ico:'rgba(43,91,246,.1)',foot:['Removes GPS · device · date','Files never uploaded']},
+  pdfMerge:{title:'Merge PDFs',icon:'📎',sub:'Combine multiple PDFs into one',c:'c2',ico:'rgba(240,68,56,.1)',foot:['Uses pdf-lib','Files never uploaded','Unlimited pages']},
+  pdfInfo:{title:'PDF Inspector',icon:'🔍',sub:'View metadata and properties of any PDF',c:'c2',ico:'rgba(240,68,56,.1)',foot:['Read-only','Files never uploaded']},
+  imgToPdf:{title:'Images → PDF',icon:'🖼️',sub:'Convert images into a PDF document',c:'c2',ico:'rgba(240,68,56,.1)',foot:['Multiple images','A4 · Letter · Fit','Files never uploaded']},
+  textToPdf:{title:'Text → PDF',icon:'📝',sub:'Convert plain text into a downloadable PDF',c:'c2',ico:'rgba(240,68,56,.1)',foot:['Word wrap','Multi-page','Instant download']},
+  bmiCalc:{title:'BMI Calculator',icon:'⚖️',sub:'Body Mass Index with health range guide',c:'c3',ico:'rgba(18,183,106,.1)',foot:['WHO standards','Metric & Imperial']},
+  ageCalc:{title:'Age Calculator',icon:'🎂',sub:'Exact age breakdown from any birthdate',c:'c3',ico:'rgba(18,183,106,.1)',foot:['Precise to the day','Next birthday countdown']},
+  loanCalc:{title:'Loan / EMI Calculator',icon:'💰',sub:'Monthly payment and interest breakdown',c:'c3',ico:'rgba(18,183,106,.1)',foot:['Standard amortization','Full breakdown']},
+  percentCalc:{title:'Percentage Calculator',icon:'📊',sub:'All percentage calculations in one place',c:'c3',ico:'rgba(18,183,106,.1)',foot:['3 calculation modes','Instant results']},
+  invoiceGen:{title:'Invoice Generator',icon:'🧾',sub:'Professional invoices downloadable as PDF',c:'c4',ico:'rgba(247,144,9,.1)',foot:['No account needed','Tax support','PDF download']},
+  jsonFmt:{title:'JSON Formatter',icon:'{ }',sub:'Beautify, minify and validate JSON',c:'c4',ico:'rgba(247,144,9,.1)',foot:['Syntax validation','Minify option','Copy to clipboard']},
+  wordCount:{title:'Word Counter',icon:'📝',sub:'Words, characters, sentences, reading time',c:'c4',ico:'rgba(247,144,9,.1)',foot:['Real-time','Reading time estimate']},
+  csvViewer:{title:'CSV Viewer',icon:'📋',sub:'View CSV as sortable, searchable table',c:'c4',ico:'rgba(247,144,9,.1)',foot:['Upload or paste','Sortable columns']},
+  passGen:{title:'Password Generator',icon:'🔑',sub:'Strong random passwords with custom rules',c:'c5',ico:'rgba(124,58,237,.1)',foot:['Crypto random','Never transmitted']},
+  hashGen:{title:'Hash Generator',icon:'🔒',sub:'SHA-1 / SHA-256 / SHA-512 from any text',c:'c5',ico:'rgba(124,58,237,.1)',foot:['Web Crypto API','Client-side only']},
+  csvJson:{title:'CSV ↔ JSON',icon:'⇄',sub:'Bidirectional CSV and JSON conversion',c:'c6',ico:'rgba(14,165,233,.1)',foot:['Paste or upload','Copy output']},
+  base64:{title:'Base64 Encoder / Decoder',icon:'💾',sub:'Encode text to Base64 or decode it back',c:'c6',ico:'rgba(14,165,233,.1)',foot:['Encode & decode','File support']}
 };
 
-/* ════════════════════════════════════════════
+/* ══════════════════════════════════════
    MODAL
-════════════════════════════════════════════ */
-let currentTool = null;
+══════════════════════════════════════ */
+let curTool = null;
 
-function openTool(id) {
-  currentTool = id;
-  const t = TOOLS[id];
-  if (!t) return;
-
-  document.getElementById('modalIcon').textContent = t.icon;
-  document.getElementById('modalIcon').className = 'modal-icon ' + t.cluster.replace('c','ci');
-  document.getElementById('modalTitle').textContent = t.title;
-  document.getElementById('modalSubtitle').textContent = t.subtitle;
-  document.getElementById('modalBody').innerHTML = renderTool(id);
-  document.getElementById('modalFooter').innerHTML = (t.footer || []).map(f => `<span class="modal-tag">${f}</span>`).join('');
-
-  document.getElementById('modalOverlay').classList.add('open');
+function open_tool(id) {
+  curTool = id;
+  const t = T[id]; if(!t) return;
+  document.getElementById('mIco').textContent = t.icon;
+  document.getElementById('mIco').style.background = t.ico;
+  document.getElementById('mTitle').textContent = t.title;
+  document.getElementById('mSub').textContent = t.sub;
+  document.getElementById('mBody').innerHTML = render(id);
+  document.getElementById('mFoot').innerHTML = (t.foot||[]).map((f,i)=>`<span class="foot-tag">${f}</span>`).join('');
+  document.getElementById('overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
-  initTool(id);
+  init_tool(id);
 }
 
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
+function close_modal() {
+  document.getElementById('overlay').classList.remove('open');
   document.body.style.overflow = '';
-  currentTool = null;
+  curTool = null;
 }
 
-function closeModalOnOverlay(e) {
-  if (e.target === document.getElementById('modalOverlay')) closeModal();
-}
+function overlay_click(e) { if(e.target===document.getElementById('overlay')) close_modal(); }
+document.addEventListener('keydown', e => { if(e.key==='Escape') close_modal(); });
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+/* ══════════════════════════════════════
+   RENDER TOOLS
+══════════════════════════════════════ */
+function render(id) {
+  const today = new Date().toISOString().split('T')[0];
+  const map = {
 
-/* ════════════════════════════════════════════
-   TOOL RENDERERS
-════════════════════════════════════════════ */
-function renderTool(id) {
-  const r = {
-    imgCompress: () => `
-      <div class="drop-zone" id="compDrop">
-        <input type="file" accept="image/*" id="compFile" onchange="handleCompressFile(this)">
-        <span class="drop-zone-icon">🗜️</span>
-        <div class="drop-zone-title">Drop an image or click to browse</div>
-        <div class="drop-zone-sub">JPG, PNG, WebP supported</div>
+    imgCompress: ()=>`
+      <div class="dz" id="compDz">
+        <input type="file" accept="image/*" id="compFile" onchange="on_comp_file(this)">
+        <span class="dz-ico">🗜️</span>
+        <div class="dz-t">Drop an image or click to browse</div>
+        <div class="dz-s">JPG, PNG, WebP supported</div>
       </div>
-      <div class="field mt-16">
-        <label>Quality: <span id="qualLabel">80</span>%</label>
-        <input type="range" id="qualSlider" min="10" max="100" value="80" oninput="document.getElementById('qualLabel').textContent=this.value">
+      <div class="f mt16">
+        <label>Quality: <strong id="qualV">82</strong>%</label>
+        <input type="range" id="qualR" min="10" max="100" value="82" oninput="document.getElementById('qualV').textContent=this.value">
+        <div class="hint">Lower = smaller file · Higher = better quality</div>
       </div>
-      <div class="btn-group">
-        <button class="btn btn-primary btn-lg" onclick="compressImage()">🗜️ Compress Image</button>
-      </div>
-      <div id="compResult" class="result-area"></div>`,
+      <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_compress()">🗜️ Compress Image</button></div>
+      <div id="compOut"></div>`,
 
-    imgResize: () => `
-      <div class="drop-zone">
-        <input type="file" accept="image/*" id="resizeFile" onchange="previewResizeFile(this)">
-        <span class="drop-zone-icon">📐</span>
-        <div class="drop-zone-title">Drop an image or click to browse</div>
-        <div class="drop-zone-sub">Any image format</div>
+    imgResize: ()=>`
+      <div class="dz">
+        <input type="file" accept="image/*" id="resFile" onchange="on_res_file(this)">
+        <span class="dz-ico">📐</span>
+        <div class="dz-t">Drop an image or click to browse</div>
+        <div class="dz-s">Original dimensions will be auto-filled</div>
       </div>
-      <div class="mt-16">
-        <div class="segment-group" id="resizePresets">
-          <button class="segment-btn active" onclick="setPreset(0,0,this)">Custom</button>
-          <button class="segment-btn" onclick="setPreset(1080,1080,this)">Instagram 1:1</button>
-          <button class="segment-btn" onclick="setPreset(1920,1080,this)">Full HD</button>
-          <button class="segment-btn" onclick="setPreset(800,600,this)">800×600</button>
+      <div class="mt16">
+        <div class="segs" id="resPresets">
+          <button class="seg on" onclick="set_preset(0,0,this)">Custom</button>
+          <button class="seg" onclick="set_preset(1080,1080,this)">Instagram 1:1</button>
+          <button class="seg" onclick="set_preset(1080,1920,this)">Story 9:16</button>
+          <button class="seg" onclick="set_preset(1200,630,this)">OG Image</button>
+          <button class="seg" onclick="set_preset(1920,1080,this)">Full HD</button>
+          <button class="seg" onclick="set_preset(800,600,this)">800×600</button>
         </div>
-        <div class="field-row">
-          <div class="field"><label>Width (px)</label><input type="number" id="rW" value="800" min="1"></div>
-          <div class="field"><label>Height (px)</label><input type="number" id="rH" value="600" min="1"></div>
+        <div class="frow">
+          <div class="f"><label>Width (px)</label><input type="number" id="rW" value="800" min="1" oninput="ar_w()"></div>
+          <div class="f"><label>Height (px)</label><input type="number" id="rH" value="600" min="1" oninput="ar_h()"></div>
         </div>
-        <div class="checkbox-row"><input type="checkbox" id="keepAspect" checked><span>Maintain aspect ratio</span></div>
+        <div class="chk"><input type="checkbox" id="keepAR" checked><span>Maintain aspect ratio</span></div>
+        <div class="f"><label>Output format</label>
+          <select id="resFmt"><option value="image/jpeg">JPG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select>
+        </div>
       </div>
-      <div class="btn-group">
-        <button class="btn btn-primary btn-lg" onclick="resizeImage()">📐 Resize Image</button>
-      </div>
-      <div id="resizeResult" class="result-area"></div>`,
+      <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_resize()">📐 Resize Image</button></div>
+      <div id="resOut"></div>`,
 
-    imgConvert: () => `
-      <div class="drop-zone">
+    imgConvert: ()=>`
+      <div class="dz">
         <input type="file" accept="image/*" id="cvtFile">
-        <span class="drop-zone-icon">🔄</span>
-        <div class="drop-zone-title">Drop an image or click to browse</div>
-        <div class="drop-zone-sub">PNG, JPG, WebP supported</div>
+        <span class="dz-ico">🔄</span>
+        <div class="dz-t">Drop an image or click to browse</div>
+        <div class="dz-s">PNG, JPG, WebP supported</div>
       </div>
-      <div class="field mt-16">
+      <div class="f mt16">
         <label>Convert to format</label>
         <select id="cvtFmt">
           <option value="image/jpeg">JPG (JPEG)</option>
-          <option value="image/png">PNG</option>
-          <option value="image/webp">WebP</option>
+          <option value="image/png">PNG (lossless)</option>
+          <option value="image/webp">WebP (modern)</option>
         </select>
       </div>
-      <div class="btn-group">
-        <button class="btn btn-primary btn-lg" onclick="convertImage()">🔄 Convert Image</button>
-      </div>
-      <div id="cvtResult" class="result-area"></div>`,
+      <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_convert()">🔄 Convert Image</button></div>
+      <div id="cvtOut"></div>`,
 
-    imgMeta: () => `
-      <div class="drop-zone">
-        <input type="file" accept="image/*" id="metaFile">
-        <span class="drop-zone-icon">🧹</span>
-        <div class="drop-zone-title">Drop an image to strip metadata</div>
-        <div class="drop-zone-sub">JPG (EXIF), PNG, WebP</div>
+    imgMeta: ()=>`
+      <div class="info">🔐 Your image is processed entirely in your browser. Nothing is ever uploaded to a server.</div>
+      <div class="dz mt12">
+        <input type="file" accept="image/*" id="metaFile" onchange="on_meta_file(this)">
+        <span class="dz-ico">🧹</span>
+        <div class="dz-t">Drop an image to strip its metadata</div>
+        <div class="dz-s">JPG (EXIF), PNG, WebP</div>
       </div>
-      <div class="btn-group">
-        <button class="btn btn-primary btn-lg" onclick="removeExif()">🧹 Strip Metadata & Download</button>
-      </div>
-      <div id="metaResult" class="result-area"></div>`,
+      <div id="metaInfo"></div>
+      <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_meta()">🧹 Strip & Download Clean Image</button></div>
+      <div id="metaOut"></div>`,
 
-    pdfMerge: () => `
-      <div class="drop-zone">
-        <input type="file" accept=".pdf" multiple id="mergeFiles">
-        <span class="drop-zone-icon">📎</span>
-        <div class="drop-zone-title">Drop PDF files here (select multiple)</div>
-        <div class="drop-zone-sub">Hold Ctrl/Cmd to select multiple files</div>
+    pdfMerge: ()=>`
+      <div class="dz">
+        <input type="file" accept=".pdf" multiple id="mergeFiles" onchange="on_merge_files(this)">
+        <span class="dz-ico">📎</span>
+        <div class="dz-t">Select multiple PDF files</div>
+        <div class="dz-s">Hold Ctrl / Cmd to select more than one</div>
       </div>
-      <div id="mergeList" class="mt-12"></div>
-      <div class="btn-group">
-        <button class="btn btn-primary btn-lg" onclick="mergePdfs()">📎 Merge PDFs</button>
-      </div>
-      <div id="mergeResult" class="result-area"></div>`,
+      <div id="mergeList" class="mt12"></div>
+      <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_merge()">📎 Merge PDFs</button></div>
+      <div id="mergeOut"></div>`,
 
-    pdfInfo: () => `
-      <div class="drop-zone">
-        <input type="file" accept=".pdf" id="pdfInfoFile" onchange="inspectPdf(this)">
-        <span class="drop-zone-icon">🔍</span>
-        <div class="drop-zone-title">Drop a PDF to inspect</div>
-        <div class="drop-zone-sub">Read-only — file is never uploaded</div>
+    pdfInfo: ()=>`
+      <div class="dz">
+        <input type="file" accept=".pdf" id="pdfInfoFile" onchange="do_pdf_info(this)">
+        <span class="dz-ico">🔍</span>
+        <div class="dz-t">Drop a PDF to inspect it</div>
+        <div class="dz-s">Read-only — file is never uploaded</div>
       </div>
-      <div id="pdfInfoResult" class="result-area"></div>`,
+      <div id="pdfInfoOut"></div>`,
 
-    imgToPdf: () => `
-      <div class="drop-zone">
-        <input type="file" accept="image/*" multiple id="i2pFiles">
-        <span class="drop-zone-icon">🖼️</span>
-        <div class="drop-zone-title">Drop images (one or multiple)</div>
-        <div class="drop-zone-sub">JPG, PNG — each image = one PDF page</div>
+    imgToPdf: ()=>`
+      <div class="dz">
+        <input type="file" accept="image/*" multiple id="i2pFiles" onchange="on_i2p_files(this)">
+        <span class="dz-ico">🖼️</span>
+        <div class="dz-t">Drop images (one or multiple)</div>
+        <div class="dz-s">JPG, PNG — each image becomes one PDF page</div>
       </div>
-      <div class="field mt-12">
+      <div id="i2pList" class="mt12"></div>
+      <div class="f mt12">
         <label>Page size</label>
         <select id="i2pSize">
-          <option value="A4">A4</option>
-          <option value="Letter">Letter</option>
+          <option value="a4">A4 (210×297mm)</option>
+          <option value="letter">Letter (216×279mm)</option>
           <option value="fit">Fit to image</option>
         </select>
       </div>
-      <div class="btn-group">
-        <button class="btn btn-primary btn-lg" onclick="imagesToPdf()">📄 Create PDF</button>
-      </div>
-      <div id="i2pResult" class="result-area"></div>`,
+      <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_img2pdf()">📄 Create PDF</button></div>
+      <div id="i2pOut"></div>`,
 
-    textToPdf: () => `
-      <div class="field">
-        <label>Title (optional)</label>
+    textToPdf: ()=>`
+      <div class="f">
+        <label>Document title</label>
         <input type="text" id="txtTitle" placeholder="My Document">
       </div>
-      <div class="field">
+      <div class="f">
         <label>Content</label>
-        <textarea id="txtContent" placeholder="Paste or type your text here…" style="min-height:180px"></textarea>
+        <textarea id="txtContent" style="min-height:180px" placeholder="Type or paste your text here…"></textarea>
       </div>
-      <div class="field-row">
-        <div class="field"><label>Font size</label><select id="txtFontSize"><option>10</option><option selected>12</option><option>14</option><option>16</option></select></div>
-        <div class="field"><label>Margin (mm)</label><select id="txtMargin"><option>10</option><option selected>20</option><option>30</option></select></div>
+      <div class="frow">
+        <div class="f"><label>Font size</label>
+          <select id="txtSize"><option value="10">10pt</option><option value="11">11pt</option><option value="12" selected>12pt</option><option value="14">14pt</option><option value="16">16pt</option></select>
+        </div>
+        <div class="f"><label>Margin</label>
+          <select id="txtMargin"><option value="15">Narrow (15mm)</option><option value="20" selected>Normal (20mm)</option><option value="25">Wide (25mm)</option></select>
+        </div>
       </div>
-      <div class="btn-group">
-        <button class="btn btn-primary btn-lg" onclick="textToPdf()">📄 Generate PDF</button>
-      </div>
-      <div id="txtResult" class="result-area"></div>`,
+      <div class="btns"><button class="btn btn-blue btn-lg" onclick="do_text2pdf()">📄 Generate PDF</button></div>
+      <div id="txtOut"></div>`,
 
-    bmiCalc: () => `
+    bmiCalc: ()=>`
       <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab(this,'metric')">Metric (kg/cm)</button>
-        <button class="tab-btn" onclick="switchTab(this,'imperial')">Imperial (lb/ft)</button>
+        <button class="tb on" onclick="sw_tab(this,'bmi_m')">Metric (kg / cm)</button>
+        <button class="tb" onclick="sw_tab(this,'bmi_i')">Imperial (lb / ft·in)</button>
       </div>
-      <div class="tab-panel active" id="metric">
-        <div class="field-row">
-          <div class="field"><label>Weight (kg)</label><input type="number" id="bmiWkg" placeholder="70" oninput="calcBMI()"></div>
-          <div class="field"><label>Height (cm)</label><input type="number" id="bmiHcm" placeholder="175" oninput="calcBMI()"></div>
+      <div class="tp on" id="bmi_m">
+        <div class="frow">
+          <div class="f"><label>Weight (kg)</label><input type="number" id="bW" placeholder="70" oninput="calc_bmi()"></div>
+          <div class="f"><label>Height (cm)</label><input type="number" id="bH" placeholder="175" oninput="calc_bmi()"></div>
         </div>
       </div>
-      <div class="tab-panel" id="imperial">
-        <div class="field-row">
-          <div class="field"><label>Weight (lb)</label><input type="number" id="bmiWlb" placeholder="154" oninput="calcBMI()"></div>
-          <div class="field"><label>Height (ft)</label><input type="number" id="bmiHft" placeholder="5.9" step="0.1" oninput="calcBMI()"></div>
+      <div class="tp" id="bmi_i">
+        <div class="frow3">
+          <div class="f"><label>Weight (lb)</label><input type="number" id="bWl" placeholder="154" oninput="calc_bmi()"></div>
+          <div class="f"><label>Feet</label><input type="number" id="bHft" placeholder="5" min="1" max="9" oninput="calc_bmi()"></div>
+          <div class="f"><label>Inches</label><input type="number" id="bHin" placeholder="10" min="0" max="11" oninput="calc_bmi()"></div>
         </div>
       </div>
-      <div id="bmiResult" class="result-area"></div>`,
+      <div id="bmiOut"></div>`,
 
-    ageCalc: () => `
-      <div class="field">
-        <label>Date of Birth</label>
-        <input type="date" id="ageInput" oninput="calcAge()" max="${new Date().toISOString().split('T')[0]}">
+    ageCalc: ()=>`
+      <div class="frow">
+        <div class="f"><label>Date of Birth</label><input type="date" id="ageIn" oninput="calc_age()" max="${today}"></div>
+        <div class="f"><label>Calculate age as of</label><input type="date" id="ageRef" value="${today}" oninput="calc_age()"></div>
       </div>
-      <div class="field">
-        <label>Calculate age as of</label>
-        <input type="date" id="ageRef" value="${new Date().toISOString().split('T')[0]}" oninput="calcAge()">
-      </div>
-      <div id="ageResult" class="result-area"></div>`,
+      <div id="ageOut"></div>`,
 
-    loanCalc: () => `
-      <div class="field-row">
-        <div class="field"><label>Loan Amount ($)</label><input type="number" id="loanAmt" placeholder="10000" oninput="calcLoan()"></div>
-        <div class="field"><label>Annual Interest (%)</label><input type="number" id="loanRate" placeholder="8.5" step="0.1" oninput="calcLoan()"></div>
+    loanCalc: ()=>`
+      <div class="frow">
+        <div class="f"><label>Loan Amount ($)</label><input type="number" id="lAmt" placeholder="10000" oninput="calc_loan()"></div>
+        <div class="f"><label>Annual Interest (%)</label><input type="number" id="lRate" placeholder="8.5" step="0.1" oninput="calc_loan()"></div>
       </div>
-      <div class="field">
-        <label>Loan Term: <span id="loanTermLabel">24</span> months</label>
-        <input type="range" id="loanTerm" min="1" max="360" value="24" oninput="document.getElementById('loanTermLabel').textContent=this.value;calcLoan()">
+      <div class="f">
+        <label>Loan Term: <strong id="lTermV">24</strong> months</label>
+        <input type="range" id="lTerm" min="1" max="360" value="24" oninput="document.getElementById('lTermV').textContent=this.value;calc_loan()">
       </div>
-      <div id="loanResult" class="result-area"></div>`,
+      <div id="loanOut"></div>`,
 
-    percentCalc: () => `
+    percentCalc: ()=>`
       <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab(this,'pct1')">% of Number</button>
-        <button class="tab-btn" onclick="switchTab(this,'pct2')">% Change</button>
-        <button class="tab-btn" onclick="switchTab(this,'pct3')">X is % of Y</button>
+        <button class="tb on" onclick="sw_tab(this,'p1')">% of number</button>
+        <button class="tb" onclick="sw_tab(this,'p2')">% change</button>
+        <button class="tb" onclick="sw_tab(this,'p3')">X is % of Y</button>
       </div>
-      <div class="tab-panel active" id="pct1">
-        <div class="field-row">
-          <div class="field"><label>Percentage (%)</label><input type="number" id="p1pct" placeholder="15" oninput="calcPct()"></div>
-          <div class="field"><label>Of number</label><input type="number" id="p1num" placeholder="200" oninput="calcPct()"></div>
+      <div class="tp on" id="p1">
+        <div class="frow">
+          <div class="f"><label>Percentage (%)</label><input type="number" id="p1a" placeholder="15" oninput="calc_pct()"></div>
+          <div class="f"><label>Of number</label><input type="number" id="p1b" placeholder="200" oninput="calc_pct()"></div>
         </div>
       </div>
-      <div class="tab-panel" id="pct2">
-        <div class="field-row">
-          <div class="field"><label>From value</label><input type="number" id="p2from" placeholder="100" oninput="calcPct()"></div>
-          <div class="field"><label>To value</label><input type="number" id="p2to" placeholder="125" oninput="calcPct()"></div>
+      <div class="tp" id="p2">
+        <div class="frow">
+          <div class="f"><label>From value</label><input type="number" id="p2a" placeholder="100" oninput="calc_pct()"></div>
+          <div class="f"><label>To value</label><input type="number" id="p2b" placeholder="125" oninput="calc_pct()"></div>
         </div>
       </div>
-      <div class="tab-panel" id="pct3">
-        <div class="field-row">
-          <div class="field"><label>Value X</label><input type="number" id="p3x" placeholder="30" oninput="calcPct()"></div>
-          <div class="field"><label>Total Y</label><input type="number" id="p3y" placeholder="200" oninput="calcPct()"></div>
+      <div class="tp" id="p3">
+        <div class="frow">
+          <div class="f"><label>Value (X)</label><input type="number" id="p3a" placeholder="30" oninput="calc_pct()"></div>
+          <div class="f"><label>Total (Y)</label><input type="number" id="p3b" placeholder="200" oninput="calc_pct()"></div>
         </div>
       </div>
-      <div id="pctResult" class="result-area"></div>`,
+      <div id="pctOut"></div>`,
 
-    invoiceGen: () => `
-      <div class="field-row">
-        <div class="field"><label>Your Name / Company</label><input type="text" id="invFrom" placeholder="Acme Inc."></div>
-        <div class="field"><label>Client Name</label><input type="text" id="invTo" placeholder="Client Co."></div>
+    invoiceGen: ()=>`
+      <div class="frow">
+        <div class="f"><label>From (Your name / company)</label><input type="text" id="iFrom" placeholder="Acme Inc." oninput="inv_total()"></div>
+        <div class="f"><label>Bill To (Client)</label><input type="text" id="iTo" placeholder="Client Co." oninput="inv_total()"></div>
       </div>
-      <div class="field-row">
-        <div class="field"><label>Invoice #</label><input type="text" id="invNum" placeholder="INV-001"></div>
-        <div class="field"><label>Date</label><input type="date" id="invDate" value="${new Date().toISOString().split('T')[0]}"></div>
+      <div class="frow">
+        <div class="f"><label>Invoice #</label><input type="text" id="iNum" value="INV-001"></div>
+        <div class="f"><label>Date</label><input type="date" id="iDate" value="${today}"></div>
       </div>
-      <div id="invItems">
-        <div class="result-label mt-12">Line Items</div>
-        <div id="invLineItems"></div>
+      <div class="section-divider"></div>
+      <div class="rlabel">Line Items</div>
+      <div id="iLines"></div>
+      <button class="btn btn-ghost btn-sm mt8" onclick="inv_add()">+ Add line item</button>
+      <div class="section-divider"></div>
+      <div class="frow">
+        <div class="f"><label>Tax (%)</label><input type="number" id="iTax" value="0" min="0" step="0.5" oninput="inv_total()"></div>
+        <div class="f"><label>Currency</label>
+          <select id="iCur" onchange="inv_total()">
+            <option value="$">USD ($)</option><option value="€">EUR (€)</option>
+            <option value="£">GBP (£)</option><option value="₹">INR (₹)</option>
+            <option value="C$">CAD (C$)</option><option value="A$">AUD (A$)</option>
+          </select>
+        </div>
       </div>
-      <button class="btn btn-secondary btn-sm mt-8" onclick="addInvItem()">+ Add Item</button>
-      <div class="field-row mt-12">
-        <div class="field"><label>Tax (%)</label><input type="number" id="invTax" value="0" min="0" oninput="updateInvTotal()"></div>
-        <div class="field"><label>Currency</label><select id="invCurrency"><option value="$">USD ($)</option><option value="€">EUR (€)</option><option value="£">GBP (£)</option><option value="₹">INR (₹)</option></select></div>
+      <div class="rbox" id="iTotal" style="display:none">
+        <div class="rlabel">Total Amount</div>
+        <div class="rval" id="iTotalV">$0.00</div>
       </div>
-      <div class="result-box mt-12" id="invTotalBox" style="display:none">
-        <div class="result-label">Total Amount</div>
-        <div class="result-value" id="invTotal">$0.00</div>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-primary btn-lg" onclick="downloadInvoice()">📄 Download Invoice PDF</button>
-      </div>`,
+      <div class="btns"><button class="btn btn-blue btn-lg" onclick="inv_download()">📄 Download Invoice PDF</button></div>`,
 
-    jsonFmt: () => `
-      <div class="field">
+    jsonFmt: ()=>`
+      <div class="f">
         <label>Paste JSON</label>
-        <textarea id="jsonInput" placeholder='{"name":"Toolify","version":1}' style="min-height:150px;font-family:var(--mono);font-size:13px" oninput="formatJson()"></textarea>
+        <textarea id="jIn" style="min-height:140px;font-family:var(--mono);font-size:13px" placeholder='{"name":"Toolify","version":2}' oninput="j_fmt()"></textarea>
       </div>
-      <div class="btn-group">
-        <button class="btn btn-primary" onclick="formatJson()">✨ Beautify</button>
-        <button class="btn btn-secondary" onclick="minifyJson()">🗜 Minify</button>
-        <button class="btn btn-secondary" onclick="copyJson()">📋 Copy</button>
+      <div class="btns">
+        <button class="btn btn-blue" onclick="j_fmt()">✨ Beautify</button>
+        <button class="btn btn-ghost" onclick="j_min()">🗜 Minify</button>
+        <button class="btn btn-ghost" onclick="j_copy()">📋 Copy</button>
+        <button class="btn btn-ghost" onclick="j_clear()">✕ Clear</button>
       </div>
-      <div id="jsonResult" class="result-area"></div>`,
+      <div id="jOut"></div>`,
 
-    wordCount: () => `
-      <div class="field">
+    wordCount: ()=>`
+      <div class="f">
         <label>Paste or type your text</label>
-        <textarea id="wcInput" placeholder="Start typing…" style="min-height:200px" oninput="countWords()"></textarea>
+        <textarea id="wcIn" style="min-height:200px" placeholder="Start typing or paste content here…" oninput="count_words()"></textarea>
       </div>
-      <div id="wcResult" class="result-area"></div>`,
+      <div id="wcOut"></div>`,
 
-    csvViewer: () => `
+    csvViewer: ()=>`
       <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab(this,'csvPaste')">Paste CSV</button>
-        <button class="tab-btn" onclick="switchTab(this,'csvUpload')">Upload File</button>
+        <button class="tb on" onclick="sw_tab(this,'csvP')">Paste CSV</button>
+        <button class="tb" onclick="sw_tab(this,'csvU')">Upload File</button>
       </div>
-      <div class="tab-panel active" id="csvPaste">
-        <div class="field"><textarea id="csvInput" placeholder="name,age,city&#10;Alice,30,NY&#10;Bob,25,LA" style="min-height:120px;font-family:var(--mono);font-size:12px" oninput="renderCsv()"></textarea></div>
+      <div class="tp on" id="csvP">
+        <div class="f"><textarea id="csvIn" style="min-height:110px;font-family:var(--mono);font-size:12px" placeholder="name,age,city&#10;Alice,30,New York&#10;Bob,25,London" oninput="render_csv()"></textarea></div>
       </div>
-      <div class="tab-panel" id="csvUpload">
-        <div class="drop-zone" style="padding:24px"><input type="file" accept=".csv,.txt" id="csvFile" onchange="loadCsvFile(this)"><span>📂 Click or drop a CSV file</span></div>
+      <div class="tp" id="csvU">
+        <div class="dz" style="padding:20px"><input type="file" accept=".csv,.txt" id="csvFile" onchange="load_csv(this)">📂 Click or drop a CSV file</div>
       </div>
-      <div id="csvTable" class="result-area"></div>`,
+      <div id="csvOut"></div>`,
 
-    passGen: () => `
-      <div class="field">
-        <label>Length: <span id="passLenLabel">16</span> characters</label>
-        <input type="range" id="passLen" min="6" max="64" value="16" oninput="document.getElementById('passLenLabel').textContent=this.value;genPass()">
+    passGen: ()=>`
+      <div class="f">
+        <label>Length: <strong id="pLenV">16</strong> characters</label>
+        <input type="range" id="pLen" min="6" max="64" value="16" oninput="document.getElementById('pLenV').textContent=this.value;gen_pass()">
       </div>
-      <div class="checkbox-row"><input type="checkbox" id="passUpper" checked onchange="genPass()"><span>Uppercase (A-Z)</span></div>
-      <div class="checkbox-row"><input type="checkbox" id="passLower" checked onchange="genPass()"><span>Lowercase (a-z)</span></div>
-      <div class="checkbox-row"><input type="checkbox" id="passNum" checked onchange="genPass()"><span>Numbers (0-9)</span></div>
-      <div class="checkbox-row"><input type="checkbox" id="passSym" checked onchange="genPass()"><span>Symbols (!@#$%)</span></div>
-      <div class="result-box mt-16" id="passOut" style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-        <div class="mono fw-600" id="passValue" style="font-size:15px;word-break:break-all"></div>
-        <button class="btn btn-secondary btn-sm" onclick="copyPass()" style="flex-shrink:0">Copy</button>
+      <div class="chk"><input type="checkbox" id="pUp" checked onchange="gen_pass()"><span>Uppercase (A–Z)</span></div>
+      <div class="chk"><input type="checkbox" id="pLo" checked onchange="gen_pass()"><span>Lowercase (a–z)</span></div>
+      <div class="chk"><input type="checkbox" id="pNu" checked onchange="gen_pass()"><span>Numbers (0–9)</span></div>
+      <div class="chk"><input type="checkbox" id="pSy" checked onchange="gen_pass()"><span>Symbols (!@#$%^&*)</span></div>
+      <div class="pass-out" id="pOut">
+        <div class="pass-val" id="pVal">—</div>
+        <button class="btn btn-ghost btn-sm" onclick="copy_pass()">Copy</button>
       </div>
-      <div class="btn-group">
-        <button class="btn btn-primary" onclick="genPass()">🔑 Regenerate</button>
-        <button class="btn btn-secondary" onclick="genMultiple()">Generate 5 options</button>
+      <div class="pass-strength" id="pStr"></div>
+      <div class="btns">
+        <button class="btn btn-blue" onclick="gen_pass()">🔑 Regenerate</button>
+        <button class="btn btn-ghost" onclick="gen_multi()">Generate 5 options</button>
       </div>
-      <div id="passMulti" class="result-area"></div>`,
+      <div id="pMulti"></div>`,
 
-    hashGen: () => `
-      <div class="field">
+    hashGen: ()=>`
+      <div class="f">
         <label>Input text</label>
-        <textarea id="hashInput" placeholder="Type or paste text to hash…" style="min-height:100px" oninput="genHash()"></textarea>
+        <textarea id="hIn" style="min-height:100px" placeholder="Enter text to hash…" oninput="do_hash()"></textarea>
       </div>
-      <div id="hashResult" class="result-area"></div>`,
+      <div id="hOut"></div>`,
 
-    csvJson: () => `
+    csvJson: ()=>`
       <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab(this,'csvtoj')">CSV → JSON</button>
-        <button class="tab-btn" onclick="switchTab(this,'jsontocsv')">JSON → CSV</button>
+        <button class="tb on" onclick="sw_tab(this,'c2j')">CSV → JSON</button>
+        <button class="tb" onclick="sw_tab(this,'j2c')">JSON → CSV</button>
       </div>
-      <div class="tab-panel active" id="csvtoj">
-        <div class="field"><label>CSV Input</label><textarea id="c2jInput" placeholder="name,age&#10;Alice,30&#10;Bob,25" style="min-height:120px;font-family:var(--mono);font-size:12px"></textarea></div>
-        <div class="btn-group"><button class="btn btn-primary" onclick="csvToJson()">Convert →</button><button class="btn btn-secondary" onclick="copyCsv2j()">Copy Result</button></div>
-        <div id="c2jResult" class="result-area"></div>
+      <div class="tp on" id="c2j">
+        <div class="f"><label>CSV Input</label><textarea id="c2jIn" style="min-height:120px;font-family:var(--mono);font-size:12.5px" placeholder="name,age&#10;Alice,30&#10;Bob,25"></textarea></div>
+        <div class="btns"><button class="btn btn-blue" onclick="csv_to_json()">Convert →</button><button class="btn btn-ghost" onclick="copy_el('c2jOut')">Copy JSON</button></div>
+        <div id="c2jOut"></div>
       </div>
-      <div class="tab-panel" id="jsontocsv">
-        <div class="field"><label>JSON Input (array of objects)</label><textarea id="j2cInput" placeholder='[{"name":"Alice","age":30}]' style="min-height:120px;font-family:var(--mono);font-size:12px"></textarea></div>
-        <div class="btn-group"><button class="btn btn-primary" onclick="jsonToCsv()">Convert →</button><button class="btn btn-secondary" onclick="copyJ2c()">Copy Result</button></div>
-        <div id="j2cResult" class="result-area"></div>
+      <div class="tp" id="j2c">
+        <div class="f"><label>JSON Input (array of objects)</label><textarea id="j2cIn" style="min-height:120px;font-family:var(--mono);font-size:12.5px" placeholder='[{"name":"Alice","age":30}]'></textarea></div>
+        <div class="btns"><button class="btn btn-blue" onclick="json_to_csv()">Convert →</button><button class="btn btn-ghost" onclick="copy_el('j2cOut')">Copy CSV</button></div>
+        <div id="j2cOut"></div>
       </div>`,
 
-    base64: () => `
+    base64: ()=>`
       <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab(this,'b64enc')">Encode</button>
-        <button class="tab-btn" onclick="switchTab(this,'b64dec')">Decode</button>
+        <button class="tb on" onclick="sw_tab(this,'b64e')">Encode</button>
+        <button class="tb" onclick="sw_tab(this,'b64d')">Decode</button>
       </div>
-      <div class="tab-panel active" id="b64enc">
-        <div class="field"><label>Text to encode</label><textarea id="b64EncIn" placeholder="Hello, World!" style="min-height:100px" oninput="encodeB64()"></textarea></div>
-        <div id="b64EncOut" class="result-area"></div>
+      <div class="tp on" id="b64e">
+        <div class="f"><label>Text to encode</label><textarea id="b64eIn" style="min-height:100px" placeholder="Hello, World!" oninput="b64_enc()"></textarea></div>
+        <div id="b64eOut"></div>
       </div>
-      <div class="tab-panel" id="b64dec">
-        <div class="field"><label>Base64 to decode</label><textarea id="b64DecIn" placeholder="SGVsbG8sIFdvcmxkIQ==" style="min-height:100px;font-family:var(--mono);font-size:12px" oninput="decodeB64()"></textarea></div>
-        <div id="b64DecOut" class="result-area"></div>
+      <div class="tp" id="b64d">
+        <div class="f"><label>Base64 to decode</label><textarea id="b64dIn" style="min-height:100px;font-family:var(--mono);font-size:12.5px" placeholder="SGVsbG8sIFdvcmxkIQ==" oninput="b64_dec()"></textarea></div>
+        <div id="b64dOut"></div>
       </div>`
   };
-  return (r[id] || (() => '<p>Tool coming soon.</p>'))();
+  return (map[id]||(() => '<p>Tool coming soon.</p>'))();
 }
 
-/* ════════════════════════════════════════════
-   TOOL INITIALISERS
-════════════════════════════════════════════ */
-function initTool(id) {
-  if (id === 'wordCount') countWords();
-  if (id === 'passGen') genPass();
-  if (id === 'invoiceGen') { addInvItem(); }
-  if (id === 'loanCalc') calcLoan();
-  if (id === 'percentCalc') calcPct();
-  if (id === 'bmiCalc') {}
-  if (id === 'ageCalc') {}
+function init_tool(id) {
+  if(id==='wordCount') count_words();
+  if(id==='passGen') gen_pass();
+  if(id==='invoiceGen') { _invItems=[]; inv_add(); }
+  if(id==='loanCalc') calc_loan();
 }
 
-/* ════════════════════════════════════════════
+/* ══════════════════════════════════════
+   TABS / SEGS
+══════════════════════════════════════ */
+function sw_tab(btn, panelId) {
+  const mb = document.getElementById('mBody');
+  mb.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
+  mb.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  const p = document.getElementById(panelId);
+  if(p) p.classList.add('on');
+  // re-calc
+  if(['p1','p2','p3'].includes(panelId)) calc_pct();
+}
+
+/* ══════════════════════════════════════
    IMAGE TOOLS
-════════════════════════════════════════════ */
-function handleCompressFile(input) {
-  const file = input.files[0];
-  if (!file) return;
-  const dz = document.getElementById('compDrop');
-  dz.querySelector('.drop-zone-title').textContent = file.name;
-  dz.querySelector('.drop-zone-sub').textContent = formatBytes(file.size);
+══════════════════════════════════════ */
+function on_comp_file(inp) {
+  const f = inp.files[0]; if(!f) return;
+  const dz = document.getElementById('compDz');
+  dz.querySelector('.dz-t').textContent = f.name;
+  dz.querySelector('.dz-s').textContent = fmtB(f.size);
 }
 
-function compressImage() {
-  const file = document.getElementById('compFile').files[0];
-  const quality = parseInt(document.getElementById('qualSlider').value) / 100;
-  const out = document.getElementById('compResult');
-  if (!file) { out.innerHTML = '<div class="result-error">Please select an image first.</div>'; return; }
-  const img = new Image();
-  const url = URL.createObjectURL(file);
+function do_compress() {
+  const f = document.getElementById('compFile').files[0];
+  const q = parseInt(document.getElementById('qualR').value)/100;
+  const out = document.getElementById('compOut');
+  if(!f) { out.innerHTML = err('Please select an image first.'); return; }
+  out.innerHTML = loading('Compressing…');
+  const img = new Image(), url = URL.createObjectURL(f);
   img.onload = () => {
-    const canvas = document.createElement('canvas');
-    canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
-    canvas.getContext('2d').drawImage(img, 0, 0);
-    const mimeOut = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
-    canvas.toBlob(blob => {
-      const saving = (((file.size - blob.size) / file.size) * 100).toFixed(1);
-      out.innerHTML = `
-        <div class="result-grid">
-          <div class="result-item"><div class="result-item-label">Original</div><div class="result-item-val">${formatBytes(file.size)}</div></div>
-          <div class="result-item"><div class="result-item-label">Compressed</div><div class="result-item-val color-green">${formatBytes(blob.size)}</div></div>
-          <div class="result-item"><div class="result-item-label">Savings</div><div class="result-item-val color-green">${saving}%</div></div>
-          <div class="result-item"><div class="result-item-label">Quality</div><div class="result-item-val">${Math.round(quality*100)}%</div></div>
-        </div>
-        <div class="btn-group"><button class="btn btn-success" onclick="dlBlob(window._compBlob,'compressed.${mimeOut==='image/png'?'png':'jpg'}')">⬇️ Download</button></div>`;
+    const c = document.createElement('canvas');
+    c.width = img.naturalWidth; c.height = img.naturalHeight;
+    c.getContext('2d').drawImage(img,0,0);
+    const mime = f.type==='image/png'?'image/png':'image/jpeg';
+    c.toBlob(blob=>{
+      const pct = (((f.size-blob.size)/f.size)*100).toFixed(1);
+      const ext = mime==='image/png'?'png':'jpg';
       window._compBlob = blob;
+      out.innerHTML = `
+        <div class="rgrid">
+          <div class="ri"><div class="ri-l">Original</div><div class="ri-v">${fmtB(f.size)}</div></div>
+          <div class="ri"><div class="ri-l">Compressed</div><div class="ri-v green">${fmtB(blob.size)}</div></div>
+          <div class="ri"><div class="ri-l">Saved</div><div class="ri-v green">${pct}%</div></div>
+          <div class="ri"><div class="ri-l">Quality</div><div class="ri-v">${Math.round(q*100)}%</div></div>
+        </div>
+        <div class="btns"><button class="btn btn-green" onclick="dl(window._compBlob,'compressed.${ext}')">⬇️ Download Compressed</button></div>`;
       URL.revokeObjectURL(url);
-    }, mimeOut, quality);
+    }, mime, q);
   };
   img.src = url;
 }
 
-function previewResizeFile(input) {
-  const file = input.files[0];
-  if (!file) return;
+window._origAR = 1;
+function on_res_file(inp) {
+  const f = inp.files[0]; if(!f) return;
   const img = new Image();
   img.onload = () => {
     document.getElementById('rW').value = img.naturalWidth;
     document.getElementById('rH').value = img.naturalHeight;
-    window._origAspect = img.naturalWidth / img.naturalHeight;
+    window._origAR = img.naturalWidth / img.naturalHeight;
   };
-  img.src = URL.createObjectURL(file);
+  img.src = URL.createObjectURL(f);
 }
 
-function setPreset(w, h, btn) {
-  document.querySelectorAll('#resizePresets .segment-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  if (w) { document.getElementById('rW').value = w; document.getElementById('rH').value = h; }
+function set_preset(w,h,btn) {
+  document.querySelectorAll('#resPresets .seg').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  if(w){ document.getElementById('rW').value=w; document.getElementById('rH').value=h; }
 }
 
-function resizeImage() {
-  const file = document.getElementById('resizeFile').files[0];
-  const out = document.getElementById('resizeResult');
-  if (!file) { out.innerHTML = '<div class="result-error">Please select an image first.</div>'; return; }
+function ar_w() {
+  if(document.getElementById('keepAR')?.checked && window._origAR)
+    document.getElementById('rH').value = Math.round(document.getElementById('rW').value / window._origAR);
+}
+function ar_h() {
+  if(document.getElementById('keepAR')?.checked && window._origAR)
+    document.getElementById('rW').value = Math.round(document.getElementById('rH').value * window._origAR);
+}
+
+function do_resize() {
+  const f = document.getElementById('resFile').files[0];
+  const out = document.getElementById('resOut');
+  if(!f) { out.innerHTML = err('Please select an image first.'); return; }
   const w = parseInt(document.getElementById('rW').value);
   const h = parseInt(document.getElementById('rH').value);
+  const fmt = document.getElementById('resFmt').value;
+  if(!w||!h||w<1||h<1) { out.innerHTML = err('Please enter valid dimensions.'); return; }
+  out.innerHTML = loading('Resizing…');
   const img = new Image();
   img.onload = () => {
-    const canvas = document.createElement('canvas');
-    canvas.width = w; canvas.height = h;
-    canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-    canvas.toBlob(blob => {
-      out.innerHTML = `
-        <div class="result-success">✅ Resized to ${w} × ${h}px (${formatBytes(blob.size)})</div>
-        <div class="img-preview-wrap"><img src="${URL.createObjectURL(blob)}"></div>
-        <div class="btn-group"><button class="btn btn-success" onclick="dlBlob(window._resBlob,'resized.jpg')">⬇️ Download</button></div>`;
+    const c = document.createElement('canvas');
+    c.width=w; c.height=h;
+    const ctx = c.getContext('2d');
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(img,0,0,w,h);
+    const ext = {['image/jpeg']:'jpg',['image/png']:'png',['image/webp']:'webp'}[fmt];
+    c.toBlob(blob=>{
       window._resBlob = blob;
-    }, 'image/jpeg', .92);
+      out.innerHTML = `
+        <div class="ok">✅ Resized to ${w} × ${h}px · ${fmtB(blob.size)}</div>
+        <div class="img-preview"><img src="${URL.createObjectURL(blob)}" alt="Resized"></div>
+        <div class="btns"><button class="btn btn-green" onclick="dl(window._resBlob,'resized.${ext}')">⬇️ Download</button></div>`;
+    }, fmt, fmt==='image/png'?1:.92);
   };
-  img.src = URL.createObjectURL(file);
+  img.src = URL.createObjectURL(f);
 }
 
-function convertImage() {
-  const file = document.getElementById('cvtFile').files[0];
+function do_convert() {
+  const f = document.getElementById('cvtFile').files[0];
   const fmt = document.getElementById('cvtFmt').value;
-  const out = document.getElementById('cvtResult');
-  if (!file) { out.innerHTML = '<div class="result-error">Please select an image first.</div>'; return; }
-  const ext = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' }[fmt];
+  const out = document.getElementById('cvtOut');
+  if(!f) { out.innerHTML = err('Please select an image first.'); return; }
+  out.innerHTML = loading('Converting…');
+  const ext = {['image/jpeg']:'jpg',['image/png']:'png',['image/webp']:'webp'}[fmt];
   const img = new Image();
   img.onload = () => {
-    const canvas = document.createElement('canvas');
-    canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
-    canvas.getContext('2d').drawImage(img, 0, 0);
-    canvas.toBlob(blob => {
-      out.innerHTML = `
-        <div class="result-success">✅ Converted to ${ext.toUpperCase()} · ${formatBytes(blob.size)}</div>
-        <div class="img-preview-wrap"><img src="${URL.createObjectURL(blob)}"></div>
-        <div class="btn-group"><button class="btn btn-success" onclick="dlBlob(window._cvtBlob,'converted.${ext}')">⬇️ Download</button></div>`;
+    const c = document.createElement('canvas');
+    c.width=img.naturalWidth; c.height=img.naturalHeight;
+    c.getContext('2d').drawImage(img,0,0);
+    c.toBlob(blob=>{
       window._cvtBlob = blob;
-    }, fmt, fmt === 'image/png' ? 1 : 0.92);
+      out.innerHTML = `
+        <div class="ok">✅ Converted to ${ext.toUpperCase()} · ${fmtB(blob.size)}</div>
+        <div class="img-preview"><img src="${URL.createObjectURL(blob)}" alt="Converted"></div>
+        <div class="btns"><button class="btn btn-green" onclick="dl(window._cvtBlob,'converted.${ext}')">⬇️ Download</button></div>`;
+    }, fmt, fmt==='image/png'?1:.92);
   };
-  img.src = URL.createObjectURL(file);
+  img.src = URL.createObjectURL(f);
 }
 
-function removeExif() {
-  const file = document.getElementById('metaFile').files[0];
-  const out = document.getElementById('metaResult');
-  if (!file) { out.innerHTML = '<div class="result-error">Please select an image first.</div>'; return; }
+function on_meta_file(inp) {
+  const f = inp.files[0]; if(!f) return;
+  document.getElementById('metaInfo').innerHTML = `<div class="info mt12">📁 <strong>${f.name}</strong> · ${fmtB(f.size)} — metadata will be stripped on download.</div>`;
+}
+
+function do_meta() {
+  const f = document.getElementById('metaFile').files[0];
+  const out = document.getElementById('metaOut');
+  if(!f) { out.innerHTML = err('Please select an image first.'); return; }
+  out.innerHTML = loading('Stripping metadata…');
   const img = new Image();
   img.onload = () => {
-    const canvas = document.createElement('canvas');
-    canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
-    canvas.getContext('2d').drawImage(img, 0, 0);
-    canvas.toBlob(blob => {
-      out.innerHTML = `
-        <div class="result-success">✅ All metadata stripped · ${formatBytes(blob.size)}</div>
-        <div class="btn-group"><button class="btn btn-success" onclick="dlBlob(window._metaBlob,'clean_${file.name}')">⬇️ Download Clean Image</button></div>`;
+    const c = document.createElement('canvas');
+    c.width=img.naturalWidth; c.height=img.naturalHeight;
+    c.getContext('2d').drawImage(img,0,0);
+    c.toBlob(blob=>{
       window._metaBlob = blob;
-    }, 'image/jpeg', 0.95);
+      out.innerHTML = `
+        <div class="ok">✅ All EXIF metadata removed · Clean file: ${fmtB(blob.size)}</div>
+        <div class="btns"><button class="btn btn-green" onclick="dl(window._metaBlob,'clean_${f.name.replace(/\.[^.]+$/,'.jpg')}')">⬇️ Download Clean Image</button></div>`;
+    },'image/jpeg',.96);
   };
-  img.src = URL.createObjectURL(file);
+  img.src = URL.createObjectURL(f);
 }
 
-/* ════════════════════════════════════════════
+/* ══════════════════════════════════════
    PDF TOOLS
-════════════════════════════════════════════ */
-function mergePdfs() {
-  const files = document.getElementById('mergeFiles').files;
-  const out = document.getElementById('mergeResult');
-  if (files.length < 2) { out.innerHTML = '<div class="result-error">Please select at least 2 PDF files.</div>'; return; }
-  out.innerHTML = `<div class="result-success">📎 Selected ${files.length} files. <br><small>Note: Full PDF merge requires the pdf-lib library. For a production build, include <code>pdf-lib</code> via CDN. This demo confirms file selection.</small></div>`;
+══════════════════════════════════════ */
+function on_merge_files(inp) {
+  const files = Array.from(inp.files);
+  document.getElementById('mergeList').innerHTML = files.length
+    ? `<div class="info">📁 ${files.length} file(s) selected: ${files.map(f=>`<strong>${f.name}</strong>`).join(', ')}</div>` : '';
 }
 
-function inspectPdf(input) {
-  const file = input.files[0];
-  const out = document.getElementById('pdfInfoResult');
-  if (!file) return;
+async function do_merge() {
+  const files = document.getElementById('mergeFiles').files;
+  const out = document.getElementById('mergeOut');
+  if(files.length < 2) { out.innerHTML = err('Please select at least 2 PDF files.'); return; }
+  if(typeof PDFLib==='undefined') { out.innerHTML = err('pdf-lib still loading, please wait a moment and try again.'); return; }
+  out.innerHTML = loading(`Merging ${files.length} PDFs…`);
+  try {
+    const { PDFDocument } = PDFLib;
+    const merged = await PDFDocument.create();
+    for(const file of Array.from(files)) {
+      const buf = await file.arrayBuffer();
+      const pdf = await PDFDocument.load(buf, {ignoreEncryption:true});
+      const pages = await merged.copyPages(pdf, pdf.getPageIndices());
+      pages.forEach(p => merged.addPage(p));
+    }
+    const bytes = await merged.save();
+    const blob = new Blob([bytes],{type:'application/pdf'});
+    window._mergeBlob = blob;
+    out.innerHTML = `<div class="ok">✅ Merged ${files.length} PDFs · ${merged.getPageCount()} total pages · ${fmtB(blob.size)}</div>
+      <div class="btns"><button class="btn btn-green" onclick="dl(window._mergeBlob,'merged.pdf')">⬇️ Download Merged PDF</button></div>`;
+  } catch(e) { out.innerHTML = err('Error merging: '+e.message); }
+}
+
+function do_pdf_info(inp) {
+  const file = inp.files[0]; if(!file) return;
+  const out = document.getElementById('pdfInfoOut');
+  out.innerHTML = loading('Reading PDF…');
   const reader = new FileReader();
   reader.onload = e => {
-    const bytes = new Uint8Array(e.target.result);
-    const text = new TextDecoder('latin1').decode(bytes.slice(0, 1500));
-    const pageMatch = text.match(/\/Count\s+(\d+)/);
-    const pages = pageMatch ? pageMatch[1] : 'Unknown';
-    const titleMatch = text.match(/\/Title\s*\(([^)]+)\)/);
-    const title = titleMatch ? titleMatch[1] : '—';
-    const authorMatch = text.match(/\/Author\s*\(([^)]+)\)/);
-    const author = authorMatch ? authorMatch[1] : '—';
-    out.innerHTML = `
-      <div class="result-grid">
-        <div class="result-item"><div class="result-item-label">File Size</div><div class="result-item-val">${formatBytes(file.size)}</div></div>
-        <div class="result-item"><div class="result-item-label">Pages</div><div class="result-item-val">${pages}</div></div>
-        <div class="result-item"><div class="result-item-label">Title</div><div class="result-item-val" style="font-size:13px">${title}</div></div>
-        <div class="result-item"><div class="result-item-label">Author</div><div class="result-item-val" style="font-size:13px">${author}</div></div>
-      </div>
-      <table class="result-table mt-12">
-        <tr><td>File name</td><td>${file.name}</td></tr>
-        <tr><td>Last modified</td><td>${new Date(file.lastModified).toLocaleDateString()}</td></tr>
-        <tr><td>MIME type</td><td>${file.type || 'application/pdf'}</td></tr>
-      </table>`;
+    try {
+      const bytes = new Uint8Array(e.target.result);
+      const txt = new TextDecoder('latin1').decode(bytes.slice(0,2000));
+      const pages = (txt.match(/\/Count\s+(\d+)/)||[])[1] || 'Unknown';
+      const title = decodeMetaStr((txt.match(/\/Title\s*\(([^)]{0,80})\)/)||[])[1] || '—');
+      const author = decodeMetaStr((txt.match(/\/Author\s*\(([^)]{0,80})\)/)||[])[1] || '—');
+      const creator = decodeMetaStr((txt.match(/\/Creator\s*\(([^)]{0,80})\)/)||[])[1] || '—');
+      const version = (txt.match(/%PDF-(\d+\.\d+)/)||[])[1] || 'Unknown';
+      out.innerHTML = `
+        <div class="rgrid mt12">
+          <div class="ri"><div class="ri-l">File Size</div><div class="ri-v">${fmtB(file.size)}</div></div>
+          <div class="ri"><div class="ri-l">Pages</div><div class="ri-v">${pages}</div></div>
+          <div class="ri"><div class="ri-l">PDF Version</div><div class="ri-v">${version}</div></div>
+          <div class="ri"><div class="ri-l">Modified</div><div class="ri-v" style="font-size:13px">${new Date(file.lastModified).toLocaleDateString()}</div></div>
+        </div>
+        <table class="rtable mt12">
+          <tr><td>File name</td><td>${esc(file.name)}</td></tr>
+          <tr><td>Title</td><td>${esc(title)}</td></tr>
+          <tr><td>Author</td><td>${esc(author)}</td></tr>
+          <tr><td>Creator</td><td>${esc(creator)}</td></tr>
+          <tr><td>MIME type</td><td>application/pdf</td></tr>
+        </table>`;
+    } catch(e) { out.innerHTML = err('Could not read PDF: '+e.message); }
   };
   reader.readAsArrayBuffer(file);
 }
 
-function imagesToPdf() {
+function decodeMetaStr(s) { try { return decodeURIComponent(s); } catch { return s||'—'; } }
+
+function on_i2p_files(inp) {
+  const files = Array.from(inp.files);
+  document.getElementById('i2pList').innerHTML = files.length
+    ? `<div class="info">🖼️ ${files.length} image(s) selected</div>` : '';
+}
+
+async function do_img2pdf() {
   const files = document.getElementById('i2pFiles').files;
-  const out = document.getElementById('i2pResult');
-  if (!files.length) { out.innerHTML = '<div class="result-error">Please select at least one image.</div>'; return; }
-  out.innerHTML = `<div class="result-success">🖼️ ${files.length} image(s) selected. <br><small>Full Image→PDF requires jsPDF. Include via CDN in your production build. Files are ready to process.</small></div>`;
+  const out = document.getElementById('i2pOut');
+  if(!files.length) { out.innerHTML = err('Please select at least one image.'); return; }
+  if(typeof window.jspdf==='undefined') { out.innerHTML = err('jsPDF still loading — please wait a moment.'); return; }
+  out.innerHTML = loading(`Creating PDF from ${files.length} image(s)…`);
+  try {
+    const { jsPDF } = window.jspdf;
+    const size = document.getElementById('i2pSize').value;
+    let pdf = null;
+    for(let i=0;i<files.length;i++) {
+      const dataUrl = await file_to_dataurl(files[i]);
+      const img = await load_img(dataUrl);
+      let pw, ph;
+      if(size==='a4'){ pw=210; ph=297; }
+      else if(size==='letter'){ pw=215.9; ph=279.4; }
+      else { pw=img.naturalWidth*0.2646; ph=img.naturalHeight*0.2646; }
+      const orient = pw>ph?'l':'p';
+      if(!pdf) pdf = new jsPDF({orientation:orient,unit:'mm',format:size==='fit'?[pw,ph]:size});
+      else pdf.addPage(size==='fit'?[pw,ph]:size, orient);
+      const m=8, maxW=pw-m*2, maxH=ph-m*2;
+      const ratio = Math.min(maxW/img.naturalWidth, maxH/img.naturalHeight);
+      const dw=img.naturalWidth*ratio, dh=img.naturalHeight*ratio;
+      const imgFmt = files[i].type==='image/png'?'PNG':'JPEG';
+      pdf.addImage(dataUrl, imgFmt, (pw-dw)/2, (ph-dh)/2, dw, dh);
+    }
+    const blob = pdf.output('blob');
+    window._i2pBlob = blob;
+    out.innerHTML = `<div class="ok">✅ PDF created · ${files.length} page(s) · ${fmtB(blob.size)}</div>
+      <div class="btns"><button class="btn btn-green" onclick="dl(window._i2pBlob,'images.pdf')">⬇️ Download PDF</button></div>`;
+  } catch(e) { out.innerHTML = err('Error: '+e.message); }
 }
 
-function textToPdf() {
-  const title = document.getElementById('txtTitle').value || 'Document';
+function do_text2pdf() {
+  const title = document.getElementById('txtTitle').value.trim()||'Document';
   const content = document.getElementById('txtContent').value;
-  const out = document.getElementById('txtResult');
-  if (!content.trim()) { out.innerHTML = '<div class="result-error">Please enter some text.</div>'; return; }
-  const fontSize = document.getElementById('txtFontSize').value;
-  const margin = document.getElementById('txtMargin').value;
-  // Simple text PDF generation using data URI
-  const lines = content.split('\n');
-  const lineHeight = parseInt(fontSize) * 1.6;
-  const mmToPt = 2.835;
-  const marginPt = margin * mmToPt;
-  const pageW = 595, pageH = 842;
-  const textW = pageW - marginPt * 2;
-  let yPos = marginPt + parseInt(fontSize) * 2;
-  let pdfLines = [`BT /F1 ${parseInt(fontSize)*1.2} Tf ${marginPt} ${pageH - yPos} Td (${escPdf(title)}) Tj ET`];
-  yPos += lineHeight * 1.5;
-  lines.forEach(line => {
-    if (yPos > pageH - marginPt) { pdfLines.push('showpage'); yPos = marginPt + lineHeight; }
-    pdfLines.push(`BT /F1 ${fontSize} Tf ${marginPt} ${pageH - yPos} Td (${escPdf(line || ' ')}) Tj ET`);
-    yPos += lineHeight;
-  });
-  out.innerHTML = `<div class="result-success">✅ PDF ready · ${lines.length} lines · Title: "${title}"<br><small>Production note: Use jsPDF for full-featured text PDFs with word wrap.</small></div>`;
+  const out = document.getElementById('txtOut');
+  if(!content.trim()) { out.innerHTML = err('Please enter some text.'); return; }
+  if(typeof window.jspdf==='undefined') { out.innerHTML = err('jsPDF still loading — please wait a moment.'); return; }
+  try {
+    const { jsPDF } = window.jspdf;
+    const fs = parseInt(document.getElementById('txtSize').value);
+    const margin = parseInt(document.getElementById('txtMargin').value);
+    const pdf = new jsPDF({unit:'mm',format:'a4'});
+    const pw=210, ph=297, maxW=pw-margin*2;
+    let y = margin+8;
+    // Title
+    pdf.setFont('helvetica','bold');
+    pdf.setFontSize(fs+5);
+    const titleLines = pdf.splitTextToSize(title, maxW);
+    titleLines.forEach(l => { pdf.text(l, margin, y); y += (fs+5)*0.38; });
+    y += 3;
+    pdf.setDrawColor(180);
+    pdf.setLineWidth(0.4);
+    pdf.line(margin, y, pw-margin, y);
+    y += 6;
+    // Body
+    pdf.setFont('helvetica','normal');
+    pdf.setFontSize(fs);
+    const lh = fs*0.42;
+    const bodyLines = pdf.splitTextToSize(content, maxW);
+    bodyLines.forEach(l => {
+      if(y+lh > ph-margin) { pdf.addPage(); y=margin+8; }
+      pdf.text(l, margin, y);
+      y += lh;
+    });
+    const blob = pdf.output('blob');
+    window._txtBlob = blob;
+    out.innerHTML = `<div class="ok">✅ PDF ready · ${pdf.getNumberOfPages()} page(s) · ${fmtB(blob.size)}</div>
+      <div class="btns"><button class="btn btn-green" onclick="dl(window._txtBlob,'${title.replace(/[^a-z0-9]/gi,'_')}.pdf')">⬇️ Download PDF</button></div>`;
+  } catch(e) { out.innerHTML = err('Error: '+e.message); }
 }
 
-function escPdf(s) { return s.replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)').substring(0,200); }
-
-/* ════════════════════════════════════════════
+/* ══════════════════════════════════════
    CALCULATORS
-════════════════════════════════════════════ */
-let activeTab = {};
-
-function switchTab(btn, panelId) {
-  const parent = btn.closest('.modal-body, [class*="tab"]') || document.getElementById('modalBody');
-  parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  parent.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  const panel = document.getElementById(panelId);
-  if (panel) panel.classList.add('active');
-  // Re-calc if needed
-  if (['pct1','pct2','pct3'].includes(panelId)) calcPct();
-}
-
-function calcBMI() {
-  const isMetric = document.querySelector('#metric').classList.contains('active');
-  let bmi, w, h;
-  if (isMetric) {
-    w = parseFloat(document.getElementById('bmiWkg')?.value);
-    h = parseFloat(document.getElementById('bmiHcm')?.value);
-    if (!w || !h) return;
-    bmi = w / ((h/100) ** 2);
+══════════════════════════════════════ */
+function calc_bmi() {
+  const isM = document.getElementById('bmi_m')?.classList.contains('on');
+  let bmi;
+  if(isM) {
+    const w=parseFloat(document.getElementById('bW')?.value);
+    const h=parseFloat(document.getElementById('bH')?.value);
+    if(!w||!h) return;
+    bmi = w/((h/100)**2);
   } else {
-    w = parseFloat(document.getElementById('bmiWlb')?.value);
-    h = parseFloat(document.getElementById('bmiHft')?.value);
-    if (!w || !h) return;
-    bmi = (w / (h * 12) ** 2) * 703;
+    const w=parseFloat(document.getElementById('bWl')?.value);
+    const ft=parseFloat(document.getElementById('bHft')?.value)||0;
+    const inch=parseFloat(document.getElementById('bHin')?.value)||0;
+    if(!w||(!ft&&!inch)) return;
+    const totalIn = ft*12+inch;
+    bmi = (w/(totalIn**2))*703;
   }
-  const cat = bmi < 18.5 ? ['Underweight','#0891b2'] : bmi < 25 ? ['Normal weight','#16a34a'] : bmi < 30 ? ['Overweight','#ea580c'] : ['Obese','#dc2626'];
-  document.getElementById('bmiResult').innerHTML = `
-    <div class="result-box">
-      <div class="result-label">Your BMI</div>
-      <div class="result-value">${bmi.toFixed(1)}</div>
-      <div style="margin-top:8px;font-size:14px;font-weight:600;color:${cat[1]}">${cat[0]}</div>
-      <div class="progress" style="margin-top:12px"><div class="progress-bar" style="width:${Math.min(bmi/40*100,100)}%;background:${cat[1]}"></div></div>
+  if(bmi<=0||isNaN(bmi)) return;
+  const cats = [{max:18.5,label:'Underweight',color:'#0ea5e9'},{max:25,label:'Normal weight',color:'#12b76a'},{max:30,label:'Overweight',color:'#f79009'},{max:999,label:'Obese',color:'#f04438'}];
+  const cat = cats.find(c=>bmi<c.max);
+  const pct = Math.min(bmi/40*100,100);
+  document.getElementById('bmiOut').innerHTML = `
+    <div class="rbox">
+      <div class="rlabel">Your BMI</div>
+      <div class="rval">${bmi.toFixed(1)}<span class="runit">kg/m²</span></div>
+      <div style="margin-top:8px;font-size:15px;font-weight:700;color:${cat.color}">${cat.label}</div>
+      <div class="bmi-scale mt8">
+        <div class="bmi-seg" style="background:#0ea5e9;opacity:.7"></div>
+        <div class="bmi-seg" style="background:#12b76a;opacity:.7"></div>
+        <div class="bmi-seg" style="background:#f79009;opacity:.7"></div>
+        <div class="bmi-seg" style="background:#f04438;opacity:.7"></div>
+      </div>
+      <div class="bmi-pointer"><div class="bmi-pointer-arrow" style="left:${pct}%"></div></div>
     </div>
-    <table class="result-table mt-12">
-      <tr><td>Underweight</td><td>&lt; 18.5</td></tr>
-      <tr><td>Normal weight</td><td>18.5 – 24.9</td></tr>
-      <tr><td>Overweight</td><td>25 – 29.9</td></tr>
-      <tr><td>Obese</td><td>≥ 30</td></tr>
+    <table class="rtable mt12">
+      <tr><td>Underweight</td><td style="color:#0ea5e9">&lt; 18.5</td></tr>
+      <tr><td>Normal weight</td><td style="color:#12b76a">18.5 – 24.9</td></tr>
+      <tr><td>Overweight</td><td style="color:#f79009">25 – 29.9</td></tr>
+      <tr><td>Obese</td><td style="color:#f04438">≥ 30</td></tr>
     </table>`;
 }
 
-function calcAge() {
-  const dob = new Date(document.getElementById('ageInput').value);
-  const ref = new Date(document.getElementById('ageRef').value);
-  const out = document.getElementById('ageResult');
-  if (!document.getElementById('ageInput').value) return;
-  if (dob > ref) { out.innerHTML = '<div class="result-error">Birth date cannot be in the future.</div>'; return; }
-  let years = ref.getFullYear() - dob.getFullYear();
-  let months = ref.getMonth() - dob.getMonth();
-  let days = ref.getDate() - dob.getDate();
-  if (days < 0) { months--; days += new Date(ref.getFullYear(), ref.getMonth(), 0).getDate(); }
-  if (months < 0) { years--; months += 12; }
-  const totalDays = Math.floor((ref - dob) / 86400000);
-  const nextBday = new Date(ref.getFullYear(), dob.getMonth(), dob.getDate());
-  if (nextBday <= ref) nextBday.setFullYear(nextBday.getFullYear() + 1);
-  const daysToNext = Math.ceil((nextBday - ref) / 86400000);
+function calc_age() {
+  const dobV = document.getElementById('ageIn').value;
+  const refV = document.getElementById('ageRef').value;
+  const out = document.getElementById('ageOut');
+  if(!dobV) return;
+  const dob = new Date(dobV), ref = new Date(refV);
+  if(dob>ref) { out.innerHTML = err('Birth date cannot be after the reference date.'); return; }
+  let y=ref.getFullYear()-dob.getFullYear();
+  let m=ref.getMonth()-dob.getMonth();
+  let d=ref.getDate()-dob.getDate();
+  if(d<0){ m--; d+=new Date(ref.getFullYear(),ref.getMonth(),0).getDate(); }
+  if(m<0){ y--; m+=12; }
+  const totalDays = Math.floor((ref-dob)/864e5);
+  const next = new Date(ref.getFullYear(),dob.getMonth(),dob.getDate());
+  if(next<=ref) next.setFullYear(next.getFullYear()+1);
+  const dtn = Math.ceil((next-ref)/864e5);
   out.innerHTML = `
-    <div class="result-box">
-      <div class="result-label">Exact Age</div>
-      <div class="result-value">${years}<span class="result-unit">yr</span> ${months}<span class="result-unit">mo</span> ${days}<span class="result-unit">d</span></div>
+    <div class="rbox">
+      <div class="rlabel">Exact Age</div>
+      <div class="rval">${y}<span class="runit">yr</span> ${m}<span class="runit">mo</span> ${d}<span class="runit">d</span></div>
     </div>
-    <div class="result-grid mt-12">
-      <div class="result-item"><div class="result-item-label">Total Days</div><div class="result-item-val">${totalDays.toLocaleString()}</div></div>
-      <div class="result-item"><div class="result-item-label">Total Months</div><div class="result-item-val">${(years*12+months).toLocaleString()}</div></div>
-      <div class="result-item"><div class="result-item-label">Total Weeks</div><div class="result-item-val">${Math.floor(totalDays/7).toLocaleString()}</div></div>
-      <div class="result-item"><div class="result-item-label">Next Birthday</div><div class="result-item-val">${daysToNext}d</div></div>
+    <div class="rgrid mt12">
+      <div class="ri"><div class="ri-l">Total Days</div><div class="ri-v">${totalDays.toLocaleString()}</div></div>
+      <div class="ri"><div class="ri-l">Total Weeks</div><div class="ri-v">${Math.floor(totalDays/7).toLocaleString()}</div></div>
+      <div class="ri"><div class="ri-l">Total Months</div><div class="ri-v">${(y*12+m).toLocaleString()}</div></div>
+      <div class="ri"><div class="ri-l">Next Birthday</div><div class="ri-v">${dtn}d</div></div>
     </div>`;
 }
 
-function calcLoan() {
-  const P = parseFloat(document.getElementById('loanAmt')?.value);
-  const annualR = parseFloat(document.getElementById('loanRate')?.value);
-  const n = parseInt(document.getElementById('loanTerm')?.value);
-  const out = document.getElementById('loanResult');
-  if (!P || !annualR || !n) return;
-  const r = annualR / 100 / 12;
-  const emi = r === 0 ? P/n : P * r * Math.pow(1+r,n) / (Math.pow(1+r,n) - 1);
-  const total = emi * n;
-  const interest = total - P;
+function calc_loan() {
+  const P = parseFloat(document.getElementById('lAmt')?.value);
+  const r = parseFloat(document.getElementById('lRate')?.value)/100/12;
+  const n = parseInt(document.getElementById('lTerm')?.value);
+  const out = document.getElementById('loanOut');
+  if(!P||isNaN(r)||!n) return;
+  const emi = r===0 ? P/n : P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+  const total = emi*n, interest = total-P;
+  const pp = (P/total*100).toFixed(1), ip = (interest/total*100).toFixed(1);
   out.innerHTML = `
-    <div class="result-box">
-      <div class="result-label">Monthly Payment (EMI)</div>
-      <div class="result-value">$${emi.toFixed(2)}</div>
+    <div class="rbox">
+      <div class="rlabel">Monthly Payment (EMI)</div>
+      <div class="rval">$${emi.toFixed(2)}</div>
     </div>
-    <div class="result-grid mt-12">
-      <div class="result-item"><div class="result-item-label">Total Payment</div><div class="result-item-val">$${total.toFixed(0)}</div></div>
-      <div class="result-item"><div class="result-item-label">Total Interest</div><div class="result-item-val color-red">$${interest.toFixed(0)}</div></div>
-      <div class="result-item"><div class="result-item-label">Principal</div><div class="result-item-val">$${P.toFixed(0)}</div></div>
-      <div class="result-item"><div class="result-item-label">Interest Rate</div><div class="result-item-val">${annualR}%/yr</div></div>
+    <div class="rgrid mt12">
+      <div class="ri"><div class="ri-l">Total Payment</div><div class="ri-v">$${Math.round(total).toLocaleString()}</div></div>
+      <div class="ri"><div class="ri-l">Total Interest</div><div class="ri-v red">$${Math.round(interest).toLocaleString()}</div></div>
+      <div class="ri"><div class="ri-l">Principal</div><div class="ri-v">$${Math.round(P).toLocaleString()}</div></div>
+      <div class="ri"><div class="ri-l">Interest Rate</div><div class="ri-v">${(parseFloat(document.getElementById('lRate').value)).toFixed(2)}%</div></div>
     </div>
-    <div class="progress mt-8"><div class="progress-bar" style="width:${(P/total*100).toFixed(1)}%"></div></div>
-    <div class="text-xs" style="color:var(--text3);margin-top:4px">Principal: ${(P/total*100).toFixed(1)}% · Interest: ${(interest/total*100).toFixed(1)}%</div>`;
+    <div class="prog mt8"><div class="prog-bar" style="width:${pp}%;background:var(--blue)"></div></div>
+    <div style="font-size:12px;color:var(--text3);margin-top:4px;display:flex;justify-content:space-between">
+      <span>Principal ${pp}%</span><span>Interest ${ip}%</span>
+    </div>`;
 }
 
-function calcPct() {
-  const out = document.getElementById('pctResult');
-  const active = document.querySelector('#modalBody .tab-panel.active');
-  if (!active) return;
-  if (active.id === 'pct1') {
-    const p = parseFloat(document.getElementById('p1pct')?.value);
-    const n = parseFloat(document.getElementById('p1num')?.value);
-    if (!p || !n) return;
-    const res = (p/100)*n;
-    out.innerHTML = `<div class="result-box"><div class="result-label">Result</div><div class="result-value">${res.toFixed(4).replace(/\.?0+$/,'')}</div><div style="margin-top:8px;color:var(--text2);font-size:14px">${p}% of ${n} = <strong>${res.toFixed(2)}</strong></div></div>`;
-  } else if (active.id === 'pct2') {
-    const from = parseFloat(document.getElementById('p2from')?.value);
-    const to = parseFloat(document.getElementById('p2to')?.value);
-    if (!from || to === undefined || to === null || isNaN(to)) return;
-    const change = ((to - from) / from) * 100;
-    const color = change >= 0 ? 'var(--accent2)' : 'var(--accent3)';
-    out.innerHTML = `<div class="result-box"><div class="result-label">Percentage Change</div><div class="result-value" style="color:${color}">${change >= 0 ? '+' : ''}${change.toFixed(2)}%</div><div style="margin-top:8px;color:var(--text2);font-size:14px">${from} → ${to} = <strong style="color:${color}">${change >= 0 ? 'increase' : 'decrease'}</strong></div></div>`;
-  } else if (active.id === 'pct3') {
-    const x = parseFloat(document.getElementById('p3x')?.value);
-    const y = parseFloat(document.getElementById('p3y')?.value);
-    if (!x || !y) return;
-    const pct = (x/y)*100;
-    out.innerHTML = `<div class="result-box"><div class="result-label">Result</div><div class="result-value">${pct.toFixed(2)}%</div><div style="margin-top:8px;color:var(--text2);font-size:14px">${x} is <strong>${pct.toFixed(2)}%</strong> of ${y}</div></div>`;
+function calc_pct() {
+  const out = document.getElementById('pctOut');
+  const active = document.querySelector('#mBody .tp.on');
+  if(!active||!out) return;
+  if(active.id==='p1') {
+    const p=parseFloat(document.getElementById('p1a')?.value);
+    const n=parseFloat(document.getElementById('p1b')?.value);
+    if(isNaN(p)||isNaN(n)) return;
+    const r=(p/100)*n;
+    out.innerHTML=`<div class="rbox"><div class="rlabel">Result</div><div class="rval">${fmt_num(r)}</div><div style="margin-top:6px;font-size:14px;color:var(--text2)">${p}% of ${n} = <strong>${fmt_num(r)}</strong></div></div>`;
+  } else if(active.id==='p2') {
+    const a=parseFloat(document.getElementById('p2a')?.value);
+    const b=parseFloat(document.getElementById('p2b')?.value);
+    if(isNaN(a)||isNaN(b)) return;
+    const ch=((b-a)/a)*100;
+    const col=ch>=0?'var(--green)':'var(--red)';
+    out.innerHTML=`<div class="rbox"><div class="rlabel">Percentage Change</div><div class="rval" style="color:${col}">${ch>=0?'+':''}${ch.toFixed(2)}%</div><div style="margin-top:6px;font-size:14px;color:var(--text2)">${a} → ${b} = <strong style="color:${col}">${ch>=0?'increase':'decrease'} of ${Math.abs(ch).toFixed(2)}%</strong></div></div>`;
+  } else if(active.id==='p3') {
+    const x=parseFloat(document.getElementById('p3a')?.value);
+    const y=parseFloat(document.getElementById('p3b')?.value);
+    if(isNaN(x)||isNaN(y)||y===0) return;
+    const p=(x/y)*100;
+    out.innerHTML=`<div class="rbox"><div class="rlabel">Result</div><div class="rval">${p.toFixed(2)}%</div><div style="margin-top:6px;font-size:14px;color:var(--text2)">${x} is <strong>${p.toFixed(2)}%</strong> of ${y}</div></div>`;
   }
 }
 
-/* ════════════════════════════════════════════
-   INVOICE GENERATOR
-════════════════════════════════════════════ */
-let invItems = [];
-function addInvItem() {
-  invItems.push({ desc: '', qty: 1, price: 0 });
-  renderInvItems();
-}
-function removeInvItem(i) { invItems.splice(i, 1); renderInvItems(); }
-function renderInvItems() {
-  document.getElementById('invLineItems').innerHTML = invItems.map((item, i) => `
-    <div class="field-row" style="align-items:flex-end;margin-bottom:8px">
-      <div class="field" style="flex:3"><input type="text" placeholder="Description" value="${item.desc}" oninput="invItems[${i}].desc=this.value;updateInvTotal()"></div>
-      <div class="field" style="flex:1"><input type="number" placeholder="Qty" value="${item.qty}" min="1" oninput="invItems[${i}].qty=+this.value;updateInvTotal()"></div>
-      <div class="field" style="flex:1"><input type="number" placeholder="Price" value="${item.price||''}" step="0.01" oninput="invItems[${i}].price=+this.value;updateInvTotal()"></div>
-      <button class="btn btn-secondary btn-sm" style="margin-bottom:18px;flex-shrink:0" onclick="removeInvItem(${i})">✕</button>
-    </div>`).join('');
-  updateInvTotal();
-}
-function updateInvTotal() {
-  const currency = document.getElementById('invCurrency')?.value || '$';
-  const tax = parseFloat(document.getElementById('invTax')?.value || 0);
-  const subtotal = invItems.reduce((s, i) => s + (i.qty * i.price), 0);
-  const taxAmt = subtotal * tax / 100;
-  const total = subtotal + taxAmt;
-  const box = document.getElementById('invTotalBox');
-  if (box) { box.style.display = 'block'; document.getElementById('invTotal').textContent = `${currency}${total.toFixed(2)}`; }
-}
-function downloadInvoice() {
-  const from = document.getElementById('invFrom').value || 'Your Company';
-  const to = document.getElementById('invTo').value || 'Client';
-  const num = document.getElementById('invNum').value || 'INV-001';
-  const date = document.getElementById('invDate').value;
-  const currency = document.getElementById('invCurrency').value;
-  const tax = parseFloat(document.getElementById('invTax').value || 0);
-  const subtotal = invItems.reduce((s,i) => s+(i.qty*i.price), 0);
-  const taxAmt = subtotal*tax/100;
-  const total = subtotal + taxAmt;
-  const rows = invItems.map(i => `<tr><td style="padding:8px 4px;border-bottom:1px solid #eee">${i.desc||'—'}</td><td style="padding:8px 4px;border-bottom:1px solid #eee;text-align:center">${i.qty}</td><td style="padding:8px 4px;border-bottom:1px solid #eee;text-align:right">${currency}${i.price.toFixed(2)}</td><td style="padding:8px 4px;border-bottom:1px solid #eee;text-align:right">${currency}${(i.qty*i.price).toFixed(2)}</td></tr>`).join('');
-  const html = `<!DOCTYPE html><html><head><style>body{font-family:Georgia,serif;padding:40px;max-width:700px;margin:0 auto;color:#1a1917}h1{font-size:36px;letter-spacing:-1px;margin:0}table{width:100%;border-collapse:collapse}th{text-align:left;padding:8px 4px;border-bottom:2px solid #1a1917;font-size:12px;text-transform:uppercase;letter-spacing:.5px}.total-row td{padding:8px 4px;font-weight:bold;font-size:16px}</style></head><body>
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px">
-    <div><h1>INVOICE</h1><div style="color:#888;margin-top:4px">${num}</div></div>
-    <div style="text-align:right"><div style="font-weight:600">${from}</div><div style="color:#888;font-size:14px">Date: ${date}</div></div>
-  </div>
-  <div style="margin-bottom:32px"><div style="font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:#888;margin-bottom:4px">Bill To</div><div style="font-size:18px;font-weight:600">${to}</div></div>
-  <table><thead><tr><th>Description</th><th style="text-align:center">Qty</th><th style="text-align:right">Unit Price</th><th style="text-align:right">Amount</th></tr></thead><tbody>${rows}</tbody></table>
-  <div style="margin-top:24px;text-align:right"><div>Subtotal: ${currency}${subtotal.toFixed(2)}</div>${tax?`<div>Tax (${tax}%): ${currency}${taxAmt.toFixed(2)}</div>`:''}<div style="font-size:22px;font-weight:700;margin-top:8px;border-top:2px solid #1a1917;padding-top:8px">Total: ${currency}${total.toFixed(2)}</div></div>
-  </body></html>`;
-  const blob = new Blob([html], {type:'text/html'});
-  dlBlob(blob, `invoice-${num}.html`);
+/* ══════════════════════════════════════
+   INVOICE
+══════════════════════════════════════ */
+let _invItems = [];
+
+function inv_add() {
+  _invItems.push({desc:'',qty:1,price:0});
+  inv_render();
 }
 
-/* ════════════════════════════════════════════
+function inv_remove(i) {
+  _invItems.splice(i,1); inv_render();
+}
+
+function inv_render() {
+  document.getElementById('iLines').innerHTML = _invItems.map((it,i)=>`
+    <div class="inv-row">
+      <input type="text" placeholder="Description" value="${esc(it.desc)}" oninput="_invItems[${i}].desc=this.value;inv_total()">
+      <input type="number" placeholder="Qty" value="${it.qty}" min="1" oninput="_invItems[${i}].qty=+this.value;inv_total()">
+      <input type="number" placeholder="Price" value="${it.price||''}" step="0.01" oninput="_invItems[${i}].price=+this.value;inv_total()">
+      <button class="btn btn-ghost btn-sm" style="margin-bottom:0" onclick="inv_remove(${i})">✕</button>
+    </div>`).join('');
+  inv_total();
+}
+
+function inv_total() {
+  const cur = document.getElementById('iCur')?.value||'$';
+  const tax = parseFloat(document.getElementById('iTax')?.value||0);
+  const sub = _invItems.reduce((s,it)=>s+(it.qty*it.price),0);
+  const total = sub + sub*tax/100;
+  const b = document.getElementById('iTotal');
+  if(b){ b.style.display='block'; document.getElementById('iTotalV').textContent=cur+total.toFixed(2); }
+}
+
+function inv_download() {
+  if(typeof window.jspdf==='undefined') { toast('jsPDF still loading, please wait…'); return; }
+  const { jsPDF } = window.jspdf;
+  const from = document.getElementById('iFrom').value||'Your Company';
+  const to = document.getElementById('iTo').value||'Client';
+  const num = document.getElementById('iNum').value||'INV-001';
+  const date = document.getElementById('iDate').value;
+  const cur = document.getElementById('iCur').value;
+  const tax = parseFloat(document.getElementById('iTax').value||0);
+  const sub = _invItems.reduce((s,it)=>s+(it.qty*it.price),0);
+  const taxAmt = sub*tax/100, total = sub+taxAmt;
+
+  const pdf = new jsPDF({unit:'mm',format:'a4'});
+  const pw=210, margin=20;
+  let y=margin;
+
+  // Header
+  pdf.setFont('helvetica','bold');
+  pdf.setFontSize(28);
+  pdf.setTextColor(15,17,23);
+  pdf.text('INVOICE',margin,y+10);
+  pdf.setFontSize(11);
+  pdf.setFont('helvetica','normal');
+  pdf.setTextColor(74,80,96);
+  pdf.text(`#${num}`,margin,y+18);
+  pdf.text(from,pw-margin,y+10,{align:'right'});
+  pdf.text(`Date: ${date}`,pw-margin,y+18,{align:'right'});
+  y+=28;
+
+  // Bill To
+  pdf.setDrawColor(226,229,235);
+  pdf.setLineWidth(0.5);
+  pdf.line(margin,y,pw-margin,y);
+  y+=8;
+  pdf.setFontSize(9);
+  pdf.setTextColor(139,146,165);
+  pdf.text('BILL TO',margin,y);
+  y+=6;
+  pdf.setFontSize(14);
+  pdf.setTextColor(15,17,23);
+  pdf.setFont('helvetica','bold');
+  pdf.text(to,margin,y);
+  y+=12;
+
+  // Table header
+  pdf.setFillColor(238,240,244);
+  pdf.rect(margin,y,pw-margin*2,9,'F');
+  pdf.setFontSize(9);
+  pdf.setFont('helvetica','bold');
+  pdf.setTextColor(74,80,96);
+  pdf.text('DESCRIPTION',margin+3,y+6);
+  pdf.text('QTY',pw-70,y+6,{align:'right'});
+  pdf.text('PRICE',pw-50,y+6,{align:'right'});
+  pdf.text('AMOUNT',pw-margin,y+6,{align:'right'});
+  y+=12;
+
+  // Items
+  pdf.setFont('helvetica','normal');
+  pdf.setFontSize(11);
+  _invItems.forEach((it,i) => {
+    pdf.setTextColor(15,17,23);
+    pdf.text(it.desc||'—',margin+3,y);
+    pdf.setTextColor(74,80,96);
+    pdf.text(String(it.qty),pw-70,y,{align:'right'});
+    pdf.text(cur+(it.price||0).toFixed(2),pw-50,y,{align:'right'});
+    pdf.text(cur+(it.qty*(it.price||0)).toFixed(2),pw-margin,y,{align:'right'});
+    y+=8;
+    pdf.setDrawColor(226,229,235);
+    pdf.line(margin,y-1,pw-margin,y-1);
+  });
+  y+=4;
+
+  // Totals
+  const totals = [{label:'Subtotal',val:cur+sub.toFixed(2)}];
+  if(tax) totals.push({label:`Tax (${tax}%)`,val:cur+taxAmt.toFixed(2)});
+  totals.push({label:'TOTAL',val:cur+total.toFixed(2),bold:true});
+  totals.forEach(t=>{
+    pdf.setFont('helvetica', t.bold?'bold':'normal');
+    pdf.setFontSize(t.bold?13:11);
+    pdf.setTextColor(t.bold?15:74, t.bold?17:80, t.bold?23:96);
+    pdf.text(t.label, pw-70, y);
+    pdf.text(t.val, pw-margin, y, {align:'right'});
+    y += t.bold?0:7;
+    if(t.bold){ y+=4; }
+  });
+
+  const blob = pdf.output('blob');
+  dl(blob, `invoice-${num}.pdf`);
+}
+
+/* ══════════════════════════════════════
    JSON FORMATTER
-════════════════════════════════════════════ */
-function formatJson() {
-  const raw = document.getElementById('jsonInput').value;
-  const out = document.getElementById('jsonResult');
-  if (!raw.trim()) { out.innerHTML = ''; return; }
+══════════════════════════════════════ */
+function j_fmt() {
+  const raw = document.getElementById('jIn').value;
+  const out = document.getElementById('jOut');
+  if(!raw.trim()) { out.innerHTML=''; return; }
   try {
     const parsed = JSON.parse(raw);
-    window._parsedJson = parsed;
-    out.innerHTML = `<div class="result-label">Formatted JSON</div><pre class="code-out">${escHtml(JSON.stringify(parsed, null, 2))}</pre><div class="result-success" style="margin-top:8px">✅ Valid JSON · ${countKeys(parsed)} keys</div>`;
-  } catch(e) {
-    out.innerHTML = `<div class="result-error">❌ Invalid JSON: ${e.message}</div>`;
-  }
-}
-function minifyJson() {
-  const raw = document.getElementById('jsonInput').value;
-  const out = document.getElementById('jsonResult');
-  try {
-    out.innerHTML = `<div class="result-label">Minified JSON</div><pre class="code-out">${escHtml(JSON.stringify(JSON.parse(raw)))}</pre>`;
-  } catch(e) {
-    out.innerHTML = `<div class="result-error">❌ Invalid JSON: ${e.message}</div>`;
-  }
-}
-function copyJson() {
-  const pre = document.querySelector('#jsonResult pre');
-  if (pre) navigator.clipboard.writeText(pre.textContent).then(() => showCopied());
-}
-function countKeys(obj, c=0) {
-  if (typeof obj === 'object' && obj !== null) { for (const k in obj) { c++; c = countKeys(obj[k], c); } } return c;
+    window._jParsed = parsed;
+    const pretty = JSON.stringify(parsed,null,2);
+    out.innerHTML = `<pre class="codeout">${esc(pretty)}</pre><div class="ok mt8">✅ Valid JSON · ${count_keys(parsed)} keys</div>`;
+  } catch(e) { out.innerHTML = err('Invalid JSON: '+e.message); }
 }
 
-/* ════════════════════════════════════════════
+function j_min() {
+  try { document.getElementById('jOut').innerHTML=`<pre class="codeout">${esc(JSON.stringify(JSON.parse(document.getElementById('jIn').value)))}</pre>`; }
+  catch(e) { document.getElementById('jOut').innerHTML=err('Invalid JSON: '+e.message); }
+}
+
+function j_copy() {
+  const pre = document.querySelector('#jOut pre');
+  if(pre) { navigator.clipboard.writeText(pre.textContent); toast('Copied!'); }
+}
+
+function j_clear() {
+  document.getElementById('jIn').value='';
+  document.getElementById('jOut').innerHTML='';
+}
+
+function count_keys(o,c=0){ if(typeof o==='object'&&o!==null){ for(const k in o){ c++; c=count_keys(o[k],c); } } return c; }
+
+/* ══════════════════════════════════════
    WORD COUNTER
-════════════════════════════════════════════ */
-function countWords() {
-  const text = document.getElementById('wcInput')?.value || '';
-  const out = document.getElementById('wcResult');
-  const words = text.trim() ? text.trim().split(/\s+/).length : 0;
-  const chars = text.length;
-  const charsNoSpace = text.replace(/\s/g,'').length;
-  const sentences = text.split(/[.!?]+/).filter(s => s.trim()).length;
-  const paragraphs = text.split(/\n\n+/).filter(p => p.trim()).length;
-  const readTime = Math.max(1, Math.ceil(words / 200));
-  out.innerHTML = `
-    <div class="result-grid">
-      <div class="result-item"><div class="result-item-label">Words</div><div class="result-item-val">${words.toLocaleString()}</div></div>
-      <div class="result-item"><div class="result-item-label">Characters</div><div class="result-item-val">${chars.toLocaleString()}</div></div>
-      <div class="result-item"><div class="result-item-label">No Spaces</div><div class="result-item-val">${charsNoSpace.toLocaleString()}</div></div>
-      <div class="result-item"><div class="result-item-label">Sentences</div><div class="result-item-val">${sentences}</div></div>
-      <div class="result-item"><div class="result-item-label">Paragraphs</div><div class="result-item-val">${paragraphs}</div></div>
-      <div class="result-item"><div class="result-item-label">Read Time</div><div class="result-item-val">${readTime} min</div></div>
+══════════════════════════════════════ */
+function count_words() {
+  const t = document.getElementById('wcIn')?.value||'';
+  const words = t.trim()?t.trim().split(/\s+/).length:0;
+  const chars = t.length;
+  const cns = t.replace(/\s/g,'').length;
+  const sents = t.split(/[.!?]+\s/).filter(s=>s.trim()).length;
+  const paras = t.split(/\n\n+/).filter(p=>p.trim()).length;
+  const rt = Math.max(1,Math.ceil(words/200));
+  document.getElementById('wcOut').innerHTML = `
+    <div class="rgrid mt12">
+      <div class="ri"><div class="ri-l">Words</div><div class="ri-v">${words.toLocaleString()}</div></div>
+      <div class="ri"><div class="ri-l">Characters</div><div class="ri-v">${chars.toLocaleString()}</div></div>
+      <div class="ri"><div class="ri-l">No Spaces</div><div class="ri-v">${cns.toLocaleString()}</div></div>
+      <div class="ri"><div class="ri-l">Sentences</div><div class="ri-v">${sents}</div></div>
+      <div class="ri"><div class="ri-l">Paragraphs</div><div class="ri-v">${paras}</div></div>
+      <div class="ri"><div class="ri-l">Read Time</div><div class="ri-v">${rt} min</div></div>
     </div>`;
 }
 
-/* ════════════════════════════════════════════
+/* ══════════════════════════════════════
    CSV VIEWER
-════════════════════════════════════════════ */
-function loadCsvFile(input) {
-  const file = input.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => { document.getElementById('csvInput').value = e.target.result; renderCsv(); };
-  reader.readAsText(file);
+══════════════════════════════════════ */
+function load_csv(inp) {
+  const f = inp.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = e => { document.getElementById('csvIn').value=e.target.result; render_csv(); };
+  r.readAsText(f);
 }
-function renderCsv() {
-  const raw = document.getElementById('csvInput')?.value || '';
-  const out = document.getElementById('csvTable');
-  if (!raw.trim()) { out.innerHTML = ''; return; }
-  const rows = raw.trim().split('\n').map(r => r.split(',').map(c => c.trim().replace(/^"|"$/g,'')));
-  if (rows.length < 2) { out.innerHTML = '<div class="result-error">Need at least a header row and one data row.</div>'; return; }
-  const headers = rows[0];
-  const data = rows.slice(1);
+
+function render_csv() {
+  const raw = document.getElementById('csvIn')?.value||'';
+  const out = document.getElementById('csvOut');
+  if(!raw.trim()){ out.innerHTML=''; return; }
+  const rows = raw.trim().split('\n').map(r=>r.split(',').map(c=>c.trim().replace(/^"|"$/g,'')));
+  if(rows.length<2){ out.innerHTML=err('Need at least a header row and one data row.'); return; }
+  const headers=rows[0], data=rows.slice(1);
   out.innerHTML = `
-    <div style="overflow-x:auto;margin-top:16px">
-      <div style="font-size:12px;color:var(--text3);margin-bottom:8px">${data.length} rows · ${headers.length} columns</div>
-      <table style="width:100%;border-collapse:collapse;font-size:13px">
-        <thead><tr>${headers.map(h=>`<th style="text-align:left;padding:8px 12px;background:var(--surface2);border:1px solid var(--border);font-weight:600;white-space:nowrap">${escHtml(h)}</th>`).join('')}</tr></thead>
-        <tbody>${data.map((row,i)=>`<tr style="background:${i%2?'var(--bg)':'#fff'}">${row.map(c=>`<td style="padding:7px 12px;border:1px solid var(--border)">${escHtml(c)}</td>`).join('')}</tr>`).join('')}</tbody>
+    <div class="small mt8">${data.length} rows · ${headers.length} columns</div>
+    <div class="csv-wrap">
+      <table class="csv-table">
+        <thead><tr>${headers.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead>
+        <tbody>${data.map((row,i)=>`<tr>${row.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody>
       </table>
     </div>`;
 }
 
-/* ════════════════════════════════════════════
+/* ══════════════════════════════════════
    PASSWORD GENERATOR
-════════════════════════════════════════════ */
-function genPass() {
-  const len = parseInt(document.getElementById('passLen')?.value || 16);
-  const upper = document.getElementById('passUpper')?.checked;
-  const lower = document.getElementById('passLower')?.checked;
-  const num = document.getElementById('passNum')?.checked;
-  const sym = document.getElementById('passSym')?.checked;
-  let chars = '';
-  if (upper) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  if (lower) chars += 'abcdefghijklmnopqrstuvwxyz';
-  if (num) chars += '0123456789';
-  if (sym) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
-  if (!chars) chars = 'abcdefghijklmnopqrstuvwxyz';
+══════════════════════════════════════ */
+function gen_pass() {
+  const len = parseInt(document.getElementById('pLen')?.value||16);
+  const up = document.getElementById('pUp')?.checked;
+  const lo = document.getElementById('pLo')?.checked;
+  const nu = document.getElementById('pNu')?.checked;
+  const sy = document.getElementById('pSy')?.checked;
+  let chars='';
+  if(up) chars+='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  if(lo) chars+='abcdefghijklmnopqrstuvwxyz';
+  if(nu) chars+='0123456789';
+  if(sy) chars+='!@#$%^&*()_+-=[]{}|;:,.<>?';
+  if(!chars) chars='abcdefghijklmnopqrstuvwxyz';
   const arr = new Uint32Array(len);
   crypto.getRandomValues(arr);
-  const pass = Array.from(arr).map(v => chars[v % chars.length]).join('');
-  const el = document.getElementById('passValue');
-  if (el) el.textContent = pass;
+  const pass = Array.from(arr).map(v=>chars[v%chars.length]).join('');
+  const el = document.getElementById('pVal');
+  if(el) el.textContent = pass;
   window._lastPass = pass;
-}
-function genMultiple() {
-  const passwords = [];
-  for (let i = 0; i < 5; i++) { genPass(); passwords.push(window._lastPass); }
-  const out = document.getElementById('passMulti');
-  out.innerHTML = passwords.map(p => `
-    <div class="result-box" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px">
-      <div class="mono" style="font-size:13px;word-break:break-all">${p}</div>
-      <button class="btn btn-secondary btn-sm" onclick="navigator.clipboard.writeText('${p}').then(()=>showCopied())">Copy</button>
-    </div>`).join('');
-}
-function copyPass() {
-  const p = document.getElementById('passValue')?.textContent;
-  if (p) navigator.clipboard.writeText(p).then(() => showCopied());
+  // strength bar
+  let score=0;
+  if(len>=8)score++;if(len>=12)score++;if(len>=16)score++;
+  if(up&&lo)score++;if(nu)score++;if(sy)score++;
+  const colors=['#f04438','#f79009','#f79009','#12b76a','#12b76a','#12b76a'];
+  const bar=document.getElementById('pStr');
+  if(bar){ bar.style.background=colors[Math.min(score,5)]; bar.style.width=((score+1)/7*100)+'%'; }
 }
 
-/* ════════════════════════════════════════════
+function gen_multi() {
+  const passes=[];
+  for(let i=0;i<5;i++){ gen_pass(); passes.push(window._lastPass); }
+  document.getElementById('pMulti').innerHTML = passes.map(p=>`
+    <div class="pass-out mt8">
+      <div class="pass-val">${p}</div>
+      <button class="btn btn-ghost btn-sm" onclick="navigator.clipboard.writeText('${p.replace(/'/g,"\\'")}').then(()=>toast('Copied!'))">Copy</button>
+    </div>`).join('');
+}
+
+function copy_pass() {
+  const p=document.getElementById('pVal')?.textContent;
+  if(p&&p!=='—'){ navigator.clipboard.writeText(p).then(()=>toast('Password copied!')); }
+}
+
+/* ══════════════════════════════════════
    HASH GENERATOR
-════════════════════════════════════════════ */
-async function genHash() {
-  const text = document.getElementById('hashInput')?.value || '';
-  const out = document.getElementById('hashResult');
-  if (!text) { out.innerHTML = ''; return; }
-  const encoder = new TextEncoder();
-  const data = encoder.encode(text);
-  const algorithms = [['SHA-1','SHA-1'],['SHA-256','SHA-256'],['SHA-512','SHA-512']];
-  const hashes = await Promise.all(algorithms.map(async ([name, algo]) => {
-    const hashBuffer = await crypto.subtle.digest(algo, data);
-    const hex = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2,'0')).join('');
-    return [name, hex];
+══════════════════════════════════════ */
+async function do_hash() {
+  const txt = document.getElementById('hIn')?.value||'';
+  const out = document.getElementById('hOut');
+  if(!txt){ out.innerHTML=''; return; }
+  const enc = new TextEncoder();
+  const data = enc.encode(txt);
+  const algos = [['SHA-1','SHA-1'],['SHA-256','SHA-256'],['SHA-512','SHA-512']];
+  const hashes = await Promise.all(algos.map(async([name,algo])=>{
+    const buf = await crypto.subtle.digest(algo,data);
+    const hex = Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+    return [name,hex];
   }));
-  out.innerHTML = hashes.map(([name, hex]) => `
-    <div class="result-box" style="margin-bottom:10px">
+  out.innerHTML = hashes.map(([name,hex])=>`
+    <div class="rbox mt8">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-        <div class="result-label">${name}</div>
-        <button class="btn btn-secondary btn-sm" onclick="navigator.clipboard.writeText('${hex}').then(()=>showCopied())">Copy</button>
+        <div class="rlabel" style="margin-bottom:0">${name}</div>
+        <button class="btn btn-ghost btn-sm" onclick="navigator.clipboard.writeText('${hex}').then(()=>toast('Hash copied!'))">Copy</button>
       </div>
-      <div class="mono" style="font-size:12px;word-break:break-all;color:var(--text)">${hex}</div>
+      <div style="font-family:var(--mono);font-size:11.5px;word-break:break-all;color:var(--text)">${hex}</div>
     </div>`).join('');
 }
 
-/* ════════════════════════════════════════════
+/* ══════════════════════════════════════
    CSV ↔ JSON
-════════════════════════════════════════════ */
-function csvToJson() {
-  const raw = document.getElementById('c2jInput')?.value;
-  const out = document.getElementById('c2jResult');
+══════════════════════════════════════ */
+function csv_to_json() {
+  const raw = document.getElementById('c2jIn')?.value||'';
+  const out = document.getElementById('c2jOut');
   try {
-    const rows = raw.trim().split('\n').map(r => r.split(',').map(c => c.trim().replace(/^"|"$/g,'')));
-    const headers = rows[0];
-    const json = rows.slice(1).map(row => {
-      const obj = {};
-      headers.forEach((h, i) => obj[h] = row[i] || '');
-      return obj;
-    });
-    window._c2jResult = JSON.stringify(json, null, 2);
-    out.innerHTML = `<pre class="code-out">${escHtml(window._c2jResult)}</pre>`;
-  } catch(e) {
-    out.innerHTML = `<div class="result-error">Error: ${e.message}</div>`;
-  }
+    const rows = raw.trim().split('\n').map(r=>r.split(',').map(c=>c.trim().replace(/^"|"$/g,'')));
+    const headers=rows[0];
+    const json=rows.slice(1).map(row=>{ const o={}; headers.forEach((h,i)=>o[h]=row[i]||''); return o; });
+    window._c2jResult = JSON.stringify(json,null,2);
+    out.innerHTML=`<pre class="codeout">${esc(window._c2jResult)}</pre>`;
+  } catch(e){ out.innerHTML=err(e.message); }
 }
-function jsonToCsv() {
-  const raw = document.getElementById('j2cInput')?.value;
-  const out = document.getElementById('j2cResult');
-  try {
-    const arr = JSON.parse(raw);
-    if (!Array.isArray(arr)) throw new Error('Expected an array of objects');
-    const headers = Object.keys(arr[0]);
-    const csv = [headers.join(','), ...arr.map(row => headers.map(h => `"${(row[h]??'').toString().replace(/"/g,'""')}"`).join(','))].join('\n');
-    window._j2cResult = csv;
-    out.innerHTML = `<pre class="code-out">${escHtml(csv)}</pre>`;
-  } catch(e) {
-    out.innerHTML = `<div class="result-error">Error: ${e.message}</div>`;
-  }
-}
-function copyCsv2j() { if (window._c2jResult) navigator.clipboard.writeText(window._c2jResult).then(()=>showCopied()); }
-function copyJ2c() { if (window._j2cResult) navigator.clipboard.writeText(window._j2cResult).then(()=>showCopied()); }
 
-/* ════════════════════════════════════════════
+function json_to_csv() {
+  const raw = document.getElementById('j2cIn')?.value||'';
+  const out = document.getElementById('j2cOut');
+  try {
+    const arr=JSON.parse(raw);
+    if(!Array.isArray(arr)) throw new Error('Expected an array of objects');
+    const headers=Object.keys(arr[0]);
+    const csv=[headers.join(','),...arr.map(row=>headers.map(h=>`"${(row[h]??'').toString().replace(/"/g,'""')}"`).join(','))].join('\n');
+    window._j2cResult=csv;
+    out.innerHTML=`<pre class="codeout">${esc(csv)}</pre>`;
+  } catch(e){ out.innerHTML=err(e.message); }
+}
+
+function copy_el(id) {
+  const el=document.getElementById(id)?.querySelector('pre');
+  if(el){ navigator.clipboard.writeText(el.textContent).then(()=>toast('Copied!')); }
+}
+
+/* ══════════════════════════════════════
    BASE64
-════════════════════════════════════════════ */
-function encodeB64() {
-  const input = document.getElementById('b64EncIn')?.value || '';
-  const out = document.getElementById('b64EncOut');
-  if (!input) { out.innerHTML = ''; return; }
+══════════════════════════════════════ */
+function b64_enc() {
+  const v=document.getElementById('b64eIn')?.value||'';
+  const out=document.getElementById('b64eOut');
+  if(!v){ out.innerHTML=''; return; }
   try {
-    const encoded = btoa(unescape(encodeURIComponent(input)));
-    out.innerHTML = `
-      <div class="result-box" style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
-        <div class="mono" style="font-size:12px;word-break:break-all">${encoded}</div>
-        <button class="btn btn-secondary btn-sm" style="flex-shrink:0" onclick="navigator.clipboard.writeText('${encoded.replace(/'/g,"\\'")}').then(()=>showCopied())">Copy</button>
+    const encoded=btoa(unescape(encodeURIComponent(v)));
+    out.innerHTML=`
+      <div class="rbox" style="display:flex;align-items:flex-start;gap:10px">
+        <div style="font-family:var(--mono);font-size:12.5px;word-break:break-all;flex:1">${encoded}</div>
+        <button class="btn btn-ghost btn-sm" style="flex-shrink:0" onclick="navigator.clipboard.writeText(atob('${btoa(encoded)}') ? '${encoded}' : '').then ? navigator.clipboard.writeText('${encoded.replace(/'/g,"\\'")}').then(()=>toast('Copied!')) : null">Copy</button>
       </div>`;
-  } catch(e) { out.innerHTML = `<div class="result-error">Encoding error: ${e.message}</div>`; }
+    // simpler copy
+    window._b64enc = encoded;
+    out.innerHTML=`
+      <div class="rbox" style="display:flex;align-items:flex-start;gap:10px">
+        <div style="font-family:var(--mono);font-size:12.5px;word-break:break-all;flex:1">${esc(encoded)}</div>
+        <button class="btn btn-ghost btn-sm" style="flex-shrink:0" onclick="navigator.clipboard.writeText(window._b64enc).then(()=>toast('Copied!'))">Copy</button>
+      </div>`;
+  } catch(e){ out.innerHTML=err('Encoding error: '+e.message); }
 }
-function decodeB64() {
-  const input = document.getElementById('b64DecIn')?.value || '';
-  const out = document.getElementById('b64DecOut');
-  if (!input) { out.innerHTML = ''; return; }
+
+function b64_dec() {
+  const v=document.getElementById('b64dIn')?.value.trim()||'';
+  const out=document.getElementById('b64dOut');
+  if(!v){ out.innerHTML=''; return; }
   try {
-    const decoded = decodeURIComponent(escape(atob(input.trim())));
-    out.innerHTML = `<div class="result-box"><div class="result-label">Decoded Text</div><div style="font-size:14px;margin-top:4px;word-break:break-word">${escHtml(decoded)}</div></div>`;
-  } catch(e) { out.innerHTML = `<div class="result-error">Invalid Base64: ${e.message}</div>`; }
+    const decoded=decodeURIComponent(escape(atob(v)));
+    out.innerHTML=`<div class="rbox"><div class="rlabel">Decoded</div><div style="font-size:14px;word-break:break-word;line-height:1.6;margin-top:4px">${esc(decoded)}</div></div>`;
+  } catch(e){ out.innerHTML=err('Invalid Base64: '+e.message); }
 }
 
-/* ════════════════════════════════════════════
-   UTILITIES
-════════════════════════════════════════════ */
-function formatBytes(bytes) {
-  if (bytes < 1024) return bytes + ' B';
-  if (bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' KB';
-  return (bytes/1024/1024).toFixed(2) + ' MB';
-}
-
-function escHtml(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-function dlBlob(blob, name) {
-  if (!blob) return;
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = name;
-  a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 3000);
-}
-
-function showCopied() {
-  const n = document.createElement('div');
-  n.textContent = '✓ Copied!';
-  n.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a1917;color:#fff;padding:8px 18px;border-radius:8px;font-size:14px;font-weight:500;z-index:9999;pointer-events:none;opacity:1;transition:opacity .4s ease';
-  document.body.appendChild(n);
-  setTimeout(() => { n.style.opacity = '0'; setTimeout(() => n.remove(), 400); }, 1500);
-}
-
-/* ════════════════════════════════════════════
-   SEARCH
-════════════════════════════════════════════ */
-document.getElementById('globalSearch').addEventListener('input', function() {
+/* ══════════════════════════════════════
+   SEARCH + FILTER
+══════════════════════════════════════ */
+document.getElementById('gSearch').addEventListener('input', function() {
   const q = this.value.toLowerCase().trim();
-  const cards = document.querySelectorAll('.tool-card');
+  document.getElementById('noResTerm').textContent = q;
   const clusters = document.querySelectorAll('.cluster');
-  const noResults = document.getElementById('noResults');
-  document.getElementById('searchTerm').textContent = q;
-
-  if (!q) {
-    cards.forEach(c => c.classList.remove('hidden'));
-    clusters.forEach(s => s.classList.remove('hidden'));
-    noResults.classList.add('hidden');
-    return;
-  }
-
-  let anyVisible = false;
-  clusters.forEach(cluster => {
-    let clusterHas = false;
-    cluster.querySelectorAll('.tool-card').forEach(card => {
-      const name = card.querySelector('.tool-name')?.textContent.toLowerCase() || '';
-      const desc = card.querySelector('.tool-desc')?.textContent.toLowerCase() || '';
-      const match = name.includes(q) || desc.includes(q);
-      card.classList.toggle('hidden', !match);
-      if (match) { clusterHas = true; anyVisible = true; }
+  let any = false;
+  clusters.forEach(cl => {
+    let has = false;
+    cl.querySelectorAll('.card').forEach(card => {
+      const nm = card.querySelector('.card-name')?.textContent.toLowerCase()||'';
+      const ds = card.querySelector('.card-desc')?.textContent.toLowerCase()||'';
+      const m = !q || nm.includes(q) || ds.includes(q);
+      card.classList.toggle('hidden', !m);
+      if(m) has = true;
     });
-    cluster.classList.toggle('hidden', !clusterHas);
+    cl.classList.toggle('hidden', !has);
+    if(has) any = true;
   });
-
-  noResults.classList.toggle('hidden', anyVisible);
+  document.getElementById('noRes').classList.toggle('hidden', any||!q);
+  // reset filter pills
+  if(q) { document.querySelectorAll('.fpill').forEach(p=>p.classList.remove('active')); }
 });
 
-/* ════════════════════════════════════════════
-   ASPECT RATIO LOCK (resize tool)
-════════════════════════════════════════════ */
-document.addEventListener('input', function(e) {
-  if (e.target.id === 'rW' && document.getElementById('keepAspect')?.checked && window._origAspect) {
-    document.getElementById('rH').value = Math.round(e.target.value / window._origAspect);
-  } else if (e.target.id === 'rH' && document.getElementById('keepAspect')?.checked && window._origAspect) {
-    document.getElementById('rW').value = Math.round(e.target.value * window._origAspect);
-  }
+document.getElementById('filterBar').addEventListener('click', e => {
+  const btn = e.target.closest('.fpill');
+  if(!btn) return;
+  document.querySelectorAll('.fpill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('gSearch').value='';
+  const f = btn.dataset.f;
+  document.querySelectorAll('.cluster').forEach(cl => {
+    cl.classList.toggle('hidden', f!=='all' && cl.dataset.c!==f);
+    cl.querySelectorAll('.card').forEach(c=>c.classList.remove('hidden'));
+  });
+  document.getElementById('noRes').classList.add('hidden');
 });
+
+/* ══════════════════════════════════════
+   HELPERS
+══════════════════════════════════════ */
+function fmtB(b){ if(b<1024)return b+' B'; if(b<1048576)return(b/1024).toFixed(1)+' KB'; return(b/1048576).toFixed(2)+' MB'; }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function fmt_num(n){ const s=n.toFixed(6); return parseFloat(s).toString(); }
+function dl(blob,name){ if(!blob)return; const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),3000); }
+function file_to_dataurl(f){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=e=>res(e.target.result); r.onerror=()=>rej(new Error('Failed to read file')); r.readAsDataURL(f); }); }
+function load_img(src){ return new Promise((res,rej)=>{ const img=new Image(); img.onload=()=>res(img); img.onerror=()=>rej(new Error('Failed to load image')); img.src=src; }); }
+function loading(msg){ return `<div class="loading"><div class="spin"></div>${msg}</div>`; }
+function err(msg){ return `<div class="err">❌ ${msg}</div>`; }
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(()=>t.classList.remove('show'), 2000);
+}
 </script>
 </body>
 </html>
